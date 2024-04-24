@@ -1,0 +1,437 @@
+/*
+palette
+black1: #151515
+black2: #0a0a0a
+white: #fbfcd4
+yellow: #ffdd02
+gold: #fac402 
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: "aboreto", sans-serif;
+    background-color: #0a0a0a;
+}
+
+.webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.slides {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav {
+    color: #ffffff;
+    height: 1%;
+    width: 100%;
+    background-color: #00000086;
+    z-index: 5;
+    position: fixed;
+    padding: 3rem 6rem;
+    display: flex;
+    
+}
+nav a {
+    position: relative;
+    margin-left: 4.5%;
+    margin-top: -1%;
+}
+
+#logo-icon {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: opacity(80%);
+    transition: 0.5s ease;
+}
+#logo-icon:hover {
+    transform: scale(1.05, 1.05);
+    filter: opacity(100%);
+}
+  
+nav a:hover {
+    transform: scale(1.05);
+}
+
+.mainbar-container {
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 1%;
+    flex-direction: column;
+    height: 100%;
+    width: 20%;
+    left: 0;
+    background-color: #0000007a;
+}
+.form-title{
+    position: fixed;
+    color: #fac402;
+    right: 0%;
+    font-size: 200%;
+    line-height: 0;
+    text-align: center;
+    margin-left: 1%;
+    margin-right: 2%;
+}
+.noto-desc {
+    position: fixed;
+    margin-top: 1%;
+    margin-right: 2%;
+    right: 0%;
+    color: #ffffffd4;
+    font-size: 80%;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.main-header {
+    color: #fac402;
+    width: 100%;
+    font-size: 100%;
+    text-align: left;
+    margin: 3%;
+}
+.vehicle-type-section {
+    margin-top: 30%;
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+select{
+    font-size: 100%;
+    cursor: pointer;
+    width: 95%;
+    left: 3%;
+    position: relative;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fac402;
+    background-color: #00000000;
+    border: 1px #fac402 solid;
+    transition: 0.5s ease;
+}
+select:focus{
+    outline:none;
+}
+select:hover {
+    border-radius: 10px;
+    color: #ffffff;
+    border: 1px #ffffff solid;
+}
+#option_ {
+    color: #000000;
+}
+
+.start-end-location-section {
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.start-end-location-btncontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.start-picker-button,
+.end-picker-button {
+    cursor: pointer;
+    position: relative;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    margin: 3%;
+    height: 100%;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+#set-start-button {
+    color: #fac402;
+    border: 1px #fac402 solid;
+}
+#set-end-button {
+    color: #77b2ff;
+    border: 1px #77b2ff solid;
+}
+#set-start-button:hover,
+#set-end-button:hover {
+    color: #ffffff;
+    border: 1px #ffffff solid;
+    border-radius: 10px;
+}
+
+.preferences-section {
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.slider-title {
+    color: #fac402;
+    font-size: 100%;
+    width: 35%;
+}
+.slider-container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+.slider {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 20%;
+    background: #fac40293;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: 0.2s;
+    transition: 0.5s ease;
+    margin: 5%;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 25px;
+    border-radius: 5px;
+    background: #fac402;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+.slider::-moz-range-thumb {
+    width: 10px;
+    height: 25px;
+    background: #fac402;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.slider:hover::-webkit-slider-thumb {
+    background: #ffea9f;
+    border-radius: 0;
+}
+.slider:hover {
+    border-radius: 0;
+}
+.safety-slider-container,
+.distance-slider-container,
+.speed-slider-container {
+    display: flex;
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+    width: 140%;
+}
+#safety-value,
+#distance-value,
+#speed-value {
+    position: relative;
+    color: #fac4029a;
+    font-size: 100%;
+    width: 1%;
+}
+.reset-values-button {
+    cursor: pointer;
+    position: relative;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fac402;
+    font-size: 100%;
+    border: 1px #fac402 solid;
+    margin: 3%;
+    margin-bottom: 0%;
+    height: 30px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+.reset-values-button:hover {
+    color: #ffffff;
+    border: 1px #ffffff solid;
+    border-radius: 10px;
+}
+
+.time-preferences-section {
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+}
+.time-set-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+#time-set {
+    font-size: 100%;
+    position: relative;
+    border-radius: 5px;
+    border: 1px #fac402 solid;
+    color: #fac402;
+    font-weight: bold;
+    background-color: #00000059;
+    margin: 5%;
+    margin-left: 10%;
+    margin-top: -0.1%;
+    left: 2%;
+    height: 100%;
+    width: 150%;
+    transition: 0.5s ease;
+    padding: 0% 5% 0% 8%;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    background-color: #fac402;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    background-color: #ffffff8b;
+    border-radius: 10px;
+}
+#time-set:hover {
+    border-radius: 10px;
+    color: #ffffff;
+    border: 1px #ffffff solid;
+}
+
+.weather-preference-section {
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.paths-preferences-section {
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+#paths-input {
+    font-size: 100%;
+    position: relative;
+    border-radius: 5px;
+    border: 1px #fac402 solid;
+    color: #fac402;
+    font-weight: light;
+    background-color: #00000059;
+    left: 3%;
+    width: 95%;
+    transition: 0.5s ease;
+    padding: 2% 5% 2% 5%;
+    transition: 0.5s ease;
+}
+#paths-input::placeholder {
+    color: #ffffff99;
+}
+#paths-input:hover {
+    color: #ffffff;
+    border: 1px #ffffff solid;
+    border-radius: 10px;
+}
+
+.map-header {
+    text-align: left;
+    position: relative;
+    color: #fac402;
+    font-size: 100%;
+}
+.map-section {
+    z-index: 10;
+    position: fixed;
+    width: 75%;
+    height: 90%;
+    left: 22.5%;
+    top: 10%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 85%;
+    background-color: #00000049;
+    border: 2px #fac402 solid;
+    border-radius: 10px;
+    margin-top: 1%;
+}
+
+.submit-form-button {
+    cursor: pointer;
+    position: relative;
+    margin-top: 1%;
+    width: 100%;
+    height: 9.25%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-weight: bold;
+    font-size: 125%;
+    background-color: #fac402;
+    transition: 0.5s ease;
+    border: 2px #fac402 solid;
+}
+.submit-form-button:hover {
+    border-radius: 20px;
+    background: #000000d5;
+    border: 2px #ffffff solid;
+    color: #ffffff;
+}
+
+.line {
+    position: relative;
+    margin: 4% 10% 2% 10%;
+    width: 90%;
+    height: 0.25%;
+    background-color: #fac402;
+}
