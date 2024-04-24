@@ -29,6 +29,8 @@ body, html {
 .slides {
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 nav {
@@ -92,4 +94,13 @@ nav ul li a:hover {
     padding: 12rem 6rem;
     width: 100%;
     left: 0;
+}
+
+#general-diagram {
+    z-index: 2;
+    position: relative;
+    height: 50%;
+    width: 50%;
+    top: 25%;
+    filter: invert(10%);
 }
