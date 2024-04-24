@@ -138,6 +138,12 @@ select:hover {
     border: 1px #ffffff solid;
 }
 #option_ {
+    background-color: #000000;
+    color: #fac402;
+    transition: 0.5s ease;
+}
+#option_:hover {
+    background-color: #fac402;
     color: #000000;
 }
 

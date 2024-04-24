@@ -1,5 +1,4 @@
 import "./form.css"; //vite requires import style
-// import "../global.css"
 import * as THREE from 'three';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
