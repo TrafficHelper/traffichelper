@@ -70,4 +70,5 @@ class Utils:
                 optimal = self.bfs(subject) # A list of the minimal-length path tracker
                 optimal = [step[3] + i for i in optimal]
                 current.node.tracker.update(optimal) # Update with new lowest costs
+        return current.node.tracker.optimal
 

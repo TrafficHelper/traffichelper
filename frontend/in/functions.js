@@ -16,7 +16,7 @@ function set_vehicle_type(vehicle_type) {
 }
 
 function set_start_end_points(start, end) {
-    //set start & end points
+    //set start & end point
     console.log(start);
     console.log(end);
 }
