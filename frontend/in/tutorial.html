@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrafficHelper</title>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="/">traffichelper.ca</a>
+      <ul>
+        <li><a href='#explore'>EXPLORE</a></li>
+        <li><a href='./index.html'>SIGN OUT</a></li>
+      </ul>
+    </nav>
+    <div class="slides">
+      <canvas class="webgl"></canvas>
+      <h1 class="title1">Hello, </h1>
+      <h1 class="title2" id="username-title">$USER$</h1>
+      <div class="path-container">
+        <div class="regular-button" id="regular-button">DEFAULT</div>
+        <button class="admin-button" id="admin-button" disabled>ADMIN</button>
+      </div>
+    </div>
+    
+    <!-- <div class="slides">
+      <h1 class="title4">Overview</h1>
+    </div> -->
+    
+    <script type="module" src="./home.js"></script>
+  </body>
+</html>
