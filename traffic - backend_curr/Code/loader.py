@@ -26,8 +26,10 @@ class Loader:
         """
 
         # Step 1: Load network structure
+        print('Start')
         network = Graph()
         network.parse(Filenames.centrelines(), []) # Redundant params.
+        print('End')
 
         # Step 1.5: Create EdgeID - Edge mapping scheme and Node list
         edges = network.spread()
