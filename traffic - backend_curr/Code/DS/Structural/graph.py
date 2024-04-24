@@ -415,7 +415,7 @@ class Graph(Parser):
             first = True
             ctr = 0 # We also maintain a counter and only take every tenth instance; this is to save time TODO Store Graph Configuration
             for line in rdr:
-                if not first and ctr%10 == 1:
+                if not first: #and ctr%10 == 1:
                     # Create two-way edges with reversed start and endpoints; they are part of the same road ID
                     left, right = Edge().parse(fn, line)
                     # print(left, right)
@@ -522,10 +522,10 @@ class Graph(Parser):
         # print('HERE')
         # print(len(intersections))
 
-        # print(len(intersections))
+        print(len(intersections))
         k = 0
         for nd in intersections: # Modify the SELF due to structural requirements; takes a lot of time
-            # k+=1
-            # if k % 10000 == 0:
-            #     print(k)
+            k+=1
+            if k % 10000 == 0:
+                print(k)
             self.modify(nd)
