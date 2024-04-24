@@ -1,0 +1,23 @@
+
+Desc.: start-end k-shortest Paths in sparse DCG w. time/path-dependent +ve weights/costs. In-place poly-time algo
+Sol.:
+    Type of SSSP --> use modified Dijkstra
+    Each Node hosts (visited:bool, curr_k-best:|PQ:[cost=def.INF:incoming:(Edge(let), Node(let)) = (None,None)]| = k)
+    BFS:
+        Each Node exit selected from smallest next path in Fibonacci Heap carries updated PQ+cost(outgoing  Edge,Node  @ exit time)
+        Target Node is updated with new potential Paths
+        Finishes when whole Graph PQs !updated
+            Global modified variable, default false, set to true if any Node's successive PQs unequal
+            Do while modified is true
+
+Alternative:
+    (3D DP w. weights as cost function & incident times as param. in DP arr.)
+    Each edge in the network has a cost, and so does each node
+    When traversing between Edges and Nodes we use a modified variant of Dijkstra's SSSP Algo (since we have a sparse call system we don't need APSP algo.)
+    In each BFS visit the node's cost is also included in the relaxation procedure
+    Furthermore, the longest timewise path is for the graph is stored in O(n^2)
+    Then each set of nodes at each time represents a "Layer" with the time marked between them representing a 3D Graph
+    We can then perform Dijkstra on the whole Graph
+
+Desc.: changes to network which are below budget and maximize cost differential
+

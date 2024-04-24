@@ -1,0 +1,2 @@
+The application uses Time Functions as a convenient tool to approximate the periodic data
+An N-Function is a Fourier Series with precision of N terms, i.e. f(t) = k

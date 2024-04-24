@@ -1,0 +1,56 @@
+﻿id,location_desc,location_desc_fr,longitude,latitude,FID,x,y
+1,Albert Street & Kent Street,rue Albert et rue Kent,-75.7023773193359,45.4190139770508,1,-8427150.09502874,5687729.64447862
+2,Bank Street & Hunt Club Road,rue Bank et chemin Hunt Club,-75.6473693847656,45.3537063598633,2,-8421026.63976278,5677378.25818655
+3,Bank Street & Riverside Drive (North),rue Bank et promenade Riverside (côté nord),-75.6772689819336,45.3888168334961,3,-8424355.04769444,5682941.85110718
+4,Baseline Road & Merivale Road,chemin Baseline et chemin Merivale,-75.7308502197266,45.3652725219727,4,-8430319.68380163,5679210.64660232
+5,Booth Street & Wellington Street,rue Booth et rue Wellington,-75.7146835327148,45.4162635803223,5,-8428520.01643567,5687293.45981982
+6,Bronson Avenue & Carling Avenue,avenue Bronson et avenue Carling,-75.6997375488281,45.4011001586914,6,-8426856.23712,5684889.07830533
+7,Carling Avenue & Richmond Road,avenue Carling et chemin Richmond,-75.7922897338867,45.3607139587402,7,-8437159.09923252,5678488.40393829
+8,Carling Avenue & Island Park Drive,avenue Carling et promenade Island Park,-75.7267074584961,45.3892517089844,8,-8429858.51373098,5683010.7829804
+10,Catherine Street & O'Connor Street/417 Westbound On Ramp,rue Catherine et rue O'Connor/417 ouest,-75.6894149780273,45.4106101989746,9,-8425707.13379478,5686396.95833955
+11,Charlemagne Boulevard/Tompkins Avenue & Tenth Line Road,boulevard Charlemagne/avenue Tompkins et chemin Tenth Line,-75.4973831176758,45.4773483276367,10,-8404330.24488436,5696985.8822273
+12,Coventry/Ogilvie Road & St. Laurent Boulevard,chemin Coventry/Ogilvie et boulevard St. Laurent,-75.637321472168,45.4242172241211,11,-8419908.11124888,5688554.88411933
+13,Eagleson Road & Hazeldean Road,chemin Eagleson et chemin Hazeldean,-75.8768005371094,45.3040428161621,12,-8446566.7988138,5669514.48198367
+14,Heron Road & Riverside Drive,chemin Heron et promenade Riverside,-75.6914978027344,45.3768272399902,13,-8425938.99278058,5681041.59609777
+15,March Road/Eaglson Road & Campeau Drive/417 Westbound Off Ramp,chemin March/Eaglson et promenade Campeau/417 ouest,-75.8871383666992,45.3225364685059,14,-8447717.60073965,5672441.98014151
+16,Merivale Road & Meadowlands Drive,chemin Merivale et promenade Meadowlands,-75.7335433959961,45.3508949279785,15,-8430619.48681257,5676932.90900861
+17,St. Laurent Boulevard & Belfast Road,boulevard St. Laurent et chemin Belfast,-75.6304473876953,45.4118232727051,16,-8419142.89166571,5686589.31749178
+18,Walkley Road & Russell Road/Hawthorn Road,chemin Walkley et chemin Russell/Hawthorn,-75.6075820922852,45.3928527832031,17,-8416597.53862381,5683581.60764402
+19,King Edward Avenue & St. Patrick Street,avenue King Edward et rue St. Patrick,-75.6889877319336,45.4325370788574,18,-8425659.57297718,5689874.57858362
+20,Bronson Avenue & Commissioner Street/Slater Street,avenue Bronson et rue Commissioner/rue Slater,-75.7081832885742,45.415714263916,19,-8427796.41256791,5687206.34642771
+21,Albert Street & Booth Street,rue Albert et rue Booth,-75.712646484375,45.4129028320313,20,-8428293.25325176,5686760.50851378
+22,Bank Street & Heron Road,rue Bank et chemin Heron,-75.6675338745117,45.3785781860352,21,-8423271.34049342,5681319.08196319
+23,Cyrville Road & Innes Road,chemin Cyrville et chemin Innes,-75.6024322509766,45.4164848327637,22,-8416024.26091168,5687328.54739771
+24,Place D'Orléans Drive/Duford Drive & St. Joseph Boulevard,promenade Place D'Orléans/promenade Duford et boulevard St. Joseph,-75.5126037597656,45.4776611328125,23,-8406024.59901134,5697035.542591
+25,Greenbank Road & Berrigan Drive/Wessex Road,chemin Greenbank et promenade Berrigan/chemin Wessex,-75.7489852905273,45.2749366760254,24,-8432338.47064867,5664908.98759309
+26,Holland Avenue & Island Park Drive/NCC Driveway,avenue Holland et promenade Island Park/promenade de la CCN,-75.7257614135742,45.388542175293,25,-8429753.20049201,5682898.31546051
+27,Conroy Road & Lorry Greenberg Drive,chemin Conroy et promenade Lorry Greenberg,-75.6221389770508,45.3694381713867,26,-8418218.00362346,5679870.68828185
+28,Aviation Parkway & Ogilvie Road,promenade Aviation et chemin Ogilvie,-75.6270294189453,45.4279670715332,27,-8418762.40512491,5689149.66043456
+29,Elgin Street/Pretoria Bridge & Queen Elizabeth Drive,rue Elgin/pont Pretoria et promenade Queen Elizabeth,-75.6840667724609,45.4113273620605,28,-8425111.77427447,5686510.67960324
+30,Fisher Avenue & Meadowlands Drive,avenue Fisher et promenade Meadowlands,-75.7114105224609,45.3626441955566,29,-8428155.66660085,5678794.21674074
+31,Smyth Road & Saunderson Drive,chemin Smyth et promenade Saunderson,-75.6314849853516,45.4005241394043,30,-8419258.39650845,5684797.75477527
+32,Strandherd Drive & Jockvale Road,promenade Strandherd et chemin Jockvale,-75.751091003418,45.2686882019043,31,-8432572.87753542,5663920.59315516
+33,Blair Road & Highway 174 Westbound/Gloucester Center,chemin Blair et autoroute 174 quest/Centre de Gloucester,-75.6074447631836,45.4333572387695,32,-8416582.25121816,5690004.6827945
+34,King Edward Avenue & St. Andrew Street,avenue King Edward et rue St. Andrew,-75.6900405883789,45.4338188171387,33,-8425776.77642055,5690077.90506559
+35,Old Tenth Line Road & St. Joseph Boulevard,chemin Old Tenth Line et boulevard St. Joseph,-75.4981002807617,45.4845771789551,34,-8404410.0791139,5698133.59155747
+39,Bank Street & Riverside Drive (South),rue Bank et promenade Riverside (côté sud),-75.67626953125,45.3880233764648,35,-8424243.78935327,5682816.08203841
+40,Catherine Street & Kent Street (South Side),rue Catherine et rue Kent (côté sud),-75.6937637329102,45.4087219238281,36,-8426191.23497392,5686097.53957792
+41,Catherine Street & Kent Street (East Side),rue Catherine et rue Kent (côté est),-75.6936645507813,45.408863067627,37,-8426180.19406983,5686119.9200281
+42,Hogs Back Road & Meadowlands Drive,rue Hogs Back et promenade Meadowlands,-75.7012023925781,45.3683891296387,38,-8427019.30278034,5679704.46441524
+43,Coldrey Avenue & Kirkwood Avenue,avenue Coldrey et avenue Kirkwood,-75.7384414672852,45.3816223144531,39,-8431164.73761434,5681801.52882615
+44,Cedarview Road & Fallowfield Road,chemin Cedarview et chemin Fallowfield,-75.7798767089844,45.2786598205566,40,-8435777.28762119,5665497.97277413
+45,Hawthorne Road & Leitrim Road,chemin Hawthorne et chemin Leitrim,-75.578239440918,45.3406219482422,41,-8413331.12961509,5675305.7899754
+46,Tenth Line Road & Vanguard Dr,chemin Tenth Line et promenade Vanguard,-75.4863739013672,45.4583587646484,42,-8403104.70453085,5693971.65096362
+47,Walkley Road & Glenhaven Private,chemin Walkley et privé Glenhaven,-75.6649398803711,45.369743347168,43,-8422982.57838657,5679919.04489465
+48,Heron Road 155m west of Bank Street,chemin Heron 155m à l'ouest du rue Bank,-75.6694717407227,45.3784027099609,44,-8423487.06277325,5681291.2725348
+51,Aviation Parkway & Montreal Road,promenade Aviation et chemin Montreal,-75.6391067504883,45.443660736084,45,-8420106.84752242,5691639.31587281
+52,Barnsdale Road & Prince of Wales Drive,chemin Barnsdale et promenade Prince of Wales,-75.7121658325195,45.2410049438477,46,-8428239.74733196,5659542.91585911
+53,Gladstone Avenue & Rochester Street,avenue Gladstone et rue Rochester,-75.709716796875,45.4052925109863,47,-8427967.12193108,5685553.7723124
+55,Bronson Avenue & Powell Avenue,avenue Bronson et avenue Powell,-75.7005081176758,45.4024391174316,48,-8426942.01645174,5685101.36375094
+56,Arlington Avenue & Kent Street,avenue Arlington et rue Kent,-75.6942749023438,45.4094467163086,49,-8426248.13809497,5686212.46680777
+57,Bay Street & Slater Street,rue Bay et rue Slater,-75.7054901123047,45.4169006347656,50,-8427496.60955697,5687394.48821776
+58,Lyon Street & Slater Street,rue Lyon & rue Slater,-75.7039337158203,45.4175605773926,51,-8427323.35229285,5687499.14758043
+59,Innes Road & Orléans Boulevard,chemin Innes & boulevard Orléans ,-75.5327835083008,45.444450378418,52,-8408270.99834261,5691764.60365958
+60,St. Joseph Boulevard & Tenth Line Road,boulevard St. Joseph et chemin Tenth Line,-75.5010299682617,45.4835624694824,53,-8404736.21043458,5697972.47941056
+61,Elgin Street & Slater Street,rue Elgin & rue Slater,-75.6937255859375,45.4220275878906,54,-8426186.98847235,5688207.59658565
+62,Murray Street & Sussex Avenue,rue Murray et avenue Sussex,-75.696044921875,45.4286766052246,55,-8426445.17576789,5689262.20648186

@@ -1,0 +1,43 @@
+Identify datapoints of relevance in:
+- RoadCentrelines.csv
+- TrafficCollisionData.csv
+- MidblockVolume20[22, 23].csv
+- IntersectVolume20[15, 22]\20.csv
+Place them in the relevant files (Structure, Accident, Flow)_Policy & Overall_Policy
+
+Write Parser method to parse each of this data
+
+
+Fix up Path method
+Fix up Shortest Path / AIML Decision algo.
+
+14/04/2024
+
+Write & Finish
+Optimal Paths
+
+Best modifications (AIML decision algo. w. modifications having fixed weight ==> Subset-Sum-Problem <= budget & min{sum.lin.metric in selected edges})
+    - Each addition or removal of an edge or node consists of an associated accident and volume optimization, change in the Time function
+    - This can be quantified as their difference, another time function, with our metric as the integral of the time function. It is stored along an edge
+    - We then find change:benefit atomic associations, and maximize the sum while keeping the change below the total budget
+        - For now, use greedy metric; this is NP-Hard prob.
+        - Later more effective algos.,ex.prob. DP in O(n^2)
+
+15/04/2024
+
+Write individualized parser method for writing one of
+Load Structure
+Load Accidents
+Load Volumes
+Concurrently identify datapoints of relevance in datasets
+
+16-18/04/2024
+
+Testing
+
+19-24/04/2024
+
+Incorporate w. frontend
+
+
+

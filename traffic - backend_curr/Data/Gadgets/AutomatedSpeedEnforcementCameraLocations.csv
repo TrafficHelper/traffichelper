@@ -1,0 +1,41 @@
+﻿ID,Location_Desc_EN,Location_Desc_FR,Latitude,Longitude,X,Y,ObjectId
+E001,Longfields Dr. between Highbury Park Dr. and Via Verona Ave.,Prom. Longfields entre Prom. Highbury Park et Av. Via Verona,45.2814636,-75.74395486,364113.24,5016001.158,1
+E002,Innes Rd. between Provence Ave. and Trim Rd.,Ch. Innes entre Av. Provence et Ch. Trim,45.46910126,-75.45925606,386178.806,5037101.789,2
+E003,Bayshore Dr. between Woodridge N Cres. And Woodridge S Cres. ,Prom. Bayshore entre Crois. Woodridge N et Crois. Woodridge S,45.35063734,-75.80628401,359157.22,5023644.251,3
+E004,Katimavik Rd. between Castlefrank Rd. and McGibbon Dr./Sewall Way,Ch. Katimavik entre Ch. Castlefrank et Prom. McGibbon/voie Sewall,45.30800918,-75.89990585,351856.62,5018848.182,4
+E005,Watters Dr. between Charlemagne Blvd. and Roberval Ave. ,Ch. Watters entre Boul. Charlemagne et Av. Roberval,45.47896899,-75.4782706,384678.063,5038179.308,5
+E006,Ogilvie Rd. between Appleford St. and Elmlea Gate,Ch. Ogilvie entre Rue Appleford et Porte Elmlea,45.4391538,-75.59991898,375217.24,5033640.937,6
+E007,Smyth Rd. between Haig Dr. and Edgecomb St. ,Ch. Smyth entre Prom. Haig et Rue Edgecomb,45.40031162,-75.63584852,372452.693,5029293.619,7
+E008,Meadowlands Dr. W. between Winthrow Ave. and Thatcher St.,Prom. Meadowlands W entre Av. Winthrow et Rue Thatcher,45.34465537,-75.75007177,363568.007,5023018.969,8
+E009,Bearbrook Rd. between Centrepark Dr.  and Innes Rd. ,Ch. Bearbrook entre Prom. Centrepark et Ch. Innes,45.43322705,-75.56546896,377920.066,5033013.05,9
+E010,Alta Vista Dr. between Ayers Ave. and Ridgemont Ave. ,Prom. Alta Vista entre Av. Ayers et Av. Ridgemont,45.37627225,-75.66090557,370518.882,5026601.406,10
+E011,Greenbank Rd. between Harrison St. and Banner Rd. ,Ch. Greenbank entre Rue Harrison et Ch. Banner,45.33408694,-75.78383463,360932.629,5021820.448,11
+E012,Abbott St. E between Moss Hill Trail and Shea Rd.,Rue Abbott O. entre Traînée Moss Hill et Ch. Shea,45.26520237,-75.90999805,351100.048,5014085.381,12
+E013,St-Laurent Blvd. between Noranda Ave. and CLarke Ave.,Boul. St-Laurent entre Av. Noranda et Av. Clarke,45.43843109,-75.64533439,371665.053,5033521.854,13
+E014,Tenth Line Rd. between Amiens St. and Des Epinettes Ave./Charlemagne Blvd.,Ch. Tenth Line entre Rue Amiens et Av. Des Epinettes/Boul. Charlemagne,45.47178519,-75.49442704,383424.957,5037365.04,14
+E015,Fisher Ave. between Kintyre Priv. and Deer Park Rd./Dynes Rd.,Av. Fisher entre Privé Kintyre et Ch. Deer Park/Ch. Dynes,45.36465138,-75.71241514,366497.227,5025269.242,15
+E016,Kanata Ave. between Goulbourn Forced Rd. and Walden Dr. ,Av. Kanata entre Ch. Goulbourne Forced et Prom. Walden,45.32300041,-75.92470916,349899.766,5020499.927,16
+E017,Abbeyhill Dr. between Aldburn Pl.and Sherwood St. ,Prom. Abbeyhill entre Place Aldburn et Rue Sherwood,45.2949096,-75.88133355,353324.147,5017403.484,17
+E018,Woodroffe Ave. between Georgina Dr. and HWY417 IC127 RAMP36  ,Av. Woodroffe entre Prom. Georgina et brettelle AUT 417 O,45.365,-75.77,361967.928,5025250.768,18
+E019,Bridgestone Dr. between Sunnybrook Dr. and Granite Crt./Grassy Plains Dr.,Prom. Bridgestone entre Prom. Sunnybrooke et Cour. Granite/Prom. Grassy Plains,45.27853145,-75.85731771,355222.495,5015597.178,19
+E020,Greenbank Rd. between Jockvale Rd. and Half Moon Bay Rd.,Ch. Greenbank entre Ch. Jockvale et Ch. Half Moon Bay,45.262298,-75.741578,364320.289,5013869.383,20
+E021,Stittsville Main St. between Bandelier Way and Hazeldean Rd.,Rue Stittsville Main entre Voie Bandelier et Ch. Hazeldean,45.273846,-75.931182,349431.15,5015031.739,21
+E022,Chapman Mills Dr. between Beatrice Dr. and Meadgate Gate,Prom. Chapman Mills entre Prom. Beatrice et Porte Meadgate,45.272031,-75.723721,365710.533,5014959.554,22
+E023,Crestway Dr. between Oldfield St. and Hathaway Dr.,Prom. Crestway entre Rue Oldfield et Prom. Hathaway,45.28511742,-75.70957727,366806.441,5016432.056,23
+E024,Woodroffe Ave. between Anthony Ave. and Saville Row,Av. Woodroffe entre Av. Anthony et Rang Saville,45.374163,-75.772869,361752.505,5026278.444,24
+E025,Portobello Blvd. between Capreol St./Martello Dr. and Aquaview Dr./Nantes St.,Boul. Portobello entre Rue Capreol/Prom. Martello et Prom. Aquaview/Rue Nantes,45.458264,-75.465943,385671.485,5035888.34,25
+E026,Cambrian Rd. between Greenbank Rd. to Kilbirnie Dr.,Ch. Cambriam entre Ch. Greenbank et Prom. Kilbirnie,45.254172,-75.733357,364972.986,5012975.95,26
+E027,Cedarview Rd. between Fallowfield Rd. and Jockvale Rd./Hélène-Campbell Rd.,Ch. Cedarview entre Ch. Fallowfield et Ch. Jockvale/Ch. Hélène-Campbell,45.277294,-75.778904,361375.376,5015508.727,27
+E028,First Ave. between Chrysler St. to Percy St.,Av. First entre Rue Chrysler et Rue Percy,45.401668,-75.696073,367735.689,5029395.403,28
+E029,Jeanne d'Arc blvd. between Orleans blvd.  and Paddler Way/Vorlage Dr. ,Boul Jeanne d'Arc entre Boul. D'Orleans et voie Paddler/prom. Vorlage,45.477969,-75.541853,379709,5038005,29
+E030,Spratt Rd. between Earl Armstrong Rd. and Canyon Walk Dr.,Ch. Spratt entre Ch. Earl Armstrong et Prom. Canyon Walk,45.281515,-75.686453,368624.6,5016048.7,30
+E031,Stonehaven Dr. between Stonemeadow Dr. and Summitview Dr./Sawyer Way,Prom. Stonehaven entre Prom. Stonemeadow et Prom. Summitview/Voie Sawyer,45.283822,-75.845611,356136.2,5016192,31
+E032,Heron Rd. between Alta Vista Dr. and Baycrest Dr.,Ch. Heron entre Prom. Alta Vista et Prom. Baycrest,45.379416,-75.654245,371037,5026954.7,32
+E033,Kelly Farm Dr. between Bradwell Way and Alasken Dr.,Prom. Kelly Farm entre Voie Bradwell et Prom. Alasken,45.317555,-75.602618,375156.9,5020124.1,33
+E034,Berrigan Dr. between Longfields Dr. and Wanstead Dr./Palmadeo Dr.,Prom. Berrigan entre Prom. Longfields et Prom. Wanstead/Prom. Palmadeo,45.279709,-75.738178,364568.6,5015809,34
+E035,Hunt Club Rd. between Pike St. and Lorry Greenberg Dr./Sable Ridge Dr.,Ch. Hunt Club entre Rue Pike et Prom. Lorry Greenberg/Prom. Sable Ridge,45.36113,-75.629025,373034.3,5024943.3,35
+E036,Walkley Rd. between Halifax Dr. and Harding Rd.,Ch. Walkley entre Prom. Halifax et Ch. Harding,45.386148,-75.624844,373331.6,5027727.5,36
+E037,Montreal Rd. between Bethamy Ln. and Ogilvie Rd.,Ch. Montreal entre Rle. Bethamy et Ch. Ogilvie,45.446175,-75.596862,375447.9,5034422.5,37
+E038,King Edward Ave. between Bolton St. and St. Patrick St.,Av. King Edward entre Rue Bolton et Rue St. Patrick,45.434476,-75.690856,368108.4,5033043.8,38
+E039,Riverside Dr. between Mooney's Bay Pl. and Hog's Back Rd./Brookfield Rd.,Prom. Riverside entre Place Mooney's Bay et Ch. Hog's Back/Ch. Brookfield,45.366209,-75.689318,368305,5025458.7,39
+E040,Bronson Ave. between Raven Rd. and Sunnyside Ave./University Dr.,Av. Bronson entre Ch. Raven et Av. Sunnyside/Prom. University,45.388377,-75.692337,368044,5027919.5,40
