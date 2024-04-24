@@ -3,8 +3,8 @@ from __future__ import annotations
 import datetime
 import math
 
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Time(Parser):

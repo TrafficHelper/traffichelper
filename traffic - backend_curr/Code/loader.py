@@ -1,18 +1,18 @@
 import csv
 import random
 
-from Code.DS.Accident.accident import Accident
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.Structural.graph import Graph, Edge, Node
-from Code.DS.Structural.section import Section
-from Code.DS.Temporal.recurrence import Recurrence
-from Code.DS.Temporal.time import Time
-from Code.DS.environment import Environment
-from Code.Interfaces.cost import Cost
-from Code.Utils.adminutils import AdminUtils
-from Code.Utils.preferences import Preferences
-from Code.filenames import Filenames
+from DS.Accident.accident import Accident
+from DS.Atomic.gadget import Gadget
+from DS.Atomic.vehicle import Vehicle
+from DS.Structural.graph import Graph, Edge, Node
+from DS.Structural.section import Section
+from DS.Temporal.recurrence import Recurrence
+from DS.Temporal.time import Time
+from DS.environment import Environment
+from Interfaces.cost import Cost
+from Utils.adminutils import AdminUtils
+from Utils.preferences import Preferences
+from filenames import Filenames
 
 
 class Loader:

@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import math
 
-from Code.DS.Accident.accident import Accident
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.Temporal.recurrence import Recurrence
-from Code.DS.Temporal.time import Time
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Accident.accident import Accident
+from DS.Atomic.vehicle import Vehicle
+from DS.Temporal.recurrence import Recurrence
+from DS.Temporal.time import Time
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Statistic:

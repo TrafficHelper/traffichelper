@@ -1,7 +1,7 @@
-from Code.DS.Accident.injury import Injury
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Accident.injury import Injury
+from DS.Atomic.vehicle import Vehicle
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Outcome(Parser):

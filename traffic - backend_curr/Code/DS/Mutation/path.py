@@ -1,11 +1,11 @@
-from Code.DS.Accident.accident import Accident
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.environment import Environment
-from Code.DS.Mutation.component import Intersection, Segment
-from Code.DS.Structural.graph import Node, Edge
-from Code.DS.Temporal.time import Time
-from Code.Interfaces.cost import Cost
-from Code.Utils.preferences import Preferences
+from DS.Accident.accident import Accident
+from DS.Atomic.vehicle import Vehicle
+from DS.environment import Environment
+from DS.Mutation.component import Intersection, Segment
+from DS.Structural.graph import Node, Edge
+from DS.Temporal.time import Time
+from Interfaces.cost import Cost
+from Utils.preferences import Preferences
 
 
 class Path(Cost):

@@ -4,7 +4,7 @@ import math
 
 import numpy
 
-from Code.DS.Temporal.time import Time
+from DS.Temporal.time import Time
 
 
 class Recurrence:

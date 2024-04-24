@@ -1,11 +1,11 @@
 import csv
 
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.Structural.graph import Edge
-from Code.DS.Structural.section import Section
-from Code.DS.Structural.statistic import Statistic
-from Code.filenames import Filenames
+from DS.Atomic.gadget import Gadget
+from DS.Atomic.vehicle import Vehicle
+from DS.Structural.graph import Edge
+from DS.Structural.section import Section
+from DS.Structural.statistic import Statistic
+from filenames import Filenames
 
 
 def test():

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from enum import Enum
 
-from Code.DS.Temporal.time import Time
-from Code.Interfaces.cost import Cost
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Temporal.time import Time
+from Interfaces.cost import Cost
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Gadget(Parser, Cost, Enum):

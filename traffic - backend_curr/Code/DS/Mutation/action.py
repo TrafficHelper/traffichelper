@@ -1,7 +1,7 @@
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Structural.graph import Node, Edge
-from Code.DS.Structural.section import Section
-from Code.Interfaces.cost import Cost
+from DS.Atomic.gadget import Gadget
+from DS.Structural.graph import Node, Edge
+from DS.Structural.section import Section
+from Interfaces.cost import Cost
 
 
 class Action(Cost):

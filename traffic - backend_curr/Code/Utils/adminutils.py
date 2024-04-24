@@ -1,8 +1,8 @@
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Mutation.modification import Modification
-from Code.DS.Structural.graph import Edge
-from Code.Interfaces.cost import Cost
-from Code.Utils.utils import Utils
+from DS.Atomic.gadget import Gadget
+from DS.Mutation.modification import Modification
+from DS.Structural.graph import Edge
+from Interfaces.cost import Cost
+from Utils.utils import Utils
 
 
 class AdminUtils(Utils):

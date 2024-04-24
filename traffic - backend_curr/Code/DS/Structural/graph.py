@@ -4,13 +4,13 @@ import copy
 import csv
 from functools import cmp_to_key
 
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.Structural.section import Section
-from Code.DS.Structural.statistic import Statistic
-from Code.DS.Temporal.recurrence import Recurrence
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Atomic.gadget import Gadget
+from DS.Atomic.vehicle import Vehicle
+from DS.Structural.section import Section
+from DS.Structural.statistic import Statistic
+from DS.Temporal.recurrence import Recurrence
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Tracker:

@@ -1,9 +1,9 @@
-from Code.DS.Mutation.component import Intersection
-from Code.DS.Mutation.modification import Modification
-from Code.DS.Mutation.path import Path
-from Code.DS.Structural.graph import Node, Edge, Graph, Tracker
-from Code.DS.Temporal.time import Time
-from Code.Utils.preferences import Preferences
+from DS.Mutation.component import Intersection
+from DS.Mutation.modification import Modification
+from DS.Mutation.path import Path
+from DS.Structural.graph import Node, Edge, Graph, Tracker
+from DS.Temporal.time import Time
+from Utils.preferences import Preferences
 
 
 class Utils:

@@ -300,21 +300,21 @@
 
 # import csv
 #
-# from Code.DS.Accident.accident import Accident
-# # from Code.DS.Accident.accident import Accident
-# from Code.DS.Atomic.gadget import Gadget
-# from Code.DS.Structural.statistic import Statistic
-# from Code.DS.Temporal.recurrence import Recurrence
-# # from Code.DS.Temporal.recurrence import Recurrence
-# # from Code.DS.Accident.injury import Injury
-# # from Code.DS.Accident.outcome import Outcome
-# # from Code.DS.Atomic.vehicle import Vehicle
-# # from Code.DS.Environment.environment import Environment
-# # from Code.DS.Environment.surface import Surface
-# from Code.DS.Temporal.time import Time
-# from Code.DS.environment import Weather, Surface, Visibility, Environment
-# from Code.filenames import Filenames
-# from Code.filenames import Filenames
+# from DS.Accident.accident import Accident
+# # from DS.Accident.accident import Accident
+# from DS.Atomic.gadget import Gadget
+# from DS.Structural.statistic import Statistic
+# from DS.Temporal.recurrence import Recurrence
+# # from DS.Temporal.recurrence import Recurrence
+# # from DS.Accident.injury import Injury
+# # from DS.Accident.outcome import Outcome
+# # from DS.Atomic.vehicle import Vehicle
+# # from DS.Environment.environment import Environment
+# # from DS.Environment.surface import Surface
+# from DS.Temporal.time import Time
+# from DS.environment import Weather, Surface, Visibility, Environment
+# from filenames import Filenames
+# from filenames import Filenames
 # def test():
 #     for fn in [Filenames.collisiondata()]:
 #         with open(fn) as file:

@@ -1,6 +1,6 @@
-from Code.DS.Mutation.action import Action
-from Code.DS.Structural.graph import Graph
-from Code.Interfaces.cost import Cost
+from DS.Mutation.action import Action
+from DS.Structural.graph import Graph
+from Interfaces.cost import Cost
 
 
 class Modification(Cost):
