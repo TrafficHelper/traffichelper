@@ -1,0 +1,22 @@
+Src: https://open.ottawa.ca/datasets/road-centrelines/explore
+Most recent update: (28/March=3)/2024
+Format: [OBJECTID,GLOBALID,SUBTYPE_TEXT,SUBCLASS,OWNERSHIP,FLOW,GRADE_SEPARATED,GEOMETRY_CREATED_DATE,GEOMETRY_MODIFIED_DATE,CURRENT_STATUS,STATUS_CREATED_DATE,STATUS_MODIFIED_DATE,MAINT_SUBCLASS,MAINTCLASS,MC_CREATED_DATE,MC_MODIFIED_DATE,BOUNDARY_RD,FULL_ROADNAME_EN,FULL_ROADNAME_FR,SUFFIX_FR,ARTICLE_FR,ROAD_NAME,SUFFIX_EN,DIRECTION,ROAD_SIGN_TEXT,LEFT_FROM,LEFT_TO,RIGHT_FROM,RIGHT_TO,ROAD_NAME_ID_ODD,ROAD_NAME_ID_EVEN,OT_ROAD_NAME_ID,FROM_RD_NAME,TO_RD_NAME,FROM_RD_ID,TO_RD_ID,ADD_CREATED_DATE,ADD_MODIFIED_DATE,RD_SEGMENT_ID,SHAPE_Length]
+Dimensions: 28941 x 40, zero-offset
+
+Used 28941 (all) x 7 (below):
+[
+- Col: Varname: Possibilities --> Comments
+- 5: OWNERSHIP: (Federal, (NOT)Private, Provincial, Public) --> Discard private
+- 6: FLOW (of one-way streets): From-To / (Both) / To-From (start to end road) --> Use start --> end from-to, end --> start to-from start --> end and end --> start (both)
+-
+- 8: GEOMETRY_CREATED_DATE (date segment was created): --> convert to time object in minutes from epoch beginning, when segment existed, measure impacts to traffic volumes and accidents at that time to determine effect of road
+- 9: GEOMETRY_MODIFIED_DATE (date segment was modified): --> Date most recent change was made to road (need to know what kind)
+
+- 10: CURRENT_STATUS: --> Any invalid status is avoided
+
+- FULL_ROADNAME_EN:--> English description of road name, displayed to user for convenience
+- 39:SHAPE_Length: --> Segment length in meters (round to nearest m)
+]
+
+Policy:
+
