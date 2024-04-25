@@ -1,7 +1,7 @@
 from enum import Enum
 
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Vehicle(Parser, Enum):

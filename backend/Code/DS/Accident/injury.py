@@ -1,5 +1,5 @@
 from enum import Enum
-from Code.Interfaces.parser import Parser
+from Interfaces.parser import Parser
 
 
 class Injury(Parser, Enum):

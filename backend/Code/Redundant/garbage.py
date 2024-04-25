@@ -300,21 +300,21 @@
 
 # import csv
 #
-# from Code.DS.Accident.accident import Accident
-# # from Code.DS.Accident.accident import Accident
-# from Code.DS.Atomic.gadget import Gadget
-# from Code.DS.Structural.statistic import Statistic
-# from Code.DS.Temporal.recurrence import Recurrence
-# # from Code.DS.Temporal.recurrence import Recurrence
-# # from Code.DS.Accident.injury import Injury
-# # from Code.DS.Accident.outcome import Outcome
-# # from Code.DS.Atomic.vehicle import Vehicle
-# # from Code.DS.Environment.environment import Environment
-# # from Code.DS.Environment.surface import Surface
-# from Code.DS.Temporal.time import Time
-# from Code.DS.environment import Weather, Surface, Visibility, Environment
-# from Code.filenames import Filenames
-# from Code.filenames import Filenames
+# from DS.Accident.accident import Accident
+# # from DS.Accident.accident import Accident
+# from DS.Atomic.gadget import Gadget
+# from DS.Structural.statistic import Statistic
+# from DS.Temporal.recurrence import Recurrence
+# # from DS.Temporal.recurrence import Recurrence
+# # from DS.Accident.injury import Injury
+# # from DS.Accident.outcome import Outcome
+# # from DS.Atomic.vehicle import Vehicle
+# # from DS.Environment.environment import Environment
+# # from DS.Environment.surface import Surface
+# from DS.Temporal.time import Time
+# from DS.environment import Weather, Surface, Visibility, Environment
+# from filenames import Filenames
+# from filenames import Filenames
 # def test():
 #     for fn in [Filenames.collisiondata()]:
 #         with open(fn) as file:
@@ -681,3 +681,172 @@
 #         transferred = [val + cost for val in giving] # Update all costs of the k best paths by the cost of that edge or node
 #         self.UPDATED = False # Not updated anymore
 #         self.BFS(next, transferred) # Move onto next node
+# def __init__(self, start: Node, vehicle: Vehicle, environment: Environment, considered: [Accident], departure: Time = Time(), policy: (float, float, float) = Cost.DEFAULT):
+#     # Auxiliary data
+#     self.vehicle = vehicle
+#     self.environment = environment
+#     self.considered = considered
+#     self.metric = policy
+#
+#     self.root = Intersection(start, self.vehicle, departure, self.environment, self.considered, self.metric)  # Root node which anchors the traversal, remains constant
+#     self.ending = self.root  # Last node(let) in the traversal
+#     self.time = self.root.timeCost()  # Time elapsed so far for the entire path
+#
+#     self.endcost = self.root.cost()  # Final cost of the traversal uptil now
+#     self.costs = [self.endcost]  # List of all costs according to progression in the traversal
+#
+#     self.traversals = []  # The list of (Segment, Intersection) groupings following the root node
+#
+#     self.iter = -1  # Dummy variable for iterating over representation of self
+#
+# def __iter__(self):
+#     return self
+#
+# def __next__(self):
+#     self.iter += 1
+#     if self.iter == len(self.traversals):
+#         self.iter = -1
+#         raise StopIteration
+#     return self.traversals[self.iter]
+#
+# def push(self, other: (Edge, Node)) -> bool:
+#     """
+#    Update the path by adding another Edge and Node pair
+#    Returns True if the process was successfully completed, False if something obstructed it (ex. Incomplete smooth passageway)
+#    :param other:
+#    :return:
+#     """
+#     edge = other[0]
+#     node = other[1]
+#     burden = self.cost()
+#     if edge.outgoing != self.ending or node not in edge.incoming: return False  # Traversal must be smooth passageway between times
+#     link = Segment(edge, self.vehicle, self.time, self.environment, self.considered, self.metric)
+#     self.time += link.timeCost()
+#     point = Intersection(node, self.vehicle, self.time, self.environment, self.considered, self.metric)
+#     self.time += point.timeCost()
+#     self.ending = point
+#     linkcost = link.cost()
+#     pointcost = point.cost()
+#     self.traversals += [(link, linkcost), (point, pointcost)]
+#     self.costs += [(self.endcost + linkcost, self.endcost + linkcost + pointcost)]  # Update costs
+#     self.endcost += linkcost + pointcost
+#     return True
+#
+# def isroot(self):
+#     return len(self.traversals) == 0
+#
+# def pop(self) -> (Edge, Node):
+#     if self.isroot(): return ()  # Nothing to return
+#     pair = self.traversals.pop()
+#     self.ending = self.root if len(self.traversals) == 0 else self.traversals[-1][1][
+#         0]  # Last node of last segment-intersection pair
+#     self.time -= (pair[0][1] + pair[1][0])  # Sum of times in both pairs
+#     del self.costs[-1]
+#     self.endcost = self.costs[-1][0 if len(self.costs) == 1 else 1]  # Update end cost to be the last such cost
+#     return pair
+#
+# def end(self):
+#     return self.ending
+#
+#
+# def cost(self):
+#     return self.endcost  # Sum of individual precomputed costs is final cost
+#
+# def threat(self):
+#     """
+#    Total chance of an accident of the prescribed type occurring along the path, computed from the independence of each of its sections
+#    :return:
+#     """
+#     chance = 1 - self.root.risk()
+#     for section in self:
+#         chance *= (1 - section[0][0].risk()) * (1 - section[1][0].risk())
+#     return 1 - chance
+#
+#
+# @staticmethod
+# def voload(network, edges, gid):
+#     """
+#     Acronym for VOlume LOAD, loads the volumes from both the midblock and intersectional files to the network
+#
+#     :param edges:
+#     :param gid:
+#     :return:
+#     """
+#
+#
+# @staticmethod
+# def load():
+#     """
+#     Loads all parsed data into the Graph representing the traffic network
+#     :return: Graph representing all parsed data
+#     """
+#
+#     # Step 1: Load network structure
+#     network = Graph()
+#     network.parse(Filenames.centrelines(), [])
+#
+#     edges = network.spread()
+#
+#     # Step 2: Load Accident Data
+#     acf = Filenames.collisiondata()
+#     with open(acf) as accidents:
+#         rdr = csv.reader(accidents)
+#         first = True
+#         for line in rdr:
+#             if not first:
+#                 acc = Accident()
+#                 acc.parse(acf, line)
+#                 geoid = line[3]  # The GEO ID (Edge) of the Accident
+#                 # print(random.choice(list(edges.keys())) in edges.keys())
+#                 edges[random.choice(list(edges.keys()))].stats.accidents.append(acc)  # Add all accidents to edge
+#             first = False
+#
+#     # Step 3: Load Traffic Volumes
+#     tid = Filenames.intersectvols()
+#     mid = Filenames.midblockvols()
+#     Loader.voload(edges, tid)
+#     Loader.voload(edges, mid)
+#
+#     # Step 4: Load all Gadgets
+#
+#     # # Part 1: ENFORCERS
+#     # asecl = Filenames.asecl()
+#     # with open(asecl) as ase:
+#     #     rdr = csv.reader(ase)
+#     #     first = True
+#     #     for line in rdr:
+#     #         if not first:
+#     #             gadg =
+#     #         first = False
+#
+#
+# @staticmethod
+# def voload(edges, aid):
+#     """
+#     Load the volumes on random edges given the edge list and file name
+#     We can only load on random Edges as there is no better information present in the files
+#     :param edges:
+#     :param aid:
+#     :return:
+#     """
+#     for yr in aid:
+#         tyr = aid[yr]
+#         with open(tyr) as feature:
+#             rdr = csv.reader(feature)
+#             first = True
+#             for line in rdr:
+#                 if not first:  # Assign flow to random Edge of Graph as we have no better information
+#                     volumes = Vehicle.RATIOS.parse(yr, line)  # Breakdown of vehicle type & quantity
+#                     edg = edges[edges.keys()[random.randint(0, len(edges))]]  # Random Edge selected
+#                     flw = edg.stats.flows
+#                     for veh in volumes:
+#                         flw[veh] = Recurrence(Time.RECURRENCE, volumes[veh])
+#
+#     acc = Accident()
+#     acc.parse()
+#
+#     print('DONE')
+#     # print(network.nodes)
+#
+#     # Create user preferences
+#     # prefs = Preferences(Vehicle.CAR, Environment.NORMAL, Accident.STANDARD())

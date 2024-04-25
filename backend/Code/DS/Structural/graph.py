@@ -4,13 +4,13 @@ import copy
 import csv
 from functools import cmp_to_key
 
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.Structural.section import Section
-from Code.DS.Structural.statistic import Statistic
-from Code.DS.Temporal.recurrence import Recurrence
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Atomic.gadget import Gadget
+from DS.Atomic.vehicle import Vehicle
+from DS.Structural.section import Section
+from DS.Structural.statistic import Statistic
+from DS.Temporal.recurrence import Recurrence
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Tracker:
@@ -314,10 +314,11 @@ class Graph(Parser):
     def spread(self) -> {Edge}:
         """
         Returns the set of all Edge which have any connection to this Graph (any Node in it)
-       :return: The set of all Edge which have any link to this Graph
-       """
+        :return: The set of all Edge which have any link to this Graph
+        """
         edges = {*()}
         for node in self.nodes:
+            # Should never have a conflict as each Edge is unique
             for edge in node.outgoing:
                 edges.add(edge)
             for edge in node.incoming:
@@ -331,7 +332,8 @@ class Graph(Parser):
        :return: The hair of this Graph
        """
         hair = {*()}
-        for strand in self.spread():
+        edges = self.spread()
+        for strand in [edges[e] for e in edges]:
             if strand.incoming in self.nodes and strand.outgoing not in self.nodes or strand.outgoing in self.nodes and strand.incoming not in self.nodes:
                 hair.add(strand)
         return hair
@@ -407,11 +409,13 @@ class Graph(Parser):
 
         # Step 1: Parse all Edges
         # Step 2: Form intersections between Edges
+
         with open(fn) as file:
             rdr = csv.reader(file)
             first = True
+            ctr = 0 # We also maintain a counter and only take every tenth instance; this is to save time TODO Store Graph Configuration
             for line in rdr:
-                if not first:
+                if not first: #and ctr%10 == 1:
                     # Create two-way edges with reversed start and endpoints; they are part of the same road ID
                     left, right = Edge().parse(fn, line)
                     # print(left, right)
@@ -431,6 +435,7 @@ class Graph(Parser):
                     # rds_incoming[left.toID]+=left; rds_incoming[right.toID]+=right
                     # rds_segments[left.segID]+=left; rds_incoming[right.segID]+=right
                     # rds_embedded[left.roadID]+=left; rds_incoming[right.roadID]+=right
+                ctr+=1
                 first = False
 
         # Create association of Edges by constructing Node

@@ -1,8 +1,8 @@
 import random
 
-from Code.DS.Atomic.gadget import Gadget
-from Code.DS.Structural.statistic import Statistic
-from Code.Interfaces.cost import Cost
+from DS.Atomic.gadget import Gadget
+from DS.Structural.statistic import Statistic
+from Interfaces.cost import Cost
 
 
 class Section(Cost):

@@ -1,7 +1,7 @@
-from Code.DS.Accident.accident import Accident
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.environment import Environment
-from Code.Interfaces.cost import Cost
+from DS.Accident.accident import Accident
+from DS.Atomic.vehicle import Vehicle
+from DS.environment import Environment
+from Interfaces.cost import Cost
 
 
 class Preferences:

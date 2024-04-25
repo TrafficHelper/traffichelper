@@ -1,8 +1,8 @@
-from Code.DS.Structural.graph import Node, Edge
-from Code.DS.Structural.section import Section
-from Code.DS.Temporal.time import Time
-from Code.Interfaces.cost import Cost
-from Code.Utils.preferences import Preferences
+from DS.Structural.graph import Node, Edge
+from DS.Structural.section import Section
+from DS.Temporal.time import Time
+from Interfaces.cost import Cost
+from Utils.preferences import Preferences
 
 
 class Component(Cost):
