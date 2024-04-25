@@ -1,54 +1,36 @@
-/*
-palette
-black1: #151515
-black2: #0a0a0a
-white: #fbfcd4
-yellow: #ffdd02
-gold: #fac402 
-*/
-
-
-
-.title1 {
-  color: #fac402;
+.title {
   z-index: 2;
   position: absolute;
+}
+.title1 {
+  color: #fac402;
   font-size: 4rem;
   padding: 3rem 6rem;
   width: 100%;
 }
 .title2 {
-  color: #ffde65;
-  z-index: 2;
-  position: absolute;
+  color: #ffdd02;
   font-size: 4rem;
   padding: 7rem 6rem;
   width: 50%;
   left: 0;
 }
 .title3 {
-  color: #fff6d4;
-  z-index: 2;
-  position: absolute;
+  color: #fbfcd4;
   font-size: 4rem;
   padding: 11rem 6rem;
   width: 50%;
   left: 0;
 }
-
 .title4 {
   color: #fac402;
-  z-index: 2;
-  position: absolute;
   text-align: left;
   font-size: 2.5rem;
   padding: 3rem 6rem;
   width: 100%;
 }
 .title5 {
-  color: #ffde65;
-  z-index: 2;
-  position: absolute;
+  color: #ffdd02;
   text-align: left;
   font-size: 2.5rem;
   padding: 6rem 6rem;
@@ -56,8 +38,6 @@ gold: #fac402
 }
 .title6 {
   color: #fff6d4;
-  z-index: 2;
-  position: absolute;
   text-align: left;
   font-size: 2.5rem;
   padding: 9rem 6rem;
@@ -100,11 +80,13 @@ gold: #fac402
   border-radius: 0.5rem;
   background-color: #d8b740;
   margin: 1rem;
-  padding: 0.8rem; 
+  padding: 0.8rem;
   transition: 0.3s ease;
 }
 
 .join-button:hover {
   color: #d8b740;
-  background-color: #0a0a0a67;
+  background-color: rgba(10, 10, 10, 0.4196078431);
 }
+
+/*# sourceMappingURL=style.css.map */
