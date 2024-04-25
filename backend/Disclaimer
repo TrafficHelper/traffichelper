@@ -1,5 +1,0 @@
-All caveats and shortcomings of the application go here:
-- It may not provide optimal solutions to user queries, those being an NP-Hard problem
-- The application is greatly data-driven and is thus limited by the input data in its predictions
-    - To give more accurate predictions, it must be given more updated data
-- The application possesses internal consistency but is limited by the data's consistency.
