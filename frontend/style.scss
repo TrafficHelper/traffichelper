@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:math";
 
 // palette
 $black1: #151515;
@@ -17,12 +18,14 @@ $joinbutton: #d8b740;
     $small: 2.5rem;
 
     &1 {
+        @extend .title;
         color: $gold;
         font-size: $large;
         padding: 3rem 6rem;
         width: 100%;
     }
     &2 {
+        @extend .title;
         color: $yellow;
         font-size: $large;
         padding: 7rem 6rem;
@@ -30,6 +33,7 @@ $joinbutton: #d8b740;
         left: 0;
     }
     &3 {
+        @extend .title;
         color: $white1;
         font-size: $large;
         padding: 11rem 6rem;
@@ -37,6 +41,7 @@ $joinbutton: #d8b740;
         left: 0;
     }
     &4 {
+        @extend .title;
         color: $gold;
         text-align: left;
         font-size: $small;
@@ -44,6 +49,7 @@ $joinbutton: #d8b740;
         width: 100%;
     }
     &5 {
+        @extend .title;
         color: $yellow;
         text-align: left;
         font-size: $small;
@@ -51,6 +57,7 @@ $joinbutton: #d8b740;
         width: 100%;
     }
     &6 {
+        @extend .title;
         color: $white2;
         text-align: left;
         font-size: $small;
