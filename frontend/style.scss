@@ -77,12 +77,12 @@ $joinbutton: #d8b740;
     letter-spacing: 0.05rem;
     font-size: 1rem;
     padding: 1rem 6.5rem;
-}
 
-.description2 {
-    @extend .description;
-    width: 35rem;
-    left: 0;
+    &2 {
+        @extend .description;
+        width: 35rem;
+        left: 0;
+    }
 }
 
 .join-button {
