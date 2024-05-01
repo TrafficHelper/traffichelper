@@ -1,8 +1,8 @@
 ### Custom ###
 .direnv
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,ocaml,python,visualstudiocode,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,ocaml,python,visualstudiocode,macos
+# Created by https://www.toptal.com/developers/gitignore/api/node,macos,ocaml,python,visualstudiocode,sass
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,ocaml,python,visualstudiocode,sass
 
 ### macOS ###
 # General
@@ -377,6 +377,12 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -396,4 +402,4 @@ pyrightconfig.json
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/node,ocaml,python,visualstudiocode,macos
+# End of https://www.toptal.com/developers/gitignore/api/node,macos,ocaml,python,visualstudiocode,sass
