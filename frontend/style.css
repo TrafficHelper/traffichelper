@@ -44,21 +44,7 @@
   width: 100%;
 }
 
-.desc {
-  color: #ffffff;
-  z-index: 2;
-  position: absolute;
-  text-align: left;
-  font-weight: lighter;
-  line-height: 1.5;
-  letter-spacing: 0.05rem;
-  font-size: 1rem;
-  padding: 17rem 6.5rem;
-  width: 35rem;
-  left: 0;
-}
-
-.description {
+.description, .description2 {
   color: #ffffff;
   z-index: 2;
   position: absolute;
@@ -68,6 +54,11 @@
   letter-spacing: 0.05rem;
   font-size: 1rem;
   padding: 1rem 6.5rem;
+}
+
+.description2 {
+  width: 35rem;
+  left: 0;
 }
 
 .join-button {
