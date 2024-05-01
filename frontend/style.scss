@@ -6,6 +6,7 @@ $black1: #151515;
 $black2: #0a0a0a;
 $white1: #fbfcd4;
 $white2: #fff6d4;
+$purewhite: #ffffff;
 $yellow: #ffdd02;
 $gold: #fac402;
 $joinbutton: #d8b740;
@@ -67,7 +68,7 @@ $joinbutton: #d8b740;
 }
 
 .desc {
-    color: #ffffff;
+    color: $purewhite;
     z-index: 2;
     position: absolute;
     text-align: left;
@@ -81,7 +82,7 @@ $joinbutton: #d8b740;
 }
 
 .description {
-    color: #ffffff;
+    color: $purewhite;
     z-index: 2;
     position: absolute;
     text-align: left;
