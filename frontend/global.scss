@@ -8,7 +8,7 @@ body,
 html {
     overflow-x: hidden;
     font-family: "aboreto", sans-serif;
-    background-color: #0a0a0a;
+    background-color: $black2;
 }
 
 .webgl {
@@ -36,7 +36,7 @@ html {
 }
 
 nav {
-    color: #ffffff;
+    color: $purewhite;
     z-index: 2;
     position: relative;
     padding: 3rem 6rem;
@@ -45,7 +45,7 @@ nav {
 
     a {
         text-decoration: none;
-        color: #ffffff;
+        color: $purewhite;
         font-weight: bold;
     }
     ul {
@@ -56,11 +56,11 @@ nav {
         gap: 4rem;
 
         li a {
-            color: #ffffff;
+            color: $purewhite;
             transition: 0.5s ease;
 
             &:hover {
-                color: #fac402;
+                color: $gold;
             }
         }
     }
