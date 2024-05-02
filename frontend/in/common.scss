@@ -1,0 +1,56 @@
+@import "../palette";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    font-family: "aboreto", sans-serif;
+    background-color: $black2;
+}
+
+.webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#logo-icon {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: opacity(80%);
+    transition: 0.5s ease;
+
+    &:hover {
+        transform: scale(1.05, 1.05);
+        filter: opacity(100%);
+    }
+}
+
+.title {
+    z-index: 2;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+
+    &1 {
+        @extend .title;
+        color: $white1;
+        font-weight: bolder;
+        font-size: 4rem;
+        padding: 8rem 6rem;
+    }
+
+    &2 {
+        @extend .title;
+        color: $gold;
+        font-size: 7rem;
+        padding: 12rem 6rem;
+        left: 0;
+    }
+}

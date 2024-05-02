@@ -1,0 +1,16 @@
+@import "common";
+@import "home-tutorial-common";
+
+.slides {
+    display: flex;
+    justify-content: center;
+}
+
+#general-diagram {
+    z-index: 2;
+    position: relative;
+    height: 50%;
+    width: 50%;
+    top: 25%;
+    filter: invert(10%);
+}
