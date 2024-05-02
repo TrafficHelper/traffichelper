@@ -25,18 +25,16 @@ $background-black: color.change($black1, $alpha: math.div(144, 255));
     width: 25%;
     left: 50%;
     right: 50%;
-
-    .signup-container {
-        @extend .container;
-        height: 55%;
-        transform: translate(-50%, 25%);
-    }
-
-    .login-container {
-        @extend .container;
-        height: 35%;
-        transform: translate(-50%, 45%);
-    }
+}
+.signup-container {
+    @extend .container;
+    height: 55%;
+    transform: translate(-50%, 25%);
+}
+.login-container {
+    @extend .container;
+    height: 35%;
+    transform: translate(-50%, 45%);
 }
 
 .header {
@@ -91,19 +89,18 @@ $background-black: color.change($black1, $alpha: math.div(144, 255));
         color: $gold2;
         background-color: color.change($gold2, $alpha: math.div(114, 255));
     }
-
-    .signup-button {
-        @extend .button;
-        height: 15%;
-    }
-    .login-button {
-        @extend .button;
-        height: 25%;
-    }
+}
+.signup-button {
+    @extend .button;
+    height: 15%;
+}
+.login-button {
+    @extend .button;
+    height: 25%;
 }
 
 .prompting {
-    color: $pureblack;
+    color: $purewhite;
     z-index: 5;
     position: relative;
     font-size: 0.75rem;
