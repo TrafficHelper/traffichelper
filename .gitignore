@@ -1,5 +1,6 @@
 ### Custom ###
 .direnv
+.css
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos,ocaml,python,visualstudiocode,sass
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,ocaml,python,visualstudiocode,sass
