@@ -1,0 +1,69 @@
+@import "palette";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    overflow-x: hidden;
+    font-family: "aboreto", sans-serif;
+    background-color: $black2;
+}
+
+.webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.slides {
+    width: 100%;
+    height: 100vh;
+}
+
+#logo-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: opacity(80%);
+    transition: 0.5s ease;
+
+    &:hover {
+        transform: scale(1.05, 1.05);
+        filter: opacity(100%);
+    }
+}
+
+nav {
+    color: $purewhite;
+    z-index: 2;
+    position: relative;
+    padding: 3rem 6rem;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        text-decoration: none;
+        color: $purewhite;
+        font-weight: bold;
+    }
+    ul {
+        cursor: pointer;
+        font-weight: lighter;
+        list-style: none;
+        display: flex;
+        gap: 4rem;
+
+        li a {
+            color: $purewhite;
+            transition: 0.5s ease;
+
+            &:hover {
+                color: $gold;
+            }
+        }
+    }
+}

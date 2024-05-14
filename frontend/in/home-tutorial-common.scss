@@ -1,0 +1,42 @@
+@import "../palette";
+
+body,
+html {
+    overflow: hidden;
+}
+
+.slides {
+    width: 100%;
+    height: 100vh;
+}
+
+nav {
+    color: $purewhite;
+    z-index: 2;
+    position: relative;
+    padding: 3rem 6rem;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        text-decoration: none;
+        color: $purewhite;
+        font-weight: bold;
+    }
+    ul {
+        cursor: pointer;
+        font-weight: lighter;
+        list-style: none;
+        display: flex;
+        gap: 4rem;
+
+        li a {
+            color: $purewhite;
+            transition: 0.5s ease;
+
+            &:hover {
+                color: $gold;
+            }
+        }
+    }
+}

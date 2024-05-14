@@ -88,7 +88,7 @@ tl.fromTo('nav', {y: '-100%'}, {y: '0%'});
 tl.fromTo('.title1', {opacity: 0}, {opacity: 1}); 
 tl.fromTo('.title2', {opacity: 0}, {opacity: 1}); 
 tl.fromTo('.title3', {opacity: 0}, {opacity: 1}); 
-tl.fromTo('.desc', {opacity: 0}, {opacity: 1}); 
+tl.fromTo('.description2', {opacity: 0}, {opacity: 1});
 
 
 

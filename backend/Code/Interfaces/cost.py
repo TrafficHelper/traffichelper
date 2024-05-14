@@ -9,7 +9,7 @@ class Cost:
     Each type using it extends from this Cost class and overrides the cost(self) method
     """
 
-    DEFAULT = lambda metric: numpy.dot((1, 1, 1), metric) # The default cost (involving maximizing emphasis on safety, distance and time)
+    STANDARD = lambda metric: numpy.dot((1, 1, 1), metric) # The default cost (involving maximizing emphasis on safety, distance and time)
 
     def cost(self) -> float:
         """

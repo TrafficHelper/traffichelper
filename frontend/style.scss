@@ -1,0 +1,97 @@
+@use "sass:color";
+@use "sass:math";
+@import "palette";
+
+.title {
+    z-index: 2;
+    position: absolute;
+
+    $large: 4rem;
+    $small: 2.5rem;
+
+    &1 {
+        @extend .title;
+        color: $gold;
+        font-size: $large;
+        padding: 3rem 6rem;
+        width: 100%;
+    }
+    &2 {
+        @extend .title;
+        color: $yellow;
+        font-size: $large;
+        padding: 7rem 6rem;
+        width: 50%;
+        left: 0;
+    }
+    &3 {
+        @extend .title;
+        color: $white1;
+        font-size: $large;
+        padding: 11rem 6rem;
+        width: 50%;
+        left: 0;
+    }
+    &4 {
+        @extend .title;
+        color: $gold;
+        text-align: left;
+        font-size: $small;
+        padding: 3rem 6rem;
+        width: 100%;
+    }
+    &5 {
+        @extend .title;
+        color: $yellow;
+        text-align: left;
+        font-size: $small;
+        padding: 6rem 6rem;
+        width: 100%;
+    }
+    &6 {
+        @extend .title;
+        color: $white2;
+        text-align: left;
+        font-size: $small;
+        padding: 9rem 6rem;
+        width: 100%;
+    }
+}
+
+.description {
+    color: $purewhite;
+    z-index: 2;
+    position: absolute;
+    text-align: left;
+    font-weight: lighter;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+    padding: 1rem 6.5rem;
+
+    &2 {
+        @extend .description;
+        width: 35rem;
+        left: 0;
+        padding: 17rem 6.5rem;
+    }
+}
+
+.join-button {
+    color: $black2;
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: $gold2;
+    margin: 1rem;
+    padding: 0.8rem;
+    transition: 0.3s ease;
+}
+
+.join-button:hover {
+    color: $gold2;
+    background-color: color.change($black2, $alpha: math.div(107, 255));
+}

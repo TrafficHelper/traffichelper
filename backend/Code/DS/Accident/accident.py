@@ -1,12 +1,12 @@
 from itertools import product
 
-from Code.DS.Accident.outcome import Outcome
-from Code.DS.Atomic.vehicle import Vehicle
-from Code.DS.environment import Environment, Surface, Visibility, Weather
-# from Code.DS.Structural.section import Section
-from Code.DS.Temporal.time import Time
-from Code.Interfaces.parser import Parser
-from Code.filenames import Filenames
+from DS.Accident.outcome import Outcome
+from DS.Atomic.vehicle import Vehicle
+from DS.environment import Environment, Surface, Visibility, Weather
+# from DS.Structural.section import Section
+from DS.Temporal.time import Time
+from Interfaces.parser import Parser
+from filenames import Filenames
 
 
 class Accident(Parser): # TODO Re-include Section and associated methods after fixing it
