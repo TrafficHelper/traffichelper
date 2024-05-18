@@ -1,0 +1,7 @@
+networkx~=3.3
+osmnx~=1.9.3
+numpy~=1.26.4
+
+overpy~=0.7
+geopy~=2.4.1
+Flask~=3.0.3
