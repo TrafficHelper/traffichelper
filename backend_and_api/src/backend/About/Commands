@@ -1,0 +1,16 @@
+This is the page describing the command line's instructions and functioning
+The command line applies to both users and admins
+The creation of a command line is invoked by running the command python CLI.exe
+It will open a console.
+Initially, the program will be setting up the relevant users and tools.
+This will terminate with the standard command line starter '>>:' sign appearing followed by a space
+By default, the user will begin with the default loaded and precomputed traffic network, and not an admin
+Then the individual enters their command.
+To exit the console, enter 'exit'. This clears the console and deletes all the user's data
+To make the user an admin, enter 'sudo'.
+The command line will then prompt a single chance for a password, which must be correctly entered in the next line, else it reverts.
+To change the network, type CHANGE [network_filename], which must be a specified GraphML file. It will attempt to load it and make it the User's default network
+To save a network state, type SAVE, which will save the current network of the user
+
+
+
