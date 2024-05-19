@@ -1,5 +1,4 @@
-//REGULAR
-
+//QUERIES FORM
 
 function set_vehicle_type() {
     //set vehicle type
@@ -7,19 +6,12 @@ function set_vehicle_type() {
     console.log(vehicle_type);
 }
 
-function set_start_end_points() {
-    //set start & end point
-    var start_point = localStorage.getItem("start_point");
-    var end_point = localStorage.getItem("end_point");
-    console.log(start_point);
-    console.log(end_point);
-}
-
 function set_route_preferences() {
     //set route preferences
     var safety_val = localStorage.getItem("safety_value");
     var distance_val = localStorage.getItem("distance_value");
     var speed_val = localStorage.getItem("speed_value");
+    
 
     console.log(safety_val);
     console.log(distance_val);
@@ -170,6 +162,28 @@ if(setnumpaths_input) {
 }
 
 
+
+
+
+
+
+// SEPARATION BETWEEN TWO PAGES
+
+
+
+
+
+
+//ROUTING FORM
+
+function set_start_end_points() {
+    //set start & end point
+    var start_point = localStorage.getItem("start_point");
+    var end_point = localStorage.getItem("end_point");
+    console.log(start_point);
+    console.log(end_point);
+}
+
 const map_cont = document.getElementById('map');
 
 if(map_cont) {
@@ -260,17 +274,16 @@ if(setend_button) {
 }
 
 
-
 //submit button runs all
 const submit_button = document.getElementById('submit-form-button');
 
 if(submit_button) {
     submit_button.addEventListener('click', function() {
-        set_vehicle_type(vehicle_type);
-        set_start_end_points(start_pos, end_pos);
-        set_route_preferences(safety_value, distance_value, speed_value);
-        set_time_preferences(day_of_week, time_value);
-        set_weather_type(weather_type);
-        set_num_paths(num_paths);
+        set_vehicle_type();
+        set_start_end_points();
+        set_route_preferences();
+        set_time_preferences();
+        set_weather_type();
+        set_num_paths();
     });
 }
