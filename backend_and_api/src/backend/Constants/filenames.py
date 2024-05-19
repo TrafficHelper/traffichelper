@@ -23,14 +23,14 @@ class Filenames:
         """
         :return: The filename for Automated Speed Enforcement Cameras locations
         """
-        return 'C:/Projects/trafficWise/Data/Gadgets/AutomatedSpeedEnforcementCameraLocations.csv'
+        return '/backend_and_api/src/backend/Data/Gadgets/AutomatedSpeedEnforcementCameraLocations.csv'
 
     @staticmethod
     def pcl2019():
         """
         :return: The Pedestrian Crossover Locations
         """
-        return 'C:/Projects/trafficWise/Data/Gadgets/PedestrianCrossoverLocations2019.csv'
+        return '/backend_and_api/src/backend/Data/Gadgets/PedestrianCrossoverLocations2019.csv'
 
     @staticmethod
     def stoplights():
@@ -43,7 +43,7 @@ class Filenames:
         """
         :return: Red Light Camera Locations
         """
-        return 'C:/Projects/trafficWise/Data/Gadgets/RedLightCameraLocations.csv'
+        return '/backend_and_api/src/backend/Data/Gadgets/RedLightCameraLocations.csv'
 
     # Other
 
@@ -52,14 +52,14 @@ class Filenames:
         """
         :return: The filename for Traffic Collision Data
         """
-        return 'C:/Projects/trafficWise/Data/TrafficCollisionData.csv'
+        return '/backend_and_api/src/backend/Data/TrafficCollisionData.csv'
 
     @staticmethod
     def centrelines():
         """
         :return: The filename for road centrelines
         """
-        return 'C:/Projects/trafficWise/Data/RoadCentrelines.csv'
+        return '/backend_and_api/src/backend/Data/RoadCentrelines.csv'
 
     MIDBLOCK_DOMAIN = range(2022, 2023 + 1) # List of all years considered for midblock, road segment traffic volumes
 
@@ -68,7 +68,7 @@ class Filenames:
         """
         :return: A dictionary containing the year and segment volume filename associated with it
         """
-        return {year:'C:/Projects/trafficWise/Data/Volumes/MidblockVolume'+str(year)+'.csv' for year in Filenames.MIDBLOCK_DOMAIN}
+        return {year:'/backend_and_api/src/backend/Data/Volumes/MidblockVolume'+str(year)+'.csv' for year in Filenames.MIDBLOCK_DOMAIN}
 
     INTERSECTION_DOMAIN = list(range(2015, 2020)) + list(range(2021, 2023 + 1)) # List of all years considered for road intersection volumes excluding 2020
 
@@ -77,4 +77,4 @@ class Filenames:
         """
         :return: A dictionary containing the year and the intersection volume filename associated with it
         """
-        return {year:'C:/Projects/trafficWise/Data/Volumes/IntersectVolume'+str(year)+'.csv' for year in Filenames.INTERSECTION_DOMAIN}
+        return {year:'backend_and_api/src/backend/Data/Volumes/IntersectVolume'+str(year)+'.csv' for year in Filenames.INTERSECTION_DOMAIN}
