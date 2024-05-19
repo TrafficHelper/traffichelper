@@ -1,6 +1,6 @@
 //QUERIES FORM
 
-var prefs_address = 'http://localhost:8000/docs#/preferences/set_preferences_prefer_post' // Preferences-webpage
+// var prefs_address = 'http://localhost:8000/docs#/preferences/set_preferences_prefer_post' // Preferences-webpage
 
 
 function set_vehicle_type() {

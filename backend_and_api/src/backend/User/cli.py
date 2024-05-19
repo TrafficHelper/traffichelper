@@ -1,14 +1,12 @@
 import datetime
 import osmnx
 
-import sys
-sys.path.append("..")
 
-from ..User.Accident.environment import Environment
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Utils.preferences import Preferences
-from backend.Code.Utils.utils import Utils
-from backend.Code.user import User
+from Code.Accident.environment import Environment
+from Code.Atomic.vehicle import Vehicle
+from Code.Utils.preferences import Preferences
+from Code.Utils.utils import Utils
+from Code.user import User
 
 class CLI:
 
