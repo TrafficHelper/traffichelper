@@ -273,7 +273,7 @@ nav {
     font-size: 0.75rem;
 }
 
-.title-home1, .title-home2 {
+.title-home1, .title-home2, .title-home3 {
     z-index: 2;
     text-align: center;
     position: absolute;
@@ -292,6 +292,13 @@ nav {
     padding: 12rem 6rem;
     left: 0;
     top: 15%;
+}
+.title-home3 {
+    color: #fbfcd4;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    padding: 8rem 6rem;
+    top: 47%;
 }
 
 .home-container {

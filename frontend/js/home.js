@@ -2,6 +2,10 @@ var username = sessionStorage.getItem('username');
 var username_text = document.getElementById('username-title');
 username_text.textContent = username;
 
+var status = sessionStorage.getItem('usertype');
+var status_text = document.getElementById('user-admin-status');
+status_text.textContent = "Logged in as " + status.toLocaleUpperCase();
+
 function redirect_queries() { 
   var queries = '/queries.html';
   window.location.href = queries;
