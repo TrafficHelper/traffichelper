@@ -1,8 +1,0 @@
-# Preferences page
-vehicle: CAR
-environment: NORMAL
-metric:
-  risk: 1/3
-  time: 1/3
-  dist: 1/3
-tolerance: []
