@@ -2,6 +2,7 @@
 
 function set_vehicle_type() {
     //set vehicle type
+    // [USE FETCH]
     var vehicle_type = localStorage.getItem("vehicle_type");
     console.log(vehicle_type);
 }

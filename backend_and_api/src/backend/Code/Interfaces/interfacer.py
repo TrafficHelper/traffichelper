@@ -13,7 +13,7 @@ from backend.Code.Atomic.gadget import Gadget
 from backend.Code.Atomic.vehicle import Vehicle
 from backend.Code.Accident.environment import Environment
 from backend.Code.Utils.preferences import Preferences
-from backend.Code.Utils.utils import (Utils)
+from backend.Code.Utils.utils import Utils
 from backend.Code.mutation import Mutation
 from backend.Code.user import User
 from backend.Code import loader
@@ -59,14 +59,16 @@ def select_vehicle(veh:str):
     :param veh: The vehicle name inputted
     :return: Assigns the user's choice of vehicle
     """
-    veh_type = Vehicle.OTHER
-    match veh:
-        case 'PEDESTRIAN': veh_type = Vehicle.PEDESTRIAN
-        case 'BICYCLE': veh_type = Vehicle.BICYCLE
-        case 'MOTORCYCLE': veh_type = Vehicle.MOTORCYCLE
-        case 'CAR': veh_type = Vehicle.CAR
-        case 'TRUCK': veh_type = Vehicle.TRUCK
-        case 'OTHER': veh_type = Vehicle.OTHER
+    veh_type = Vehicle.for_name(veh)
+    # veh_type = Vehicle.OTHER
+    # match veh:
+    #     case 'PEDESTRIAN': veh_type = Vehicle.PEDESTRIAN
+    #     case 'BICYCLE': veh_type = Vehicle.BICYCLE
+    #     case 'MOTORCYCLE': veh_type = Vehicle.MOTORCYCLE
+    #     case 'CAR': veh_type = Vehicle.CAR
+    #     case 'TRUCK': veh_type = Vehicle.TRUCK
+    #     case 'OTHER': veh_type = Vehicle.OTHER
+    SELECTED_VEHICLE = veh_type # Set global variable
     return veh_type
 
 SELECTED_ENVIRONMENT_DEFAULT:Environment = Environment.NORMAL
@@ -80,13 +82,7 @@ def select_environment(env:str):
     :return: The user's selection of the environment
     """
     env_type = Environment.NORMAL
-    match env:
-        case 'IDEAL': env_type = Environment.IDEAL
-        case 'NORMAL': env_type = Environment.NORMAL
-        case 'ABNORMAL': env_type = Environment.ABNORMAL
-        case 'DEVIANT': env_type = Environment.DEVIANT
-        case 'TROUBLESOME': env_type = Environment.TROUBLESOME
-        case 'EXTREME': env_type = Environment.EXTREME
+    env_type = Environment.forName(env_type)
     return env_type
 
 PATH_METRIC_DEFAULT = (1/3, 1/3, 1/3)
@@ -286,6 +282,7 @@ def reset_admin():
     SELECTED_BUDGET = SELECTED_BUDGET_DEFAULT
     SELECTED_NUM_RECOMMENDATIONS = SELECTED_NUM_RECOMMENDATIONS_DEFAULT
     COMPUTED_RECOMMENDATIONS = COMPUTED_RECOMMENDATIONS_DEFAULT
+
 
 
 
