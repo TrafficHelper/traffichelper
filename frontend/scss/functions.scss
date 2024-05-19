@@ -138,7 +138,7 @@ nav {
     
 }
 .content .list label:hover{
-    color: $gold;
+    color: $black2;
 }
 .content .slider{
     position: absolute;
@@ -441,7 +441,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
 }
-.continue-to-mapping-button {
+.go-routing-button {
     cursor: pointer;
     position: relative;
     width: 90%;
@@ -450,17 +450,17 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
     font-weight: bolder;
-    color: $black2;
+    color: $gold;
     font-size: 30px;
     border: 1px $gold solid;
-    background-color: $gold;
+    background-color: transparent;
     border-radius: 5px;
     transition: 0.5s ease;
     bottom:0;
 
     &:hover {
-        color: $gold;
-        border: 1px $gold solid;
+        color: $purewhite;
+        border: 1px $purewhite solid;
         background-color: transparent;
         border-radius: 10px;
     }
@@ -598,7 +598,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .submit-form-button {
     cursor: pointer;
     position: relative;
-    width: 90%;
+    width: 75%;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -606,6 +606,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-weight: bolder;
     color: $black2;
     font-size: 30px;
+    font-weight: bolder;
     border: 1px $gold solid;
     background-color: $gold;
     border-radius: 5px;
@@ -615,6 +616,32 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     &:hover {
         color: $gold;
         border: 1px $gold solid;
+        background-color: transparent;
+        border-radius: 10px;
+    }
+}
+
+.go-queries-button {
+    cursor: pointer;
+    height: 80px;
+    width: 13%;
+    margin-right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: $gold2;
+    font-size: 22.5px;
+    font-weight: normal;
+    border: 1px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    bottom:0;
+    
+    &:hover {
+        color: $purewhite;
+        border: 1px $purewhite solid;
         background-color: transparent;
         border-radius: 10px;
     }

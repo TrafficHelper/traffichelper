@@ -11,14 +11,26 @@ function direct_routing() {
   window.location.href = routing_page;
 }
 
-const go_mapping = document.getElementById("continue-to-mapping-button");
+function direct_queries() {
+  var queries_page = '/queries.html';
+  window.location.href = queries_page;
+}
 
-if(go_mapping) {
-  go_mapping.addEventListener('click', function () {
+const go_routing = document.getElementById("go-routing-button");
+
+if(go_routing) {
+  go_routing.addEventListener('click', function () {
     direct_routing();
   })
 }
 
+const go_queries = document.getElementById("go-queries-button")
+
+if(go_queries) {
+  go_queries.addEventListener('click', function() {
+    direct_queries();
+  })
+}
 
 //frontend required js
 

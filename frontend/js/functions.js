@@ -18,8 +18,8 @@ function set_start_end_points() {
 function set_route_preferences() {
     //set route preferences
     var safety_val = localStorage.getItem("safety_value");
-    var distance_val = localStorage.getItem("safety_value");
-    var speed_val = localStorage.getItem("safety_value");
+    var distance_val = localStorage.getItem("distance_value");
+    var speed_val = localStorage.getItem("speed_value");
 
     console.log(safety_val);
     console.log(distance_val);
@@ -50,15 +50,19 @@ function set_num_paths() {
 function reset_values() { 
     safety_slider.value = 50;
     safety_value.innerHTML = 50 + "%";
+    localStorage.setItem("safety_value", safety_slider.value);
     distance_slider.value = 50;
     distance_value.innerHTML = 50 + "%";
+    localStorage.setItem("distance_value", distance_slider.value);
     speed_slider.value = 50;
     speed_value.innerHTML = 50 + "%";
+    localStorage.setItem("speed_value", speed_slider.value);
 }
 
 //vehicle type variables
 const setvehicle_dropdown = document.getElementById('vehicle-type');
 if(setvehicle_dropdown) {
+    setvehicle_dropdown.value = localStorage.getItem("vehicle_type");
     var vehicle_type = setvehicle_dropdown.value;
     localStorage.setItem("vehicle_type", vehicle_type);
     setvehicle_dropdown.addEventListener('change', function(event) {
@@ -71,6 +75,7 @@ if(setvehicle_dropdown) {
 const safety_slider = document.getElementById("safety-slider");
 const safety_value = document.getElementById("safety-value");
 if(safety_slider) {
+    safety_slider.value = localStorage.getItem("safety_value");
     safety_value.innerHTML = safety_slider.value + "%";
     localStorage.setItem("safety_value", safety_slider.value);
     //update function whenever slider is changed
@@ -84,6 +89,7 @@ if(safety_slider) {
 const distance_slider = document.getElementById("distance-slider");
 const distance_value = document.getElementById("distance-value");
 if(distance_slider) {
+    distance_slider.value = localStorage.getItem("distance_value");
     distance_value.innerHTML = distance_slider.value + "%";
     localStorage.setItem("distance_value", distance_slider.value);
     //update function whenever slider is changed
@@ -97,6 +103,7 @@ if(distance_slider) {
 const speed_slider = document.getElementById("speed-slider");
 const speed_value = document.getElementById("speed-value");
 if(speed_slider) {
+    speed_value.value = localStorage.getItem("speed_value");
     speed_value.innerHTML = speed_slider.value + "%";
     localStorage.setItem("speed_value", speed_slider.value);
     //update function whenever slider is changed
@@ -118,6 +125,7 @@ const setdayofweek_dropdown = document.getElementById('day-of-week');
 const time_select = document.getElementById('time-set');
 
 if(setdayofweek_dropdown) {
+    setdayofweek_dropdown.value = localStorage.getItem("dayofweek");
     var day_of_week = setdayofweek_dropdown.value;
     localStorage.setItem("dayofweek", day_of_week);
     setdayofweek_dropdown.addEventListener('change', function(event) {
@@ -127,6 +135,7 @@ if(setdayofweek_dropdown) {
 }
 
 if(time_select) {
+    time_select.value = localStorage.getItem("time_value");
     var time_value = time_select.value; //this is 24h type --> ex. 02:01 PM reads 14:01
     localStorage.setItem("time_value", time_value);
     time_select.addEventListener('change', function(event) {
@@ -139,6 +148,7 @@ if(time_select) {
 const setweather_dropdown = document.getElementById('weather-type');
 
 if(setweather_dropdown) {
+    setweather_dropdown.value = localStorage.getItem("weather_type");
     var weather_type = setweather_dropdown.value;
     localStorage.setItem("weather_type", weather_type);
     setweather_dropdown.addEventListener('change', function(event) {
@@ -150,6 +160,7 @@ if(setweather_dropdown) {
 const setnumpaths_input = document.getElementById('paths-input');
 
 if(setnumpaths_input) {
+    setnumpaths_input.value = localStorage.getItem("paths_value");
     var num_paths = setnumpaths_input.value;
     localStorage.setItem("paths_value", num_paths);
     setnumpaths_input.addEventListener('change', function(event) {
