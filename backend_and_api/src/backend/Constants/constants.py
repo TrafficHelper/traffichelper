@@ -18,7 +18,7 @@ DEFAULT_SPEED_LIMIT = 50 # Ontario's speed limit
 # By default, we have a single-lane road with speed limit of 50km/h for Ottawa, no stoplights and no speed enforcers (cameras)
 DEFAULT_GADGETS_IMPLEMENTATION = {Gadget.LANE:1, Gadget.SPEED_INCREASE:DEFAULT_SPEED_LIMIT//Gadget.DISCRETION.value, Gadget.STOP_LIGHT:0, Gadget.SPEED_ENFORCER:0}
 
-TRAFFIC_NETWORK_FILEPATH = '/backend_and_api/src/backend/Data/network.graphml'  # Filepath of cached raw GraphML-type traffic network
+TRAFFIC_NETWORK_FILEPATH = '/backend_and_api/src/backend/data/network.graphml'  # Filepath of cached raw GraphML-type traffic network
 
 ACCIDENTS_DEFAULT = [] # Default set of accidents
 
