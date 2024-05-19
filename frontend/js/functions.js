@@ -1,19 +1,28 @@
 //QUERIES FORM
 
+var prefs_address = 'http://localhost:8000/docs#/preferences/set_preferences_prefer_post' // Preferences-webpage
+
+
 function set_vehicle_type() {
     //set vehicle type
-    // [USE FETCH]
-    var vehicle_type = localStorage.getItem("vehicle_type");
+    var vehicle_type = localStorage.getItem("vehicle_type"); 
+    // fetch('http://localhost:8000') //prefs_address ?????
+    //     .then(response => vehicle_type = response) 
+    //     .catch(error => console.error(error));
     console.log(vehicle_type);
 }
 
+function set_weather_type() {
+    //set weather type
+    var weather_type = localStorage.getItem("weather_type");
+    console.log(weather_type);
+}
 function set_route_preferences() {
     //set route preferences
     var safety_val = localStorage.getItem("safety_value");
     var distance_val = localStorage.getItem("distance_value");
     var speed_val = localStorage.getItem("speed_value");
     
-
     console.log(safety_val);
     console.log(distance_val);
     console.log(speed_val);
@@ -27,11 +36,6 @@ function set_time_preferences() {
     console.log(time_value);
 }
 
-function set_weather_type() {
-    //set weather type
-    var weather_type = localStorage.getItem("weather_type");
-    console.log(weather_type);
-}
 
 function set_num_paths() {
     //set number of paths

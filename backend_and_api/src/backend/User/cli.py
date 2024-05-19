@@ -1,8 +1,10 @@
 import datetime
-
 import osmnx
 
-from backend.Code.Accident.environment import Environment
+import sys
+sys.path.append("..")
+
+from ..User.Accident.environment import Environment
 from backend.Code.Atomic.vehicle import Vehicle
 from backend.Code.Utils.preferences import Preferences
 from backend.Code.Utils.utils import Utils
@@ -77,22 +79,8 @@ class CLI:
                 recognized = True
                 vehicle, environment, metric = (components[pos] for pos in [1, 2, 3])
                 chosen_vehicle = Vehicle.OTHER
-                match vehicle:
-                    case 'CAR': chosen_vehicle = Vehicle.CAR
-                    case 'TRUCK': chosen_vehicle = Vehicle.TRUCK
-                    case 'BICYCLE': chosen_vehicle = Vehicle.BICYCLE
-                    case 'MOTORCYCLE': chosen_vehicle = Vehicle.MOTORCYCLE
-                    case 'PEDESTRIAN': chosen_vehicle = Vehicle.PEDESTRIAN
-
-                chosen_environment = Environment.NORMAL
-                match environment:
-                    case 'IDEAL': chosen_environment = Environment.IDEAL
-                    case 'NORMAL': chosen_environment = Environment.NORMAL
-                    case 'ABNORMAL': chosen_environment = Environment.ABNORMAL
-                    case 'DEVIANT': chosen_environment = Environment.DEVIANT
-                    case 'TROUBLESOME': chosen_environment = Environment.TROUBLESOME
-                    case 'EXTREME': chosen_environment = Environment.EXTREME
-
+                chosen_vehicle = Vehicle.for_name(vehicle)
+                chosen_environment = Environment.forName(environment)
                 chosen_metric = tuple(float(e) for e in metric[1:-1].split(','))
                 assert len(chosen_metric) == 3 # Can only account for three parameters
                 self.user.preferences = Preferences(chosen_vehicle, chosen_environment, chosen_metric)
@@ -105,7 +93,8 @@ class CLI:
                 best_paths = self.tools.optimal_paths(datetime.datetime.now(), start_point, end_point, int(num_paths))
                 recognized = True
                 print(best_paths)
-                print(self.tools.beautify(best_paths))
+                # print(self.tools.beautify(best_paths))
+                print(self.tools.paths_coordinates(best_paths)) # Returns the paths with their nodeID sequence replaced with coordinate sequence
                 self.tools.print_paths(best_paths)
         except AssertionError:
             pass
