@@ -1,0 +1,18 @@
+{
+  "name": "th",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "compile-scss": "sass .",
+    "dev": "npm run compile-scss && vite",
+    "build": "npm run compile-scss && vite build",
+    "preview": "npm run compile-scss && vite preview"
+  },
+  "devDependencies": {
+    "gsap": "^3.12.5",
+    "sass": "^1.75.0",
+    "three": "^0.162.0",
+    "vite": "^5.2.11"
+  }
+}

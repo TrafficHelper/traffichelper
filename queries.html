@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/frontend/assets/icons/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queries</title>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="/home.html"><img id="logo-icon" src="/frontend/assets/icons/logo.png"></a>
+      <ul>
+        <li><a href='/home.html'>HOME</a></li>
+      </ul>
+    </nav>
+    <canvas class="webgl"></canvas>
+    <div class="main">
+      <div class="query-title">USER PREFERENCES</div>
+      <div class="container">
+        <div class="content">
+          <input class="con" type="radio" name="slider" checked id="vehicle">
+          <input class="con" type="radio" name="slider" id="route">
+          <input class="con" type="radio" name="slider" id="time">
+          <input class="con" type="radio" name="slider" id="weather">
+          <input class="con" type="radio" name="slider" id="paths">
+          <div class="section-title">
+            QUERIES
+          </div>
+          <div class="list">
+            <label for="vehicle" class="vehicle">
+              <span class="title">Vehicle Type</span>
+            </label>
+            <label for="route" class="route">
+              <span class="title">Route Preferences</span>
+            </label>
+            <label for="time" class="time">
+              <span class="title">Time Setting</span>
+            </label>
+            <label for="weather" class="weather">
+              <span class="title">Weather Setting</span>
+            </label>
+            <label for="paths" class="paths">
+              <span class="title">Paths Value</span>
+            </label>
+            <div class="slider"></div>
+          </div>
+          <div class="text-content">
+            <div class="vehicle text">
+              <div class="sub-title">VEHICLE TYPE</div>
+              <div class="query-description">Please select your preference of vehicle type. The default value is set to CAR. Click on the dropdown below for a list of options.</div>
+              <select name="vehicle_type" id="vehicle-type">
+                <option value="car" id="option_">CAR</option>
+                <option value="truck" id="option_">TRUCK</option>
+                <option value="bus" id="option_">BUS</option>
+                <option value="motorcycle" id="option_">MOTORCYCLE</option>
+                <option value="cyclist" id="option_">CYCLIST</option>
+                <option value="pedestrian" id="option_">PEDESTRIAN</option>
+              </select>
+            </div>
+            <div class="route text">
+              <div class="sub-title">ROUTE PREFERENCES</div>
+              <div class="query-description">Please use the sliders below to choose your prefered values (in percentage) of safety, distance, and speed. Click on the reset button to revert all values to 50%. The default values are 50% for all of them. Click and drag on the sliders to receive a value displayed on the right of each slider.</div>
+              <div class="safety-slider-container">
+                <div class="slider-title">Safety</div>
+                <input type="range" min="0" max="100" value="50" class="route-slider" id="safety-slider">
+                <div id="safety-value">50%</div>
+              </div>
+              <div class="distance-slider-container">
+                <div class="slider-title">Length</div>
+                <input type="range" min="0" max="100" value="50" class="route-slider" id="distance-slider">
+                <div id="distance-value">50%</div>
+              </div>
+              <div class="speed-slider-container">
+                <div class="slider-title">Speed</div>
+                <input type="range" min="0" max="100" value="50" class="route-slider" id="speed-slider">
+                <div id="speed-value">50%</div>
+              </div>
+            <div class="reset-values-button" id="reset-values-button">reset values</div>
+            </div>
+            <div class="time text">
+              <div class="sub-title">TIME SETTING</div>
+              <div class="query-description">Please select your weekday and time of day in the dropdowns below. The default values are Sunday for the weekday and 01:30 PM for the time of day. Click on the dropdown to select your weekday preference and click on the clock icon to select your time of day preference.</div>
+              <select name="day_of_week" id="day-of-week">
+                <option value="sunday" id="option_">SUNDAY</option>
+                <option value="monday" id="option_">MONDAY</option>
+                <option value="tuesday" id="option_">TUESDAY</option>
+                <option value="wednesday" id="option_">WEDNESDAY</option>
+                <option value="thursday" id="option_">THURSDAY</option>
+                <option value="friday" id="option_">FRIDAY</option>
+                <option value="saturday" id="option_">SATURDAY</option>
+              </select>
+              <input type="time" id="time-set" min="00:00" max="24:00" value="13:30" required />
+            </div>
+            <div class="weather text">
+              <div class="sub-title">WEATHER SETTING</div>
+              <div class="query-description">Please select your setting of weather type. The default value is set to CLEAR (no weather). Click on the dropdown below for a list of options.</div>
+              <select name="weather_type" id="weather-type">
+                <option value="clear" id="option_">CLEAR</option>
+                <option value="fog" id="option_">FOG</option>
+                <option value="wind" id="option_">WIND</option>
+                <option value="rain" id="option_">RAIN</option>
+                <option value="snow" id="option_">SNOW</option>
+              </select>
+            </div>
+            <div class="paths text">
+              <div class="sub-title">PATHS VALUE</div>
+              <div class="query-description">Please input your prefered amount of routes (paths) (please keep it appropriate to your own advantage). Click on the textbox to edit your input. The default path value is 1.</div>
+              <input type="text" id="paths-input" placeholder="Enter a reasonable positive integer" value=1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="continue-button-container">
+      <div class="continue-to-mapping-button" id="continue-to-mapping-button"> CONTINUE TO MAPPING </div>
+    </div>
+
+    <script type="module" src="/frontend/js/functions.js"></script>
+    <script type="module" src="/frontend/js/backfunc.js"></script>
+  </body>
+  </html>
