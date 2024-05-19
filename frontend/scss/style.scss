@@ -1,0 +1,325 @@
+@use "sass:color";
+@use "sass:math";
+@import "palette";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    overflow-x: hidden;
+    font-family: "aboreto", sans-serif;
+    background-color: $black2;
+}
+
+.webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.slides {
+    width: 100%;
+    height: 100vh;
+}
+
+#logo-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: opacity(80%);
+    transition: 0.5s ease;
+
+    &:hover {
+        transform: scale(1.05, 1.05);
+        filter: opacity(100%);
+    }
+}
+
+nav {
+    color: $purewhite;
+    z-index: 2;
+    position: relative;
+    padding: 3rem 6rem;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        text-decoration: none;
+        color: $purewhite;
+        font-weight: bold;
+    }
+    ul {
+        cursor: pointer;
+        font-weight: lighter;
+        list-style: none;
+        display: flex;
+        gap: 4rem;
+
+        li a {
+            color: $purewhite;
+            transition: 0.5s ease;
+
+            &:hover {
+                color: $gold;
+            }
+        }
+    }
+}
+
+.title {
+    z-index: 2;
+    position: absolute;
+
+    $large: 4rem;
+    $small: 2.5rem;
+
+    &1 {
+        @extend .title;
+        color: $gold;
+        font-size: $large;
+        padding: 3rem 6rem;
+        width: 100%;
+    }
+    &2 {
+        @extend .title;
+        color: $yellow;
+        font-size: $large;
+        padding: 7rem 6rem;
+        width: 50%;
+        left: 0;
+    }
+    &3 {
+        @extend .title;
+        color: $white1;
+        font-size: $large;
+        padding: 11rem 6rem;
+        width: 50%;
+        left: 0;
+    }
+    &4 {
+        @extend .title;
+        color: $gold;
+        text-align: left;
+        font-size: $small;
+        padding: 3rem 6rem;
+        width: 100%;
+    }
+    &5 {
+        @extend .title;
+        color: $yellow;
+        text-align: left;
+        font-size: $small;
+        padding: 6rem 6rem;
+        width: 100%;
+    }
+    &6 {
+        @extend .title;
+        color: $white2;
+        text-align: left;
+        font-size: $small;
+        padding: 9rem 6rem;
+        width: 100%;
+    }
+}
+
+.description {
+    color: $purewhite;
+    z-index: 2;
+    position: absolute;
+    text-align: left;
+    font-weight: lighter;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+    padding: 1rem 6.5rem;
+
+    &2 {
+        @extend .description;
+        width: 35rem;
+        left: 0;
+        padding: 17rem 6.5rem;
+    }
+}
+
+.flex-centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    @extend .flex-centre;
+    position: absolute;
+    z-index: 2;
+    border-radius: 1rem;
+    box-shadow:
+        rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    padding: 0.5rem;
+    background-color: $background-black;
+    width: 30%;
+    left: 50%;
+    right: 50%;
+    bottom: 50%;
+}
+
+.login-nav {
+    color: $black2;
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: $gold2;
+    margin: 1rem;
+    padding: 0.8rem;
+    transition: 0.3s ease;
+}
+.login-nav:hover {
+    color: $gold2;
+    background-color: color.change($black2, $alpha: math.div(107, 255));
+}
+
+.login-user-container {
+    @extend .container;
+    height: 25%;
+    transform: translate(-50%, 45%);
+}
+
+.login-admin-container {
+    @extend .container;
+    height: 35%;
+    transform: translate(-50%, 60%);
+}
+
+.subtitle-login {
+    color: $gold;
+    width: 85%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.header-login {
+    color: $gold;
+    width: 85%;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 1rem;
+    margin: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.input-box {
+    height: 8%;
+    width: 90%;
+    background-color: $background-black;
+    color: $purewhite;
+    padding: 1rem;
+    border: $pureblack 1px solid;
+    font-size: 1rem;
+}
+
+.title-login {
+    color: $gold;
+    z-index: 2;
+    position: absolute;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: center;
+    padding: 3rem 6rem;
+    width: 100%;
+    bottom: 60%;
+}
+
+.button {
+    color: $black2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 90%;
+    border-radius: 0.5rem;
+    background-color: $gold2;
+    margin: 1rem;
+    padding: 1rem;
+    transition: 0.3s ease;
+
+    &:hover {
+        color: $gold2;
+        background-color: color.change($gold2, $alpha: math.div(114, 255));
+    }
+}
+
+.login-button {
+    @extend .button;
+    height: 25%;
+}
+
+.prompting {
+    color: $purewhite;
+    z-index: 5;
+    position: relative;
+    font-size: 0.75rem;
+}
+
+.title-home1, .title-home2 {
+    z-index: 2;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+}
+.title-home1 {
+    color: #fbfcd4;
+    font-weight: bolder;
+    font-size: 4rem;
+    padding: 8rem 6rem;
+    top: 13%;
+}
+.title-home2 {
+    color: #fac402;
+    font-size: 7rem;
+    padding: 12rem 6rem;
+    left: 0;
+    top: 15%;
+}
+
+.home-container {
+    @extend .flex-centre;
+}
+
+.queries-button {
+    z-index: 2;
+    color: $black2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    top: 50%;
+    width: 30%;
+    border-radius: 0.5rem;
+    background-color: $gold2;
+    margin: 1rem;
+    padding: 1rem;
+    transition: 0.3s ease;
+    
+
+    &:hover {
+        color: $gold2;
+        background-color: color.change($gold2, $alpha: math.div(114, 255));
+    }
+}

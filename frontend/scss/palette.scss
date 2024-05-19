@@ -1,0 +1,19 @@
+@use "sass:color";
+@use "sass:math";
+
+$black1: #151515;
+$black2: #0a0a0a;
+$black3: #050505;
+$white1: #fbfcd4;
+$white2: #fff6d4;
+$white3: #ffea9f;
+$purewhite: #ffffff;
+$pureblack: #000000;
+$yellow: #ffdd02;
+$blue: #77b2ff;
+$gold: #fac402;
+$gold2: #d8b740;
+$gold3: #7c640d;
+$fadedgrey: #88888891;
+$background-black: color.change($black1, $alpha: math.div(144, 255));
+
