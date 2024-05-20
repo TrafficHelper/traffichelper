@@ -13,6 +13,7 @@
 
 
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from openapi_server.apis.points_api import router as PointsApiRouter
 from openapi_server.apis.preferences_api import router as PreferencesApiRouter
@@ -22,6 +23,15 @@ app = FastAPI(
     title="Traffic Wise",
     description="This is the API for traffic wise based on OpenAPI 3.0 specification..",
     version="1.0",
+)
+
+# Set up CORS middleware options
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
 )
 
 app.include_router(PointsApiRouter)

@@ -175,10 +175,6 @@ if(setnumpaths_input) {
 // SEPARATION BETWEEN TWO PAGES
 
 
-
-
-
-
 //ROUTING FORM
 
 function set_start_end_points() {
@@ -291,4 +287,20 @@ if(submit_button) {
         set_weather_type();
         set_num_paths();
     });
+}
+
+//RESULTS ==> the actual results contribution is in results.js (where we RECEIVE api data)
+
+function direct_results() {
+    var results_page = '/results.html';
+    window.location.href = results_page;
+  }
+
+const get_results = document.getElementById("submit-form-button");
+
+if(get_results) {
+  get_results.addEventListener('click', function() {
+    map.remove();
+    direct_results();
+  })
 }

@@ -39,6 +39,7 @@ def accept_routing(choices:{}):
     :param choices: The user's choices
     :return: Returns the list of routes and their coordinates
     """
+    print(choices)
     select_start(choices["StartEnd"]['start_address'])
     select_end(choices["StartEnd"]['destination_address'])
     select_num_paths(choices["path_count"])

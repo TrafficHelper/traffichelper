@@ -1,5 +1,6 @@
 import datetime
 
+import networkx
 import osmnx
 
 from backend.Code.Accident.environment import Environment
@@ -23,7 +24,6 @@ class CLI:
 
     def execute_command(self, command):
         recognized = False
-
         try:
             components = command.split(' ')
 
@@ -60,7 +60,6 @@ class CLI:
 
             display_command = 'display'
             if action == display_command:
-                assert len(components) == 2
 
                 target = components[1]
 
@@ -69,7 +68,18 @@ class CLI:
                 if target == 'user':
                     print(self.user)
                 if target == 'graph':
-                    osmnx.plot_graph(self.user.curr_network)
+                    if components[-1] == 'graph':
+                        osmnx.plot_graph(self.user.curr_network, node_size=3)
+                    else:
+                        # Get edge/node properties along that edge
+                        instructions, address, concl = command.split("'")
+                        plc = osmnx.geocode(address) # Remove start and end quotes
+                        print(concl)
+                        key = True if concl[1:] == 'edge' else False
+                        nearest = osmnx.nearest_nodes(self.user.curr_network, plc[1], plc[0]) if not key else osmnx.nearest_edges(self.user.curr_network, plc[1], plc[0])
+                        print(nearest)
+                        attrs = self.user.curr_network.nodes[nearest] if not key else self.user.curr_network.edges[nearest]
+                        print(attrs)
 
             preference_command = 'preference'
             if action == preference_command:
@@ -92,6 +102,7 @@ class CLI:
                 print(best_paths)
                 print(self.tools.paths_coordinates(best_paths))
                 self.tools.print_paths(best_paths)
+
         except AssertionError:
             pass
 

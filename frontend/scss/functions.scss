@@ -67,6 +67,7 @@ nav {
 }
 
 .main{
+    z-index: 5;
     height: 100vh;
     margin-top: -10%;
     display: flex;
@@ -645,4 +646,107 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         background-color: transparent;
         border-radius: 10px;
     }
+}
+
+.results-container {
+    position: relative;
+    width: 90%;
+    margin-top: -7%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+
+.back-routing-button {
+    cursor: pointer;
+    height: 150px;
+    width: 25.5%;
+    margin-right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: $gold2;
+    font-size: 22.5px;
+    font-weight: normal;
+    border: 1px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    margin-bottom: 1%;
+    
+    &:hover {
+        color: $purewhite;
+        border: 1px $purewhite solid;
+        background-color: transparent;
+        border-radius: 10px;
+    }
+}
+
+.results-main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-map {
+    z-index: 2;
+    width: 65%;
+    margin-top: 10.5%;
+    height: 82%;
+    padding: 40px 50px 40px 40px;
+    background: #00000082;
+    border: 2px $gold3 solid;
+    border-radius: 10px;
+}
+
+.values-table-component {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px $gold solid;
+    border-radius: 10px;
+    width: 23%;
+    height: 60%;
+    margin-right: 2%;
+    overflow: scroll;
+    z-index: 5;
+}
+.values-table-component table {
+    border: transparent;
+    height: 100%;
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.values-table-component th {
+    background-color: #fac401;
+    color: #050505;
+    padding: 1%;
+}
+
+.values-table-component td {
+    border: 1px solid $gold3;
+    background-color: #050505;
+    color: #fac401;
+    padding: 1%;
+}
+
+.results-title {
+    position: relative;
+    color: $gold;
+    z-index: 2;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 7.5%;
+    margin-bottom: -8%;
 }

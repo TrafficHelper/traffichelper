@@ -6,27 +6,5 @@ var map = L.map('map', {
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
-    maxZoom: 20
+    maxZoom: 20,
 }).addTo(map);
-
-// function fetch_pathways_GeoJSON() {
-//     return fetch('/backend/data/roadcentrelines.csv')
-//         .then(response => response.json());
-// }
-
-// // Load the GeoJSON (skeleton city)
-// fetch_pathways_GeoJSON()
-//     .then(geojson => {
-//         L.geoJSON(geojson, {
-//         style: function (feature) {
-//             return {
-//             color: '#fac402',
-//             weight: 0.75,
-//             opacity: 1
-//             };
-//         }
-//         }).addTo(map);
-//     })
-//     .catch(error => {
-//         console.error('Error getting GeoJSON:', error);
-// });

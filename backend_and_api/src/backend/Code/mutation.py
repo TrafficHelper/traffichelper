@@ -107,7 +107,7 @@ class Mutation(Cost):
         return trace
 
     division = lambda data, avg: {veh:data[veh]/avg for veh in data} # Dividing a list of vehicles by a value
-    addition = lambda data: {sum(data[i][j]) for i in data for j in data[i]} # The sum of all lists of vehicles
+    addition = lambda data: {key:sum(i[key] for i in data if key in i) for key in set(a for l in data for a in l.keys())} # The sum of all lists of vehicles
     negation = lambda data: {veh:-data[veh] for veh in data} # The negation of the list, temporary convenience for subtraction
 
     def redistribute(self, add_or_remove:bool = True):
@@ -127,23 +127,26 @@ class Mutation(Cost):
         """
 
         # Add key with default loader template
-        print(self.target)
         u, v, key = self.target
 
         # Edges of relevant interest
         edges = self.network.edges
-        print(networkx.get_edge_attributes(edges))
-        exit()
-        u_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(u), 'flow')
+        # print(networkx.get_edge_attributes(edges))
+        # u_out_edges = {}networkx.get_edge_attributes(self.network, self.network.out_edges(u), 'flow')
+        # nu = len(u_out_edges)
+        # print(nu)
+        # v_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(v), 'flow')
+        # nv = len(v_out_edges)
+        # print(nv)
+        print(edges)
+        print(self.network.out_edges(u))
+        print(self.network.out_edges(v))
+        u_out_edges = {ou:edges[(ou[0], ou[1], 0)]['flows'] for ou in self.network.out_edges(u)}
         nu = len(u_out_edges)
         print(nu)
-        v_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(v), 'flow')
+        v_out_edges = {ov:edges[(ov[0], ov[1], 0)]['flows'] for ov in self.network.out_edges(v)}
         nv = len(v_out_edges)
         print(nv)
-        # u_out_edges = {ou:edges[ou['flows']] for ou in self.network.out_edges(u)}
-        # nu = len(u_out_edges)
-        # v_out_edges = {ov:edges[ov['flows']] for ov in self.network.out_edges(v)}
-        # nv = len(v_out_edges)
 
         print(add_or_remove)
         if add_or_remove: # Adding an edge
@@ -154,16 +157,19 @@ class Mutation(Cost):
             # Equally distribute each flow from each of the nu u_out_edges to this edge
             print(u_out_edges)
             leaving = {edge:Mutation.division(u_out_edges[edge], nu) for edge in u_out_edges} # Each out edge from u contributes (lacks) proportional to itself
+            print(leaving.values())
             half_amount = Mutation.division(Mutation.addition(leaving.values()), 2) # The amount which should be added to this edge
             # The outgoing nv v_out edges will also need an even distribution of amount added to them
             nv_increment = Mutation.division(half_amount, nv) # So this is that amount which will be incremented
             # In conclusion ...
             networkx.set_edge_attributes(self.network, {self.target:half_amount}, 'flows') # We set the flow of the edge
             # ... and Increment edge by distribution
-            networkx.set_edge_attributes(self.network, {out:Mutation.addition([v_out_edges[out], nv_increment]) for out in v_out_edges}, 'flows') # ... and increment each out edge by the distribution
+            networkx.set_edge_attributes(self.network, {out:Mutation.addition(v_out_edges[(out[0], out[1], 0)], nv_increment) for out in v_out_edges}, 'flows') # ... and increment each out edge by the distribution
         else: # Removing an edge
             insurance_edge = osmnx.nearest_edges(self.network, 45.5, 75.5) # Random position to get from, will arbitrarily be added with flow in case of pathological case
-            this_flow = self.network.remove_edge(u, v, key)['flows'] # The HALF amount of flow which should have been accorded
+
+            this_flow = self.network[u][v][key]['flows'] # The HALF amount of flow which should have been accorded
+            self.network.remove_edge(u, v, key)
             nu -= 1 # One less u out edge from removing this edge
             if nu == 0 or nv == 0: # For same reason as above, there will exist no other out edge
                 # But we have to distribute its flow, so ... in this pathological highly unlikely (unless the data is inconsistent) case, arbitrarily distribute it to all edges except it at random

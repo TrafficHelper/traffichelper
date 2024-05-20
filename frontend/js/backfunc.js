@@ -24,13 +24,15 @@ if(go_routing) {
   })
 }
 
-const go_queries = document.getElementById("go-queries-button")
+const go_queries = document.getElementById("go-queries-button");
 
 if(go_queries) {
   go_queries.addEventListener('click', function() {
     direct_queries();
   })
 }
+
+
 
 //frontend required js
 
