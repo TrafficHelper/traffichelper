@@ -8,15 +8,15 @@ import datetime
 
 import osmnx
 
-from backend_and_api.src.backend.Constants import constants
-from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
-from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
-from backend_and_api.src.backend.Code.Accident.environment import Environment
-from backend_and_api.src.backend.Code.Utils.preferences import Preferences
-from backend_and_api.src.backend.Code.Utils.utils import (Utils)
-from backend_and_api.src.backend.Code.mutation import Mutation
-from backend_and_api.src.backend.Code.user import User
-from backend_and_api.src.backend.Code import loader
+from backend.Constants import constants
+from backend.Code.Atomic.gadget import Gadget
+from backend.Code.Atomic.vehicle import Vehicle
+from backend.Code.Accident.environment import Environment
+from backend.Code.Utils.preferences import Preferences
+from backend.Code.Utils.utils import (Utils)
+from backend.Code.mutation import Mutation
+from backend.Code.user import User
+from backend.Code import loader
 
 def accept_preferences(prefs:{}):
     """
@@ -24,15 +24,15 @@ def accept_preferences(prefs:{}):
     :param prefs: The preferences
     :return: Sets the appropriate variables
     """
-    try:
-        select_vehicle(prefs['vehicletype']) # Choose vehicle type
-        select_environment(prefs['environment']) # Choose environment
-        choices = prefs['PathChoices']
-        # Update path metric
-        path_metric(choices['safety'], choices['time_of_day'], choices['distance'])
-        return "Success"
-    except:
-        return "Error"
+    # try:
+    select_vehicle(prefs['vehicletype']) # Choose vehicle type
+    select_environment(prefs['environment']) # Choose environment
+    choices = prefs['PathChoices']
+    # Update path metric
+    path_metric(choices['safety'], choices['time_of_day'], choices['distance'])
+    return "Success"
+    # except:
+    #     return "Error"
 def accept_routing(choices:{}):
     """
     Accepts the user's chosen routes in their API call
@@ -86,7 +86,7 @@ def select_vehicle(veh:str):
     :param veh: The vehicle name inputted
     :return: Assigns the user's choice of vehicle
     """
-    return Vehicle.for_name(veh)
+    return Vehicle.for_name('Vehicle.'+veh)
 
 SELECTED_ENVIRONMENT_DEFAULT:Environment = Environment.NORMAL
 SELECTED_ENVIRONMENT = SELECTED_ENVIRONMENT_DEFAULT
@@ -152,8 +152,8 @@ def select_start(position:str):# | (float, float)):
         lat, long = (float(aspect) for aspect in position[1:-1].split(','))
     except: # It is an address
         lat, long = osmnx.geocode(position)
-    START_NODE = osmnx.nearest_nodes(USER.curr_network, long, lat)
 
+    START_NODE = osmnx.nearest_nodes(USER.curr_network, long, lat)
 
 END_NODE_DEFAULT = None # WARNING: THIS IS NONE - THE COORDINATE RECORDER FUNCTION MUST BE CHOSEN
 END_NODE = END_NODE_DEFAULT

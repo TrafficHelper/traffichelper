@@ -125,8 +125,9 @@ tags:
 
 paths:
   /prefer:
-    description: Set custom preferences for client.
-    put:
+    description: Set custom preferenes for client.
+    post:
+      description: Provisioning user preferences
       tags:
       - Preferences
       operationId: setPreferences
@@ -143,6 +144,14 @@ paths:
       responses:
         "200":
           description: "Confirm Preferences are set"
+          content:
+              application/json:
+                schema:
+                  type: string
+              application/xml:
+                schema:
+                  type: string
+
 
 
   /addresses:
@@ -181,9 +190,10 @@ paths:
   /latlong:
     get:
       operationId: getLatLongFromAddress
+      description: get Latitude and Longitude from backend address
       tags:
         - Points
-      description: "get Latitude and Longitude from backend.address"
+
       parameters:
         - name: address
           in: query
@@ -234,3 +244,4 @@ paths:
                     $ref: "#/components/schemas/SingleResp"
 
           description: Successful return of routes
+

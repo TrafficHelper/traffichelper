@@ -2,10 +2,10 @@ import copy
 import csv
 import pickle
 
-from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
-from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
-from backend_and_api.src.backend.Code.Accident.accident import Accident
-from backend_and_api.src.backend.Constants.filenames import Filenames
+from backend.Code.Atomic.gadget import Gadget
+from backend.Code.Atomic.vehicle import Vehicle
+from backend.Code.Accident.accident import Accident
+from backend.Constants.filenames import Filenames
 
 LOCATIONS = ['Ottawa, Canada', 'Gatineau, Canada'] # Network domain
 FEATURES = ['drive'] # We will include drive features only to preserve efficiency

@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from backend_and_api.src.openapi_server.models.preferences import Preferences
+from openapi_server.models.preferences import Preferences
 
 
 class BasePreferencesApi:
@@ -14,5 +14,6 @@ class BasePreferencesApi:
     def set_preferences(
         self,
         preferences: Preferences,
-    ) -> None:
+    ) -> str:
+        """Provisioning user preferences"""
         ...

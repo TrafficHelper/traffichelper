@@ -2,9 +2,9 @@ import datetime
 import itertools
 import osmnx
 
-from backend_and_api.src.backend.Constants import constants
-from backend_and_api.src.backend.Code.mutation import Mutation
-from backend_and_api.src.backend.Code.user import User
+from backend.Constants import constants
+from backend.Code.mutation import Mutation
+from backend.Code.user import User
 
 
 class Utils:

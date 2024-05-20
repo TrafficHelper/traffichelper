@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import math
 
-from backend_and_api.src.backend.Code.Accident.accident import Accident
-from backend_and_api.src.backend.Code.Accident.outcome import Outcome
+from backend.Code.Accident.accident import Accident
+from backend.Code.Accident.outcome import Outcome
 
 
 class AccidentWrapper:

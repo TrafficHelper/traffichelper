@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from backend_and_api.src.backend.Code.Interfaces.parser import Parser
+from backend.Code.Interfaces.parser import Parser
 
 
 class Environment(Enum):

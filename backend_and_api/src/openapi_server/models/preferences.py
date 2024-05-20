@@ -22,7 +22,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from backend_and_api.src.openapi_server.models.preferences_path_choices import PreferencesPathChoices
+from openapi_server.models.preferences_path_choices import PreferencesPathChoices
 try:
     from typing import Self
 except ImportError:
@@ -42,6 +42,7 @@ class Preferences(BaseModel):
         """Validates the enum"""
         if value is None:
             return value
+
         if value not in ('PEDESTRIAN', 'BICYCLE', 'MOTORCYCLE', 'CAR', 'TRUCK', 'OTHER'):
             raise ValueError("must be one of enum values ('PEDESTRIAN', 'BICYCLE', 'MOTORCYCLE', 'CAR', 'TRUCK', 'OTHER')")
         return value
@@ -51,6 +52,7 @@ class Preferences(BaseModel):
         """Validates the enum"""
         if value is None:
             return value
+
         if value not in ('IDEAL', 'NORMAL', 'ABNORMAL', 'DEVIANT', 'TROUBLESOME', 'EXTREME'):
             raise ValueError("must be one of enum values ('IDEAL', 'NORMAL', 'ABNORMAL', 'DEVIANT', 'TROUBLESOME', 'EXTREME')")
         return value
@@ -69,7 +71,6 @@ class Preferences(BaseModel):
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
         # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        print(self)
         return json.dumps(self.to_dict())
 
     @classmethod

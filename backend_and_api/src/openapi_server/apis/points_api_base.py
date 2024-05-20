@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from backend_and_api.src.openapi_server.models.coords import Coords
+from openapi_server.models.coords import Coords
 
 
 class BasePointsApi:
@@ -24,5 +24,5 @@ class BasePointsApi:
         self,
         address: str,
     ) -> Coords:
-        """get Latitude and Longitude from backend.address"""
+        """get Latitude and Longitude from backend address"""
         ...

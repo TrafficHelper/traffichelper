@@ -30,12 +30,12 @@ import networkx
 import overpy
 import osmnx
 
-from backend_and_api.src.backend.Constants import constants
-from backend_and_api.src.backend.Code.Accident.accident import Accident
-from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
-from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
-from backend_and_api.src.backend.Code.Interfaces.cost import Cost
-from backend_and_api.src.backend.Constants.filenames import Filenames
+from backend.Constants import constants
+from backend.Code.Accident.accident import Accident
+from backend.Code.Atomic.gadget import Gadget
+from backend.Code.Atomic.vehicle import Vehicle
+from backend.Code.Interfaces.cost import Cost
+from backend.Constants.filenames import Filenames
 
 # The traffic network consists of four major parameters
 # distance: float
@@ -283,7 +283,7 @@ def setup():
     timestamps['save'] = datetime.datetime.now()
     return timestamps
 
-setup() # This is commented out to prevent loading/execution when the loaded network is cached. It should be called only upon loading for the first time.
+# setup() # This is commented out to prevent loading/execution when the loaded network is cached. It should be called only upon loading for the first time.
 def load():
     """
     :return: Loads the traffic network from cached graphML file and deserializes serialized string cost

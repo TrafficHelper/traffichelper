@@ -4,9 +4,9 @@ import networkx
 import osmnx
 from networkx import MultiDiGraph
 
-from backend_and_api.src.backend.Code import loader
-from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
-from backend_and_api.src.backend.Code.Interfaces.cost import Cost
+from backend.Code import loader
+from backend.Code.Atomic.gadget import Gadget
+from backend.Code.Interfaces.cost import Cost
 
 
 class Mutation(Cost):
@@ -28,7 +28,8 @@ class Mutation(Cost):
         self.additions = additions
         self.removals = removals
         # We don't consider modifying the network if there are some additions or removals; the shift parameter is then redundant
-        self.add_or_remove = False if len(additions) == 0 == len(removals) else add_or_remove
+        self.add_or_remove = add_or_remove if len(additions) == 0 == len(removals) else False
+        print(add_or_remove)
 
     def is_section_modifier(self):
         return len(self.additions) == 0 == len(self.removals)
@@ -84,8 +85,7 @@ class Mutation(Cost):
         :return: Adds and removes the given set of addition and removal of gadgets to the network and returns a stack trace on whether each one could be completed
         """
         for added_gadget in self.additions: # Add all listed gadgets
-            curr_data = loader.deserialize(networkx.get_edge_attributes(self.network, 'gadgets')[self.target])
-            print(curr_data)
+            curr_data = loader.deserialize(networkx.get_edge_attributes(self.network, 'gadgets')[self.target], False)
             curr_data[added_gadget] += 1
             networkx.set_edge_attributes(self.network, {self.target:curr_data}, 'gadgets')
             if refactor:
@@ -96,7 +96,7 @@ class Mutation(Cost):
         trace = [True] * n
         for i in range(n):
             removed_gadget = self.removals[i]
-            curr_data = loader.setify(networkx.get_edge_attributes(self.network, 'gadgets')[self.target])
+            curr_data = loader.deserialize(networkx.get_edge_attributes(self.network, 'gadgets')[self.target], False)
             if curr_data[removed_gadget] == 0: # Cannot remove nonexistent gadget
                 trace[i] = False
             else:
@@ -127,19 +127,32 @@ class Mutation(Cost):
         """
 
         # Add key with default loader template
+        print(self.target)
         u, v, key = self.target
 
         # Edges of relevant interest
-        u_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges[u], 'flows')
+        edges = self.network.edges
+        print(networkx.get_edge_attributes(edges))
+        exit()
+        u_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(u), 'flow')
         nu = len(u_out_edges)
-        v_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges[v], 'flows')
+        print(nu)
+        v_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(v), 'flow')
         nv = len(v_out_edges)
+        print(nv)
+        # u_out_edges = {ou:edges[ou['flows']] for ou in self.network.out_edges(u)}
+        # nu = len(u_out_edges)
+        # v_out_edges = {ov:edges[ov['flows']] for ov in self.network.out_edges(v)}
+        # nv = len(v_out_edges)
 
+        print(add_or_remove)
         if add_or_remove: # Adding an edge
+            print('hello')
             self.network.add_edge(u, v, key)
             if nu == 0 or nv == 0: # Either the start or end has no influential edges, so this will also be empty with no impact
                 return # It will have no flow and influence nothing here
             # Equally distribute each flow from each of the nu u_out_edges to this edge
+            print(u_out_edges)
             leaving = {edge:Mutation.division(u_out_edges[edge], nu) for edge in u_out_edges} # Each out edge from u contributes (lacks) proportional to itself
             half_amount = Mutation.division(Mutation.addition(leaving.values()), 2) # The amount which should be added to this edge
             # The outgoing nv v_out edges will also need an even distribution of amount added to them

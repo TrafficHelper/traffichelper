@@ -14,8 +14,9 @@ tags:
   name: Preferences
 paths:
   /prefer:
-    description: Set custom preferences for client.
-    put:
+    description: Set custom preferenes for client.
+    post:
+      description: Provisioning user preferences
       operationId: setPreferences
       requestBody:
         content:
@@ -29,6 +30,13 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
           description: Confirm Preferences are set
       tags:
       - Preferences
@@ -68,7 +76,7 @@ paths:
       - Points
   /latlong:
     get:
-      description: get Latitude and Longitude from backend.address
+      description: get Latitude and Longitude from backend address
       operationId: getLatLongFromAddress
       parameters:
       - explode: true
