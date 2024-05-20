@@ -289,12 +289,13 @@ if(submit_button) {
     });
 }
 
+
 //RESULTS ==> the actual results contribution is in results.js (where we RECEIVE api data)
 
 function direct_results() {
     var results_page = '/results.html';
     window.location.href = results_page;
-  }
+}
 
 const get_results = document.getElementById("submit-form-button");
 
@@ -304,3 +305,4 @@ if(get_results) {
     direct_results();
   })
 }
+
