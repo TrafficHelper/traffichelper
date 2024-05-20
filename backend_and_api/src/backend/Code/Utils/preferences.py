@@ -1,7 +1,7 @@
-from backend.Code.Accident.accident import Accident
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Accident.environment import Environment
-from backend.Code.Interfaces.cost import Cost
+from backend_and_api.src.backend.Code.Accident.accident import Accident
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Accident.environment import Environment
+from backend_and_api.src.backend.Code.Interfaces.cost import Cost
 
 
 class Preferences:

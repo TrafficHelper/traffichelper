@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from backend.Code.Accident.injury import Injury
-from backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Accident.injury import Injury
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
 
-from backend.Code.Interfaces.parser import Parser
-from backend.Constants.filenames import Filenames
+from backend_and_api.src.backend.Code.Interfaces.parser import Parser
+from backend_and_api.src.backend.Constants.filenames import Filenames
 
 
 class Outcome(Parser):

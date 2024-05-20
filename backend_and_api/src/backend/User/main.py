@@ -1,4 +1,4 @@
-from backend.User import cli
+from backend_and_api.src.backend.User import cli
 
 
 def run():

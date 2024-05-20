@@ -4,8 +4,8 @@ from typing import Dict, List  # noqa: F401
 import importlib
 import pkgutil
 
-from openapi_server.apis.points_api_base import BasePointsApi
-import openapi_server.impl
+from backend_and_api.src.openapi_server.apis.points_api_base import BasePointsApi
+import backend_and_api.src.openapi_server.impl
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -21,13 +21,13 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from openapi_server.models.coords import Coords
+from backend_and_api.src.openapi_server.models.extra_models import TokenModel  # noqa: F401
+from backend_and_api.src.openapi_server.models.coords import Coords
 
 
 router = APIRouter()
 
-ns_pkg = openapi_server.impl
+ns_pkg = backend_and_api.src.openapi_server.impl
 for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     importlib.import_module(name)
 

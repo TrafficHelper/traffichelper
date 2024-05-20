@@ -8,15 +8,15 @@ import datetime
 
 import osmnx
 
-from backend.Constants import constants
-from backend.Code.Atomic.gadget import Gadget
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Accident.environment import Environment
-from backend.Code.Utils.preferences import Preferences
-from backend.Code.Utils.utils import (Utils)
-from backend.Code.mutation import Mutation
-from backend.Code.user import User
-from backend.Code import loader
+from backend_and_api.src.backend.Constants import constants
+from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Accident.environment import Environment
+from backend_and_api.src.backend.Code.Utils.preferences import Preferences
+from backend_and_api.src.backend.Code.Utils.utils import (Utils)
+from backend_and_api.src.backend.Code.mutation import Mutation
+from backend_and_api.src.backend.Code.user import User
+from backend_and_api.src.backend.Code import loader
 
 def accept_preferences(prefs:{}):
     """

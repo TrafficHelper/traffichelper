@@ -2,11 +2,11 @@ import datetime
 
 import osmnx
 
-from backend.Code.Accident.environment import Environment
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Utils.preferences import Preferences
-from backend.Code.Utils.utils import Utils
-from backend.Code.user import User
+from backend_and_api.src.backend.Code.Accident.environment import Environment
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Utils.preferences import Preferences
+from backend_and_api.src.backend.Code.Utils.utils import Utils
+from backend_and_api.src.backend.Code.user import User
 
 class CLI:
 

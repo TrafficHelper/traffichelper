@@ -1,8 +1,8 @@
 import geopy.geocoders
 import osmnx
 
-from backend.Code.Interfaces import interfacer
-from openapi_server.apis.points_api_base import BasePointsApi
+from backend_and_api.src.backend.Code.Interfaces import interfacer
+from backend_and_api.src.openapi_server.apis.points_api_base import BasePointsApi
 
 
 class PointsImpl(BasePointsApi):

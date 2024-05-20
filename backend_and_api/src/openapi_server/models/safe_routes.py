@@ -23,8 +23,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
-from openapi_server.models.safe_routes_start_end import SafeRoutesStartEnd
-from openapi_server.models.safe_routes_start_time import SafeRoutesStartTime
+from backend_and_api.src.openapi_server.models.safe_routes_start_end import SafeRoutesStartEnd
+from backend_and_api.src.openapi_server.models.safe_routes_start_time import SafeRoutesStartTime
 try:
     from typing import Self
 except ImportError:

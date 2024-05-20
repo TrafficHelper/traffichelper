@@ -14,9 +14,9 @@
 
 from fastapi import FastAPI
 
-from openapi_server.apis.points_api import router as PointsApiRouter
-from openapi_server.apis.preferences_api import router as PreferencesApiRouter
-from openapi_server.apis.routes_api import router as RoutesApiRouter
+from backend_and_api.src.openapi_server.apis.points_api import router as PointsApiRouter
+from backend_and_api.src.openapi_server.apis.preferences_api import router as PreferencesApiRouter
+from backend_and_api.src.openapi_server.apis.routes_api import router as RoutesApiRouter
 
 app = FastAPI(
     title="Traffic Wise",

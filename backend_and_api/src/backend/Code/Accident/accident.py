@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import datetime
 
-from backend.Code.Accident.outcome import Outcome
-from backend.Code.Accident.environment import Environment, Surface, Visibility, Weather
+from backend_and_api.src.backend.Code.Accident.outcome import Outcome
+from backend_and_api.src.backend.Code.Accident.environment import Environment, Surface, Visibility, Weather
 
-from backend.Code.Interfaces.parser import Parser
-from backend.Constants.filenames import Filenames
+from backend_and_api.src.backend.Code.Interfaces.parser import Parser
+from backend_and_api.src.backend.Constants.filenames import Filenames
 
 
 class Accident(Parser): # TODO Re-include Section and associated methods after fixing it

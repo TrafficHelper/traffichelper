@@ -3,10 +3,10 @@ import copy
 import networkx
 import osmnx
 
-from backend.Code import loader, mutation
-from backend.Code.Accident.accident import Accident
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Utils.preferences import Preferences
+from backend_and_api.src.backend.Code import loader, mutation
+from backend_and_api.src.backend.Code.Accident.accident import Accident
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Utils.preferences import Preferences
 
 
 class User:

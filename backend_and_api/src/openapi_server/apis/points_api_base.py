@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from openapi_server.models.coords import Coords
+from backend_and_api.src.openapi_server.models.coords import Coords
 
 
 class BasePointsApi:

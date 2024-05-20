@@ -1,7 +1,7 @@
 from enum import Enum
 
-from backend.Code.Interfaces.parser import Parser
-from backend.Constants.filenames import Filenames
+from backend_and_api.src.backend.Code.Interfaces.parser import Parser
+from backend_and_api.src.backend.Constants.filenames import Filenames
 
 
 class Vehicle(Parser, Enum):

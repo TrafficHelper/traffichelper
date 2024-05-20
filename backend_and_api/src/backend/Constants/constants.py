@@ -2,10 +2,10 @@ import copy
 import csv
 import pickle
 
-from backend.Code.Atomic.gadget import Gadget
-from backend.Code.Atomic.vehicle import Vehicle
-from backend.Code.Accident.accident import Accident
-from backend.Constants.filenames import Filenames
+from backend_and_api.src.backend.Code.Atomic.gadget import Gadget
+from backend_and_api.src.backend.Code.Atomic.vehicle import Vehicle
+from backend_and_api.src.backend.Code.Accident.accident import Accident
+from backend_and_api.src.backend.Constants.filenames import Filenames
 
 LOCATIONS = ['Ottawa, Canada', 'Gatineau, Canada'] # Network domain
 FEATURES = ['drive'] # We will include drive features only to preserve efficiency
@@ -18,7 +18,7 @@ DEFAULT_SPEED_LIMIT = 50 # Ontario's speed limit
 # By default, we have a single-lane road with speed limit of 50km/h for Ottawa, no stoplights and no speed enforcers (cameras)
 DEFAULT_GADGETS_IMPLEMENTATION = {Gadget.LANE:1, Gadget.SPEED_INCREASE:DEFAULT_SPEED_LIMIT//Gadget.DISCRETION.value, Gadget.STOP_LIGHT:0, Gadget.SPEED_ENFORCER:0}
 
-TRAFFIC_NETWORK_FILEPATH = 'C:/Projects/trafficWise/Data/network.graphml'  # Filepath of cached raw GraphML-type traffic network
+TRAFFIC_NETWORK_FILEPATH = '/Users/matthewzhou/Desktop/traffichelper/backend_and_api/src/backend/Data/network.graphml'  # Filepath of cached raw GraphML-type traffic network
 
 ACCIDENTS_DEFAULT = [] # Default set of accidents
 
@@ -40,7 +40,7 @@ def domain(filename:str):
         elements = elements.union(frozenset([acc]))
     return elements
 
-DOMAIN_ACCIDENTS_FILENAME = '../Data/accidents_objects.pickle'
+DOMAIN_ACCIDENTS_FILENAME = '/backend_and_api/src/backend/Data/accidents_objects.pickle'
 
 # # Following is commented and called only once:
 # with open(DOMAIN_ACCIDENTS_FILENAME, 'wb') as daf:
