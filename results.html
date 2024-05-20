@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/frontend/assets/icons/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Routing</title>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/home.html"><img id="logo-icon" src="/frontend/assets/icons/logo.png"></a>
+    </nav>
+    <canvas class="webgl"></canvas>
+    
+    <div class="main">
+      <div class="routing-title">ROUTING</div>
+      <div class="map" id="map"></div>
+      <div class="setlocations-container">
+        <div class="start-loc-container">
+          <div class="map-subtitle-start">Start Location</div>
+          <input type="text" id="starting-address" placeholder="starting location address...">
+          <div class="start-picker-button" id="set-start-button">set start</div>  
+        </div>
+        <div class="dest-loc-container">
+          <div class="map-subtitle-end">End Location</div>
+          <input type="text" id="ending-address" placeholder="destination location address...">
+          <div class="end-picker-button" id="set-end-button">set dest</div>
+        </div>
+      </div>
+    </div>
+    <div class="submit-form-container">
+      <div class="go-routing-button" id="go-queries-button">&lt;- EDIT QUERIES</div>
+      <div class="submit-form-button" id="submit-form-button"> GET ROUTING COMPUTATIONS </div>
+    </div>
+    <script src="/frontend/js/map.js"></script>
+    <script src="/frontend/js/functions.js"></script>
+    <script type="module" src="/frontend/js/backfunc.js"></script>
+  </body>
+</html>
