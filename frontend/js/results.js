@@ -20,7 +20,43 @@ function getRandomColor() {
 
 var results_value_table = document.getElementById('values-table-component');
 
-const api_url = 'http://127.0.0.1:8000/saferoute'
+const prefs_url = 'http://127.0.0.1:8000/prefer';
+const api_url = 'http://127.0.0.1:8000/saferoute';
+
+function confirmPreferences() {
+    var vehicle_type = localStorage.getItem("vehicle_type").toUpperCase();
+    var environment = localStorage.getItem("weather_type").toUpperCase();
+    var safety_value = localStorage.getItem("safety_value");
+    var distance_value = localStorage.getItem("distance_value");
+    var speed_value = localStorage.getItem("speed_value");
+
+    let prefsForm = {
+        "vehicletype": vehicle_type,
+        "environment": environment,
+        "PathChoices": {
+          "safety": parseFloat(safety_value),
+          "time_of_day": parseFloat(speed_value),
+          "distance": parseFloat(distance_value)
+        }
+    }
+    
+    console.log(prefsForm);
+
+    fetch(prefs_url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(prefsForm)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+}
 
 function Submit_Form() {
     var start_point = localStorage.getItem("start_point");
@@ -28,6 +64,7 @@ function Submit_Form() {
     var day_of_week = localStorage.getItem("dayofweek").toUpperCase;
     var time_of_day = localStorage.getItem("time_value");
     var pathCountInput = localStorage.getItem("paths_value");
+
     let formData = {
         "StartEnd": {
             "start_address": start_point,
@@ -40,7 +77,7 @@ function Submit_Form() {
         "path_count": parseInt(pathCountInput)
     }
 
-    fetch('http://127.0.0.1:8000/saferoute', {
+    fetch(api_url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -88,9 +125,9 @@ function Submit_Form() {
                 var colorCell = newRow.insertCell();
         
                 routeNumberCell.textContent = i + 1;
-                riskCell.textContent = risk_val;
-                traveltimeCell.textContent = traveltime_val; 
-                distanceCell.textContent = distance_val;
+                riskCell.textContent = risk_val.toFixed(0);
+                traveltimeCell.textContent = traveltime_val.toFixed(0); 
+                distanceCell.textContent = distance_val.toFixed(0);
                 
                 var colorDiv = document.createElement('div');
                 colorDiv.style.width = '20px';
@@ -104,5 +141,5 @@ function Submit_Form() {
     })
 }
 
-
+confirmPreferences();
 Submit_Form();

@@ -1,14 +1,8 @@
 //QUERIES FORM
 
-// var prefs_address = 'http://localhost:8000/docs#/preferences/set_preferences_prefer_post' // Preferences-webpage
-
-
 function set_vehicle_type() {
     //set vehicle type
     var vehicle_type = localStorage.getItem("vehicle_type"); 
-    // fetch('http://localhost:8000') //prefs_address ?????
-    //     .then(response => vehicle_type = response) 
-    //     .catch(error => console.error(error));
     console.log(vehicle_type);
 }
 
@@ -45,13 +39,13 @@ function set_num_paths() {
 
 //function to reset the values all to 50%
 function reset_values() { 
-    safety_slider.value = 50;
+    safety_slider.value = 0.5;
     safety_value.innerHTML = 50 + "%";
     localStorage.setItem("safety_value", safety_slider.value);
-    distance_slider.value = 50;
+    distance_slider.value = 0.5;
     distance_value.innerHTML = 50 + "%";
     localStorage.setItem("distance_value", distance_slider.value);
-    speed_slider.value = 50;
+    speed_slider.value = 0.5;
     speed_value.innerHTML = 50 + "%";
     localStorage.setItem("speed_value", speed_slider.value);
 }
@@ -77,7 +71,7 @@ if(safety_slider) {
     localStorage.setItem("safety_value", safety_slider.value);
     //update function whenever slider is changed
     safety_slider.oninput = function() {
-        safety_value.innerHTML = this.value + "%";
+        safety_value.innerHTML = (this.value * 100) + "%";
         localStorage.setItem("safety_value", safety_slider.value);
     }
 }
@@ -91,7 +85,7 @@ if(distance_slider) {
     localStorage.setItem("distance_value", distance_slider.value);
     //update function whenever slider is changed
     distance_slider.oninput = function() {
-        distance_value.innerHTML = this.value + "%";
+        distance_value.innerHTML = (this.value * 100) + "%";
         localStorage.setItem("distance_value", distance_slider.value);
     }
 }
@@ -105,7 +99,7 @@ if(speed_slider) {
     localStorage.setItem("speed_value", speed_slider.value);
     //update function whenever slider is changed
     speed_slider.oninput = function() {
-        speed_value.innerHTML = this.value + "%";
+        speed_value.innerHTML = (this.value * 100) + "%";
         localStorage.setItem("speed_value", speed_slider.value);
     }
 }

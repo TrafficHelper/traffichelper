@@ -41,7 +41,7 @@
               <span class="title">Time Setting</span>
             </label>
             <label for="weather" class="weather">
-              <span class="title">Weather Setting</span>
+              <span class="title">Environment Setting</span>
             </label>
             <label for="paths" class="paths">
               <span class="title">Paths Value</span>
@@ -53,12 +53,12 @@
               <div class="sub-title">VEHICLE TYPE</div>
               <div class="query-description">Please select your preference of vehicle type. The default value is set to CAR. Click on the dropdown below for a list of options.</div>
               <select name="vehicle_type" id="vehicle-type" value="car">
+                <option value="pedestrian" id="option_">PEDESTRIAN</option>
+                <option value="bicycle" id="option_">BICYCLE</option>
+                <option value="motorcycle" id="option_">MOTORCYCLE</option>
                 <option value="car" id="option_">CAR</option>
                 <option value="truck" id="option_">TRUCK</option>
-                <option value="bus" id="option_">BUS</option>
-                <option value="motorcycle" id="option_">MOTORCYCLE</option>
-                <option value="cyclist" id="option_">CYCLIST</option>
-                <option value="pedestrian" id="option_">PEDESTRIAN</option>
+                <option value="other" id="option_">OTHER</option>
               </select>
             </div>
             <div class="route text">
@@ -66,17 +66,17 @@
               <div class="query-description">Please use the sliders below to choose your prefered values (in percentage) of safety, distance, and speed. Click on the reset button to revert all values to 50%. The default values are 50% for all of them. Click and drag on the sliders to receive a value displayed on the right of each slider.</div>
               <div class="safety-slider-container">
                 <div class="slider-title">Safety</div>
-                <input type="range" min="0" max="100" value="50" class="route-slider" id="safety-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="safety-slider">
                 <div id="safety-value">50%</div>
               </div>
               <div class="distance-slider-container">
                 <div class="slider-title">Length</div>
-                <input type="range" min="0" max="100" value="50" class="route-slider" id="distance-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="distance-slider">
                 <div id="distance-value">50%</div>
               </div>
               <div class="speed-slider-container">
                 <div class="slider-title">Speed</div>
-                <input type="range" min="0" max="100" value="50" class="route-slider" id="speed-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="speed-slider">
                 <div id="speed-value">50%</div>
               </div>
             <div class="reset-values-button" id="reset-values-button">reset values</div>
@@ -96,14 +96,15 @@
               <input type="time" id="time-set" min="00:00" max="24:00" value="13:30" required />
             </div>
             <div class="weather text">
-              <div class="sub-title">WEATHER SETTING</div>
-              <div class="query-description">Please select your setting of weather type. The default value is set to CLEAR (no weather). Click on the dropdown below for a list of options.</div>
-              <select name="weather_type" id="weather-type" value="clear">
-                <option value="clear" id="option_">CLEAR</option>
-                <option value="fog" id="option_">FOG</option>
-                <option value="wind" id="option_">WIND</option>
-                <option value="rain" id="option_">RAIN</option>
-                <option value="snow" id="option_">SNOW</option>
+              <div class="sub-title">ENVIRONMENT SETTING</div>
+              <div class="query-description">Please select your setting of environment. The default value is set to NORMAL (normal environment setting). Click on the dropdown below for a list of options.</div>
+              <select name="weather_type" id="weather-type" value="ideal">
+                <option value="ideal" id="option_">IDEAL</option>
+                <option value="normal" id="option_">NORMAL</option>
+                <option value="abnormal" id="option_">ABNORMAL</option>
+                <option value="deviant" id="option_">DEVIANT</option>
+                <option value="troublesome" id="option_">TROUBLESOME</option>
+                <option value="extreme" id="option_">EXTREME</option>
               </select>
             </div>
             <div class="paths text">
