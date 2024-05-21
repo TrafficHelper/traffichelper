@@ -61,7 +61,6 @@ function Submit_Form() {
     .then(dataList => { 
         const unparsed_data = JSON.stringify(dataList);
         const data = JSON.parse(unparsed_data);
-        console.log(data)
         
         var numroutes = data.length;
 
@@ -110,7 +109,7 @@ function Submit_Form() {
             var distance_val = data[i].distance;
             var color = getRandomColor()
             
-            var route = L.polyline(coordinates, {color: color, weight: 2.75, opacity: 1});
+            var route = L.polyline(coordinates, {color: color, weight: 6, opacity: 1});
             route.addTo(results_map);
             
 

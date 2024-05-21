@@ -170,6 +170,20 @@ if(setnumpaths_input) {
 
 
 //ROUTING FORM
+// var geocoder = L.Control.Geocoder.nominatim();
+// function address_from_latlon(marker, inputbox) {
+//     var position = marker.getLatLng();
+//     geocoder.reverse(position, mymap.options.crs.scale(18), function (results) {
+//         var r = results[0];
+//         if (r) {
+//             // Update the search input with the closest address
+//             inputbox.value = r.name;
+//             // Optionally, move the map view to the new marker position and update the popup
+//             mymap.setView(position, mymap.getZoom());
+//             marker.setPopupContent(r.name).openPopup();
+//         }
+//     });
+// }
 
 function set_start_end_points() {
     //set start & end point
@@ -331,6 +345,8 @@ if(go_routing) {
         direct_routing();
     })
 }
+
+
 
 function direct_results() {
     var results_page = '/results.html';
