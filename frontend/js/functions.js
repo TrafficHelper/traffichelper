@@ -269,22 +269,68 @@ if(setend_button) {
 }
 
 
-//submit button runs all
-const submit_button = document.getElementById('submit-form-button');
 
-if(submit_button) {
-    submit_button.addEventListener('click', function() {
-        set_vehicle_type();
-        set_start_end_points();
-        set_route_preferences();
-        set_time_preferences();
-        set_weather_type();
-        set_num_paths();
+//RESULTS ==> the actual results contribution is in results.js (where we RECEIVE api data)
+
+const prefs_url = 'http://127.0.0.1:8000/prefer';
+
+function submitCustomPreferences() {
+    var vehicle_type = localStorage.getItem("vehicle_type").toUpperCase();
+    var environment = localStorage.getItem("weather_type").toUpperCase();
+    var safety_value = localStorage.getItem("safety_value");
+    var distance_value = localStorage.getItem("distance_value");
+    var speed_value = localStorage.getItem("speed_value");
+
+    let prefsForm = {
+        "vehicletype": vehicle_type,
+        "environment": environment,
+        "PathChoices": {
+          "safety": parseFloat(safety_value),
+          "time_of_day": parseFloat(speed_value),
+          "distance": parseFloat(distance_value)
+        }
+    }
+    
+    console.log(prefsForm);
+
+    fetch(prefs_url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(prefsForm)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(dataList => {
+
+        console.log('Success:', dataList);
+
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 }
 
+function direct_routing() {
+    var routing_page = '/routing.html';
+    window.location.href = routing_page;
+  }
+  
+const go_routing = document.getElementById("go-routing-button");
 
-//RESULTS ==> the actual results contribution is in results.js (where we RECEIVE api data)
+if(go_routing) {
+    go_routing.addEventListener('click', function () {
+        submitCustomPreferences();
+        direct_routing();
+    })
+}
 
 function direct_results() {
     var results_page = '/results.html';

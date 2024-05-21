@@ -23,43 +23,8 @@ var end_coord;
 
 var results_value_table = document.getElementById('values-table-component');
 
-const prefs_url = 'http://127.0.0.1:8000/prefer';
 const api_url = 'http://127.0.0.1:8000/saferoute';
 
-function confirmPreferences() {
-    var vehicle_type = localStorage.getItem("vehicle_type").toUpperCase();
-    var environment = localStorage.getItem("weather_type").toUpperCase();
-    var safety_value = localStorage.getItem("safety_value");
-    var distance_value = localStorage.getItem("distance_value");
-    var speed_value = localStorage.getItem("speed_value");
-
-    let prefsForm = {
-        "vehicletype": vehicle_type,
-        "environment": environment,
-        "PathChoices": {
-          "safety": parseFloat(safety_value),
-          "time_of_day": parseFloat(speed_value),
-          "distance": parseFloat(distance_value)
-        }
-    }
-    
-    console.log(prefsForm);
-
-    fetch(prefs_url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(prefsForm)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-}
 
 function Submit_Form() {
     var start_point = localStorage.getItem("start_point");
@@ -175,5 +140,4 @@ function Submit_Form() {
     })
 }
 
-confirmPreferences();
 Submit_Form();

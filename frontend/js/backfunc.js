@@ -6,22 +6,9 @@ if(temp == 'admin') {
   admin = true;
 }
 
-function direct_routing() {
-  var routing_page = '/routing.html';
-  window.location.href = routing_page;
-}
-
 function direct_queries() {
   var queries_page = '/queries.html';
   window.location.href = queries_page;
-}
-
-const go_routing = document.getElementById("go-routing-button");
-
-if(go_routing) {
-  go_routing.addEventListener('click', function () {
-    direct_routing();
-  })
 }
 
 const go_queries = document.getElementById("go-queries-button");
