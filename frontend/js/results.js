@@ -18,6 +18,9 @@ function getRandomColor() {
     return color;
 }
 
+var start_coord;
+var end_coord;
+
 var results_value_table = document.getElementById('values-table-component');
 
 const prefs_url = 'http://127.0.0.1:8000/prefer';
@@ -106,6 +109,37 @@ function Submit_Form() {
                 coord = coord.slice(1, -1);
                 return coord.split(',').map(Number);
             });
+
+            const start_coord = {
+                lat: coordinates[0][0],
+                lng: coordinates[0][1],
+            };
+            const end_coord = {
+                lat: coordinates[coordinates.length - 1][0],
+                lng: coordinates[coordinates.length - 1][1],
+            };
+
+            //the starting marker on the map
+            L.marker(start_coord, {
+                draggable: false,
+                icon: L.icon({
+                    iconUrl: 'frontend/assets/icons/start_icon.png',
+                    iconSize: [36, 60], //[width, height] (px)
+                    iconAnchor: [15, 50], //point of the icon which will correspond to marker's location
+                    popupAnchor: [1, -45] //point by which the popup should open relative to the iconAnchor
+                })
+            }).addTo(results_map);
+
+            //the destination marker on the map
+            L.marker(end_coord, {
+                draggable: false,
+                icon: L.icon({
+                    iconUrl: 'frontend/assets/icons/end_icon.png',
+                    iconSize: [36, 60],
+                    iconAnchor: [15, 50],
+                    popupAnchor: [1, -45] 
+                })
+            }).addTo(results_map);
 
             var risk_val = data[i].risk;
             var traveltime_val = data[i].traveltime;
