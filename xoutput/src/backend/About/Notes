@@ -1,0 +1,48 @@
+Dev process:
+
+NOTE: REINSTALL NUMPY
+
+1. Install Required Dependencies
+- Flask: For fullstack integration / pip install Flask
+- OSMnx: Python Framework for OpenStreetMap / pip install osmnx
+- Tensorflow: Google Opensource AIML framework / pip install tensorflow
+- PyTorch: Another AIML Framework / pip install pytorch
+
+2. Relevant Plugins
+- Mermaid
+- CSV Editor
+- IdeaVim
+- Writerside
+
+3. Other requirements
+- AMS-LaTEX
+- >= Python 3.12
+
+Implicit libs:
+- scipy
+- sklearn
+- matplotlib
+- geopy
+- overpy
+- frozendict
+
+
+4. Hardware
+- CUDA (11.8)
+
+- IDE: Bottom-layer JetBrains PyCharm Python 2024.1.1 Community ed.
+
+OSMnx ref: Boeing, G. 2024. “Modeling and Analyzing Urban Networks and Amenities with OSMnx.” Working paper. https://geoffboeing.com/publications/osmnx-paper/
+
+Overpass QL & Turbo API
+
+Idea:
+
+Challenges:
+
+Reducing computation time via on-disk cache serialization vs. internet.
+Profiled system for greater efficiency working with less dependency on connectivity
+Work with reduced bandwidth
+
+
+
