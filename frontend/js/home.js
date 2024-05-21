@@ -4,18 +4,14 @@ if(username_text) {
   username_text.textContent = username;
 }
 
-const center = {
-  lat: 45.424721,
-  lng: -75.695000,
-};
-
-
-
-
 var status = sessionStorage.getItem('usertype');
 var status_text = document.getElementById('user-admin-status');
+var admin_exclusive = document.getElementById('admin_plus');
 if(status_text) {
   status_text.textContent = "Logged in as " + status.toLocaleUpperCase();
+  if(status == 'admin') {
+    admin_exclusive.hidden = false;
+  }
 }
 
 function redirect_queries() { 
