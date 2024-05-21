@@ -52,7 +52,7 @@ class Filenames:
         """
         :return: The filename for Traffic Collision Data
         """
-        return '/Users/matthewzhou/Desktop/traffichelper/xoutput/src/backend/Data/Gadgets/RedLightCameraLocations.csv'
+        return '/Users/matthewzhou/Desktop/traffichelper/xoutput/src/backend/Data/TrafficCollisionData.csv'
 
     @staticmethod
     def centrelines():
