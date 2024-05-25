@@ -59,3 +59,7 @@ setend_button.addEventListener('click', function() {
     if(ending_address.value) localStorage.setItem("end_point", ending_address.value);
     else localStorage.setItem("end_point", end_pos);
 })
+
+setTimeout(function () {
+    window.dispatchEvent(new Event("resize"));
+ }, 500);

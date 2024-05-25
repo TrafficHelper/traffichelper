@@ -179,3 +179,7 @@ function Submit_All() {
 
 Submit_Prefences();
 Submit_All();
+
+setTimeout(function () {
+    window.dispatchEvent(new Event("resize"));
+ }, 500);
