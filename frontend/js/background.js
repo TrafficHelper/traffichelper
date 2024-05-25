@@ -1,9 +1,14 @@
-var admin = false;
+function direct_routing() {
+  var routing_page = '/routing.html';
+  window.location.href = routing_page;
+}
 
-var temp = sessionStorage.getItem('usertype');
+const go_routing = document.getElementById("go-routing-button");
 
-if(temp == 'admin') {
-  admin = true;
+if(go_routing) {
+  go_routing.addEventListener('click', function () {
+    direct_routing();
+  })
 }
 
 function direct_queries() {
@@ -18,6 +23,21 @@ if(go_queries) {
     direct_queries();
   })
 }
+
+function direct_results() {
+  var results_page = '/results.html';
+  window.location.href = results_page;
+}
+
+const get_results = document.getElementById("submit-form-button");
+
+if(get_results) {
+  get_results.addEventListener('click', function() {
+    map.remove();
+    direct_results();
+  })
+}
+
 
 
 

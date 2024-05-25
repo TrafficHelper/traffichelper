@@ -66,17 +66,17 @@
               <div class="query-description">Please use the sliders below to choose your prefered values (in percentage) of safety, distance, and speed. Click on the reset button to revert all values to 50%. The default values are 50% for all of them. Click and drag on the sliders to receive a value displayed on the right of each slider.</div>
               <div class="safety-slider-container">
                 <div class="slider-title">Safety</div>
-                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="safety-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.05" class="route-slider" id="safety-slider">
                 <div id="safety-value">50%</div>
               </div>
               <div class="distance-slider-container">
                 <div class="slider-title">Length</div>
-                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="distance-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.05" class="route-slider" id="distance-slider">
                 <div id="distance-value">50%</div>
               </div>
               <div class="speed-slider-container">
                 <div class="slider-title">Speed</div>
-                <input type="range" min="0" max="1" value="0.5" step="0.01" class="route-slider" id="speed-slider">
+                <input type="range" min="0" max="1" value="0.5" step="0.05" class="route-slider" id="speed-slider">
                 <div id="speed-value">50%</div>
               </div>
             <div class="reset-values-button" id="reset-values-button">reset values</div>
@@ -98,7 +98,7 @@
             <div class="weather text">
               <div class="sub-title">ENVIRONMENT SETTING</div>
               <div class="query-description">Please select your setting of environment. The default value is set to NORMAL (normal environment setting). Click on the dropdown below for a list of options.</div>
-              <select name="weather_type" id="weather-type" value="ideal">
+              <select name="weather_type" id="weather-type" value="normal">
                 <option value="ideal" id="option_">IDEAL</option>
                 <option value="normal" id="option_">NORMAL</option>
                 <option value="abnormal" id="option_">ABNORMAL</option>
@@ -120,7 +120,7 @@
       <div class="go-routing-button" id="go-routing-button"> CONTINUE -> ROUTING </div>
     </div>
 
-    <script type="module" src="/frontend/js/functions.js"></script>
-    <script type="module" src="/frontend/js/backfunc.js"></script>
+    <script type="module" src="/frontend/js/queries.js"></script>
+    <script type="module" src="/frontend/js/background.js"></script>
   </body>
   </html>
