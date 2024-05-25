@@ -330,3 +330,20 @@ nav {
         background-color: color.change($gold2, $alpha: math.div(114, 255));
     }
 }
+
+.admin-nav {
+    color: $black2;
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: $gold2;
+    padding: 0.8rem;
+    transition: 0.3s ease;
+}
+.admin-nav:hover {
+    color: $gold2;
+    background-color: color.change($black2, $alpha: math.div(107, 255));
+}

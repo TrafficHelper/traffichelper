@@ -3,14 +3,6 @@ const center = {
     lng: -75.695000,
 };
 
-//storing initial (default) values to variables in local storage
-window.addEventListener("load", (event) => {
-    if (!localStorage.getItem("start_point")) localStorage.setItem("start_point", center);
-    if (!localStorage.getItem("end_point")) localStorage.setItem("end_point", center);
-});
-
-
-
 var start_pos;
 var end_pos;
 
@@ -27,7 +19,7 @@ const start_marker = L.marker(center, {
         iconSize: [30, 50], //[width, height] (px)
         iconAnchor: [15, 50], //point of the icon which will correspond to marker's location
     })
-}).addTo(map);
+});
 
 const end_marker = L.marker(center, {
     draggable: true,
@@ -36,7 +28,17 @@ const end_marker = L.marker(center, {
         iconSize: [30, 50],
         iconAnchor: [15, 50],
     })
-}).addTo(map);
+});
+
+//storing initial (default) values to variables in local storage
+window.addEventListener("load", (event) => {
+    if (!localStorage.getItem("start_point")) localStorage.setItem("start_point", center);
+    if (!localStorage.getItem("end_point")) localStorage.setItem("end_point", center);
+});
+
+start_marker.addTo(map);
+
+end_marker.addTo(map);
 
 start_marker.on('dragend', function (event) {
     const start_marker = event.target;

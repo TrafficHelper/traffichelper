@@ -134,7 +134,9 @@ nav {
 #route:checked ~ .list label.route,
 #time:checked ~ .list label.time,
 #weather:checked ~ .list label.weather,
-#paths:checked ~ .list label.paths{
+#paths:checked ~ .list label.paths,
+#budget:checked ~ .list label.budget,
+#gadget-restrictions:checked ~ .list label.gadget-restrictions{
     color: $black1;
     
 }
@@ -164,6 +166,12 @@ nav {
 }
 #paths:checked ~ .list .slider{
     top: 280px;
+}
+#budget:checked ~ .list .slider{
+    top: 0;
+}
+#gadget-restrictions:checked ~ .list .slider{
+    top: 70px;
 }
 .content .text-content{
     width: 80%;
@@ -224,13 +232,16 @@ nav {
 #route:checked ~ .text-content .route,
 #time:checked ~ .text-content .time,
 #weather:checked ~ .text-content .weather,
-#paths:checked ~ .text-content .paths{
+#paths:checked ~ .text-content .paths,
+#budget:checked ~ .text-content .budget,
+#gadget-restrictions:checked ~ .text-content .gadget-restrictions {
     display: block;
 }
+//add ?
 #route:checked ~ .text-content .vehicle,
 #time:checked ~ .text-content .vehicle,
 #weather:checked ~ .text-content .vehicle,
-#paths:checked ~ .text-content .vehicle{
+#paths:checked ~ .text-content .vehicle {
     display: none;
 }
 .content .con{
@@ -596,6 +607,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
 }
+
 .submit-form-button {
     cursor: pointer;
     position: relative;
@@ -750,3 +762,147 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-top: 7.5%;
     margin-bottom: -8%;
 }
+
+#budget-input {
+    font-size: 25px;
+    position: relative;
+    border-radius: 5px;
+    border: 1px $gold solid;
+    color: $gold;
+    font-weight: light;
+    background-color: color.change($pureblack, $alpha: math.div(89, 255));
+    left: 3%;
+    width: 90%;
+    transition: 0.5s ease;
+    padding: 2% 3% 2% 3%;
+    transition: 0.5s ease;
+
+    &::placeholder {
+        color: $fadedgrey;
+    }
+    &:hover {
+        color: $purewhite;
+        border: 1px $purewhite solid;
+        border-radius: 10px;
+    }
+}
+
+.checkbox-container {
+    position: relative;
+    width: 80%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+    align-items: start;
+    grid-gap: 0.2rem;
+    left: 3%;
+    margin-top: 2%;
+}
+
+.individual-check {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 25px;
+    color: $gold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: 0.5s ease;
+}
+
+.individual-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    border: 1px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+
+.individual-check:hover {
+    color: $purewhite;
+}
+
+.individual-check:hover input ~ .checkmark {
+    border: 1px $purewhite solid;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.individual-check input:checked ~ .checkmark {
+    background-color: $gold;
+}
+
+.individual-check:hover input:checked ~ .checkmark {
+    border: 1px $purewhite solid;
+    background-color: $purewhite;
+    border-radius: 10px;
+}
+  
+
+.admin-queries-results-container {
+    position: fixed;
+    width: 100%;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit-admin-queries-button {
+    cursor: pointer;
+    position: relative;
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: $gold;
+    font-size: 30px;
+    border: 1px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    bottom:0;
+
+    &:hover {
+        color: $purewhite;
+        border: 1px $purewhite solid;
+        background-color: transparent;
+        border-radius: 10px;
+    }
+}
+.admin-specific-results {
+    position: relative;
+    margin-left: 2%;
+    width: 68%;
+    height: 100px;
+    display: flex;
+    justify-content: left;
+    padding: 1%;
+    align-items: center;
+    font-weight: light;
+    color: $gold2;
+    font-size: 25px;
+    border: 3px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    bottom: 0;
+}
+

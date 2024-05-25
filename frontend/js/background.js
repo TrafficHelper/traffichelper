@@ -39,8 +39,6 @@ if(get_results) {
 }
 
 
-
-
 //frontend required js
 
 import "/frontend/scss/functions.scss"; //vite requires import style

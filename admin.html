@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/frontend/assets/icons/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="/home.html"><img id="logo-icon" src="/frontend/assets/icons/logo.png"></a>
+      <ul>
+        <li><a href='/home.html'>HOME</a></li>
+      </ul>
+    </nav>
+    <canvas class="webgl"></canvas>
+    <div class="main">
+      <div class="query-title">ADMIN SPECIFIC</div>
+      <div class="container">
+        <div class="content">
+          <input class="con" type="radio" name="slider" checked id="budget">
+          <input class="con" type="radio" name="slider" id="gadget-restrictions">
+          <div class="section-title">
+            QUERIES
+          </div>
+          <div class="list">
+            <label for="budget" class="budget">
+              <span class="title">Budget</span>
+            </label>
+            <label for="gadget-restrictions" class="gadget-restrictions">
+              <span class="title">Gadget Restrictions</span>
+            </label>
+            <div class="slider"></div>
+          </div>
+          <div class="text-content">
+            <div class="budget text">
+              <div class="sub-title">BUDGET VALUE</div>
+              <div class="query-description">Please input the budget as an integer field in the input box below. The default value is empty.</div>
+              <input type="text" id="budget-input" placeholder="Enter a reasonable positive integer">
+            </div>
+            <div class="gadget-restrictions text">
+              <div class="sub-title">GADGET RESTRICTIONS</div>
+              <div class="query-description">Please use the checkboxes below in order to select which gadgets you would like restricted. Click on the small indicator next to each option to either select or deselect that option. All default values are empty (unselected). A gold-filled checkbox means that it is selected and otherwise, it is not.</div>
+              <div class="checkbox-container">
+                <label class="individual-check" for="lane"> LANE
+                    <input type="checkbox" id="lane" name="lane"/>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="individual-check" for="speed-increase"> SPEED INCREASE
+                    <input type="checkbox" id="speed-increase" name="speed-increase"/>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="individual-check" for="stoplight"> STOPLIGHT
+                    <input type="checkbox" id="stoplight" name="stoplight"/>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="individual-check" for="camera"> CAMERA
+                    <input type="checkbox" id="camera" name="camera"/>
+                    <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-queries-results-container">
+      <div class="submit-admin-queries-button" id="submit-admin-queries-button"> SUBMIT FORM </div>
+      <div class="admin-specific-results" id="admin-specific-results">null</div>
+    </div>
+
+    <script type="module" src="/frontend/js/admin.js"></script>
+    <script type="module" src="/frontend/js/background.js"></script>
+  </body>
+  </html>
