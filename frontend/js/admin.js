@@ -29,16 +29,12 @@ else lane_mark.checked = false;
 lane_mark.addEventListener('change', function(event) {
     if(lane_mark.checked == true) localStorage.setItem("lane_check", "");
     else localStorage.setItem("lane_check", "out");
-    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
-console.log(gadget_restrictions);
 });
 if (localStorage.getItem("speed_increase_check") == "") speed_increase_mark.checked = true;
 else speed_increase_mark.checked = false;
 speed_increase_mark.addEventListener('change', function(event) {
     if(speed_increase_mark.checked == true) localStorage.setItem("speed_increase_check", "");
     else localStorage.setItem("speed_increase_check", "out");
-    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
-console.log(gadget_restrictions);
 });
 
 if (localStorage.getItem("stoplight_check") == "") stoplight_mark.checked = true;
@@ -46,8 +42,6 @@ else stoplight_mark.checked = false;
 stoplight_mark.addEventListener('change', function(event) {
     if(stoplight_mark.checked == true) localStorage.setItem("stoplight_check", "");
     else localStorage.setItem("stoplight_check", "out");
-    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
-console.log(gadget_restrictions);
 });
 
 if (localStorage.getItem("camera_check") == "") camera_mark.checked = true;
@@ -55,14 +49,7 @@ else camera_mark.checked = false;
 camera_mark.addEventListener('change', function(event) {
     if(camera_mark.checked == true) localStorage.setItem("camera_check", "");
     else localStorage.setItem("camera_check", "out");
-    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
-console.log(gadget_restrictions);
 });
-
-
-
-const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
-console.log(gadget_restrictions);
 
 var csvData = null;
 
@@ -74,13 +61,14 @@ var csvData = null;
 //     }
 // });
 
-fetch('/Users/matthewzhou/Desktop/traffichelper/frontend/js/Traffic_Collision_Data_small.csv')
+fetch('/frontend/js/Traffic_Collision_Data_small.csv')
     .then(response => response.text())
     .then(csvText => {
         Papa.parse(csvText, {
             complete: function (results) {
                 console.log("CSV parsing results:", results);
                 csvData = results.data;
+                console.log(csvData);
             }
         });
     })

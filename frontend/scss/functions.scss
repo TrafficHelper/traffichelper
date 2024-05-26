@@ -860,7 +860,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
     width: 90%;
-    height: 100px;
+    height: 16%;
     display: flex;
     justify-content: left;
     padding: 1%;
@@ -922,7 +922,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .admin-form-container {
     z-index: 2;
     width: 90%;
-    height: 45%;
+    height: 40%;
     margin-bottom: 1%;
     padding: 40px 50px 40px 40px;
     background: #00000082;
