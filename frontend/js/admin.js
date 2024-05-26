@@ -68,7 +68,6 @@ fetch('/frontend/js/Traffic_Collision_Data_small.csv')
             complete: function (results) {
                 console.log("CSV parsing results:", results);
                 csvData = results.data;
-                console.log(csvData);
             }
         });
     })

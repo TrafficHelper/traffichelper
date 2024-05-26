@@ -75,6 +75,7 @@ const material = new THREE.PointsMaterial({
   size: 0.01,
   opacity: 0.50,
 })
+
 const torusknot = new THREE.Points(geometry, material);
 scene.add(torusknot);
 
@@ -84,7 +85,6 @@ const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(2);
 renderer.render(scene, camera);
-
 
 //resize window
 window.addEventListener('resize', () => {

@@ -125,9 +125,9 @@ scene.add(psphere);
 const tl= gsap.timeline({defaults: {duration : 0.5}});
 tl.fromTo('nav', {y: '-100%'}, {y: '0%'});
 tl.fromTo(psphere.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1});
-tl.fromTo('.title-login', {opacity: 0}, {opacity: 1}); 
-tl.fromTo('.login-admin-container', {opacity: 0}, {opacity: 1}); 
-tl.fromTo('.login-user-container', {opacity: 0}, {opacity: 1}); 
+if(user_login_button) tl.fromTo('.login-user-container', {opacity: 0}, {opacity: 1}); 
+if(admin_login_button) tl.fromTo('.login-admin-container', {opacity: 0}, {opacity: 1});
+
 
 //controls
 const controls = new OrbitControls(camera, canvas);

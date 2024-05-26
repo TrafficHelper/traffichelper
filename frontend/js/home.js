@@ -75,13 +75,14 @@ scene.add(torusknot);
 
 
 //main timeline
-const tl = gsap.timeline({defaults: {duration : 0.5}});
-tl.fromTo('nav', {y: '-100%'}, {y: '0%'});
-tl.fromTo('.title1', {opacity: 0}, {opacity: 1}); 
-tl.fromTo('.title2', {opacity: 0}, {opacity: 1}); 
-tl.fromTo('.regular-button', {x: '-500%'}, {x: '0%'});
-tl.fromTo('.admin-button', {x: '500%'}, {x: '0%'});
-
+if(queries_button){
+  const tl = gsap.timeline({defaults: {duration : 0.5}});
+  tl.fromTo('nav', {y: '-100%'}, {y: '0%'});
+  tl.fromTo('.title-home1', {opacity: 0}, {opacity: 1});
+  tl.fromTo('.title-home2', {opacity: 0}, {opacity: 1}); 
+  tl.fromTo('.title-home3', {opacity: 0}, {opacity: 1}); 
+  tl.fromTo('.queries-button', {opacity: 0}, {opacity: 1});
+}
 
 
 //renderer
