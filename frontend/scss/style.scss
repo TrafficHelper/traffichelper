@@ -347,3 +347,13 @@ nav {
     color: $gold2;
     background-color: color.change($black2, $alpha: math.div(107, 255));
 }
+
+#guide-pdf {
+    z-index: 10;
+}
+
+.guidebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -114,7 +114,6 @@ async function submitQuestionForAi() {
 
         // Set the result in the textarea
         resultOutput.value = dataList.choices[0].message.content;
-        console.log(resultOutput.value);
         console.log('Success:', dataList);
 
     } catch (error) {
