@@ -2,51 +2,70 @@
 window.addEventListener("load", (event) => {
     console.log("adding");
     if (!localStorage.getItem("budget_value")) localStorage.setItem("budget_value", "");
-    if (!localStorage.getItem("lane_check")) localStorage.setItem("lane_check", "false");
-    if (!localStorage.getItem("speed_increase_check")) localStorage.setItem("speed_increase_check", "false");
-    if (!localStorage.getItem("stoplight_check")) localStorage.setItem("stoplight_check", "false");
+    if (!localStorage.getItem("lane_check")) localStorage.setItem("lane_check", "out");
+    if (!localStorage.getItem("speed_increase_check")) localStorage.setItem("speed_increase_check", "out");
+    if (!localStorage.getItem("stoplight_check")) localStorage.setItem("stoplight_check", "out");
     if (!localStorage.getItem("camera_check")) localStorage.setItem("camera_check", "false");
     console.log("added");
 });
 
-// const setbudget_input = document.getElementById("budget-input");
+const setbudget_input = document.getElementById("budget-input");
 
-// const lane_mark = document.getElementById("lane");
-// const speed_increase_mark = document.getElementById("speed-increase");
-// const stoplight_mark = document.getElementById("spotlight");
-// const camera_mark = document.getElementById("camera");
+const lane_mark = document.getElementById("lane");
+const speed_increase_mark = document.getElementById("speed-increase");
+const stoplight_mark = document.getElementById("stoplight");
+const camera_mark = document.getElementById("camera");
 
-// const submit_form_button = document.getElementById("submit-admin-queries-button");
-// const admin_results = document.getElementById("admin-specific-results");
+const submit_form_button = document.getElementById("submit-admin-queries-button");
+const admin_results = document.getElementById("admin-specific-results");
 
-// setbudget_input.value = localStorage.getItem("budget_value");
-// setbudget_input.addEventListener('change', function(event) {
-//     localStorage.setItem("budget_value", setbudget_input.value);
-// });
+setbudget_input.value = localStorage.getItem("budget_value");
+setbudget_input.addEventListener('change', function(event) {
+    localStorage.setItem("budget_value", setbudget_input.value);
+});
 
-// lane_mark.checked = localStorage.getItem("lane_check");
-// lane_mark.addEventListener('change', function(event) {
-//     localStorage.setItem("lane_check", lane_mark.checked);
-// });
+if (localStorage.getItem("lane_check") == "") lane_mark.checked = true;
+else lane_mark.checked = false;
+lane_mark.addEventListener('change', function(event) {
+    if(lane_mark.checked == true) localStorage.setItem("lane_check", "");
+    else localStorage.setItem("lane_check", "out");
+    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+console.log(gadget_restrictions);
+});
+if (localStorage.getItem("speed_increase_check") == "") speed_increase_mark.checked = true;
+else speed_increase_mark.checked = false;
+speed_increase_mark.addEventListener('change', function(event) {
+    if(speed_increase_mark.checked == true) localStorage.setItem("speed_increase_check", "");
+    else localStorage.setItem("speed_increase_check", "out");
+    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+console.log(gadget_restrictions);
+});
 
-// speed_increase_mark.checked = localStorage.getItem("speed_increase_check");
-// speed_increase_mark.addEventListener('change', function(event) {
-//     localStorage.setItem("speed_increase_check", speed_increase_mark.checked);
-// });
+if (localStorage.getItem("stoplight_check") == "") stoplight_mark.checked = true;
+else stoplight_mark.checked = false;
+stoplight_mark.addEventListener('change', function(event) {
+    if(stoplight_mark.checked == true) localStorage.setItem("stoplight_check", "");
+    else localStorage.setItem("stoplight_check", "out");
+    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+console.log(gadget_restrictions);
+});
 
-// stoplight_mark.checked = localStorage.getItem("stoplight_check");
-// stoplight_mark.addEventListener('change', function(event) {
-//     localStorage.setItem("stoplight_check", stoplight_mark.checked);
-// });
+if (localStorage.getItem("camera_check") == "") camera_mark.checked = true;
+else camera_mark.checked = false;
+camera_mark.addEventListener('change', function(event) {
+    if(camera_mark.checked == true) localStorage.setItem("camera_check", "");
+    else localStorage.setItem("camera_check", "out");
+    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+console.log(gadget_restrictions);
+});
 
-// camera_mark.checked = localStorage.getItem("camera_check");
-// camera_mark.addEventListener('change', function(event) {
-//     localStorage.setItem("camera_check", camera_mark.checked);
-// });
 
-// const admin_url = 'https://api.openai.com/v1/chat/completions'; //add correct URL
+
+const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOP_LIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+console.log(gadget_restrictions);
 
 var csvData = null;
+
 // const file = '/Users/matthewzhou/Desktop/traffichelper/backend_and_api/src/backend/Data/TrafficCollisionData.csv';
 // Papa.parse(file, {
 //     complete: function (results) {
@@ -55,7 +74,7 @@ var csvData = null;
 //     }
 // });
 
-fetch('/backend_and_api/src/backend/Data/Traffic_Collision_Data_small.csv')
+fetch('/Users/matthewzhou/Desktop/traffichelper/frontend/js/Traffic_Collision_Data_small.csv')
     .then(response => response.text())
     .then(csvText => {
         Papa.parse(csvText, {
@@ -68,11 +87,14 @@ fetch('/backend_and_api/src/backend/Data/Traffic_Collision_Data_small.csv')
     .catch(error => console.error('Error fetching CSV file:', error));
 
 async function submitQuestionForAi() {
+    const within_budget = "budget less than " + localStorage.getItem("budget_value") + ", ";
+    const gadget_restrictions = "with" + localStorage.getItem("lane_check") + " LANE permitted with" + localStorage.getItem("speed_increase_check") + " SPEED_INCREASE permitted with" + localStorage.getItem("stoplight_check") + " STOPLIGHT permitted with" + localStorage.getItem("camera_check") + " CAMERA permitted";
+    const response_length = "within " + 60 + " words, ";
     const askAIInput = document.getElementById('ai-input');
     const resultOutput = document.getElementById('admin-specific-results'); // Get the textarea element
-    const prompt = "Given the following data: " + JSON.stringify(csvData) + ", in roughly 60 words answer my question, which is " + askAIInput.value;
+    const prompt = "Given the following data: " + JSON.stringify(csvData) + ", answer my question " + response_length + "and under the constraints of " + gadget_restrictions + ", and with a " + within_budget + askAIInput.value;
     const url = 'https://api.openai.com/v1/chat/completions' // Replace with url of desired formatter
-    const api_access_key = 'sk-proj-1soxFYxzZdFWNv18BcbwT3BlbkFJ08m9aBiI5ZMpWjlxFqjF' // Enter your API key here
+    const api_access_key = '' // Enter your API key here
    
     try {
         const response = await fetch(url, {
@@ -82,7 +104,7 @@ async function submitQuestionForAi() {
                 'Authorization': 'Bearer '+ api_access_key
             },
             body: JSON.stringify({
-                "model": "gpt-3.5-turbo-0125", // You can set your model here
+                "model": "gpt-3.5-turbo", // You can set your model here
                 "messages": [
                     {
                         "role": "system",
@@ -104,6 +126,7 @@ async function submitQuestionForAi() {
 
         // Set the result in the textarea
         resultOutput.value = dataList.choices[0].message.content;
+        console.log(resultOutput.value);
         console.log('Success:', dataList);
 
     } catch (error) {
@@ -113,11 +136,7 @@ async function submitQuestionForAi() {
     }
 
 }
-document.getElementById('submit-admin-queries-button').addEventListener('click', submitQuestionForAi);
 
-// submit_form_button.addEventListener('click', function() {
-//     Submit_Admin();
-//     console.log("ok");
-// })
-
-//traffic data path: 
+submit_form_button.addEventListener('click', function() {
+    submitQuestionForAi();
+})

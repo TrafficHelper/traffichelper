@@ -45,7 +45,7 @@
             </div>
             <div class="gadget-restrictions text">
               <div class="sub-title">GADGET RESTRICTIONS</div>
-              <div class="query-description">Please use the checkboxes below in order to select which gadgets you would like restricted. Click on the small indicator next to each option to either select or deselect that option. All default values are empty (unselected). A gold-filled checkbox means that it is selected and otherwise, it is not.</div>
+              <div class="query-description">Please use the checkboxes below in order to select which gadgets you would like unrestricted (with ___). Click on the small indicator next to each option to either select or deselect that option. All default values are empty (unselected). A gold-filled checkbox means that it is selected and otherwise, it is not.</div>
               <div class="checkbox-container">
                 <label class="individual-check" for="lane"> LANE
                     <input type="checkbox" id="lane" name="lane"/>
@@ -75,7 +75,7 @@
     
     <div class="admin-queries-results-container">
       <div class="admin-results-header">AI RESPONSE:&nbsp;</div>
-      <div class="admin-specific-results" id="admin-specific-results">null</div>
+      <textarea class="admin-specific-results" id="admin-specific-results" placeholder="AI response will appear here..." row="1" readonly></textarea>
     </div>
 
     <script type="module" src="/frontend/js/admin.js"></script>
