@@ -302,4 +302,22 @@ nav ul li a:hover {
   background-color: rgba(216, 183, 64, 0.4470588235);
 }
 
+.admin-nav {
+  color: #0a0a0a;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  background-color: #d8b740;
+  padding: 0.8rem;
+  transition: 0.3s ease;
+}
+
+.admin-nav:hover {
+  color: #d8b740;
+  background-color: rgba(10, 10, 10, 0.4196078431);
+}
+
 /*# sourceMappingURL=style.css.map */

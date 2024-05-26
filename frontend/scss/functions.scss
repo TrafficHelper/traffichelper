@@ -248,8 +248,6 @@ nav {
     display: none;
 }
 
-
-
 select {
     font-size: 25px;
     cursor: pointer;
@@ -856,24 +854,34 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   
 
 .admin-queries-results-container {
-    position: fixed;
-    width: 100%;
-    bottom: 10%;
+    position: relative;
+    top: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 90%;
+    height: 100px;
+    display: flex;
+    justify-content: left;
+    padding: 1%;
+    align-items: center;
+    border: 3px $gold solid;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: 0.5s ease;
 }
+
 .submit-admin-queries-button {
     cursor: pointer;
     position: relative;
-    width: 20%;
+    width: 15%;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bolder;
     color: $gold;
-    font-size: 30px;
+    font-size: 25px;
     border: 1px $gold solid;
     background-color: transparent;
     border-radius: 5px;
@@ -887,22 +895,65 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         border-radius: 10px;
     }
 }
+
 .admin-specific-results {
-    position: relative;
-    margin-left: 2%;
-    width: 68%;
-    height: 100px;
-    display: flex;
-    justify-content: left;
-    padding: 1%;
-    align-items: center;
     font-weight: light;
-    color: $gold2;
+    color: $gold3;
     font-size: 25px;
-    border: 3px $gold solid;
-    background-color: transparent;
-    border-radius: 5px;
-    transition: 0.5s ease;
-    bottom: 0;
 }
 
+.admin-results-header {
+    font-weight: bold;
+    color: $gold;
+    font-size: 25px;
+}
+
+.admin-form-container {
+    z-index: 2;
+    width: 90%;
+    height: 45%;
+    margin-bottom: 1%;
+    padding: 40px 50px 40px 40px;
+    background: #00000082;
+    border-radius: 5px;
+    border: 1px $gold3 solid;
+}
+
+.ai-prompting-container {
+    z-index: 2;
+    width: 90%;
+    height: 15%;
+    margin-bottom: 1%;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00000082;
+    border-radius: 5px;
+    border: 2px $gold3 solid;
+}
+
+.ai-input {
+    background-color: transparent;
+    font-size: 30px;
+    border: none;
+    width: 80%;
+    margin-right: 2%;
+    height: 95%;
+    color: $white3;
+    padding: 1%;
+}
+
+.ai-input::placeholder {
+    color: $fadedgrey;
+}
+
+.main-admin{
+    z-index: 5;
+    height: 100vh;
+    margin-top: -7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
