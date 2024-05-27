@@ -1,0 +1,10 @@
+filenames.py:
+        Filenames:
+            asecl() -> str: # Filename of automated speed enforcement camera locations
+            pcl2019() -> str: # Filename of pedestrian collision locations (for only 2019 currently)
+            collisiondata() -> str: # Traffic collision filename
+            midblockvols() -> {int:str}: # Filenames of all midblock volume locations
+            intersectvols() -> {int:str}: # Filenames of all years and their associated intersection volumes
+    constants.py:
+        firstAcc() -> [Accident]: # Returns an arbitrarily chosen (the first) accident in accidents list
+        domain(str) -> [Accident]: # Returns a list of all the accidents

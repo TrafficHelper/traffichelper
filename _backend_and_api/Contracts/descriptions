@@ -1,0 +1,4 @@
+
+This parent directory contains YAML files which determine how the frontend and backend will interface through the API
+It consists of the file
+- website.yaml: The file which describes the website's functionality

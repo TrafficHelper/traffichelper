@@ -1,0 +1,93 @@
+
+Preferences choice page:
+
+Select a vehicle:
+Dropdown[
+1: Vehicle.PEDESTRIAN,
+2: Vehicle.BICYCLE,
+3: Vehicle.MOTORCYCLE,
+4: Vehicle.CAR,
+5: Vehicle.TRUCK,
+6: Vehicle.OTHER]
+Calls def select_vehicle(vehicle:Vehicle = Vehicle.CAR): # Accepts a selected vehicle from the dropdown
+
+Select an environment:
+Dropdown[
+0: IDEAL
+1: NORMAL
+2: ABNORMAL
+3: DEVIANT
+4: TROUBLESOME
+5: EXTREME]
+Calls def select_environment(env:Environment = Environment.NORMAL)
+
+Select path choices:
+Slider[Safety: 0 ... 1]
+Slider[Time: 0 ... 1]
+Slider[Distance: 0 ... 1]
+[Reset] [Certify]
+Calls def path_metric(safety_emphasis: float = 1/3, time_emphasis: float = 1/3, distance_emphasis: float = 1/3): # Accepts the values of the sliders
+
+Travel details:
+
+Select journey start & end points:
+Start: Field[start_adress:str] Calls def select_start(start_point:str|(float, float)): # Selects the start point of user's journey either through entering a str address or obtaining a (lat, long) by clicking on the embedded map
+End: Field[end_address:str] Calls def select_end(end_point:str|(float, float)): # Selects the end point of user's journey in a separate field, though same method as selecting start point
+
+Select number of paths: Field[int] Calls def select_number_paths(k:int = 1): # Field for user to enter integer number of optimal paths
+
+Select journey start time: Popup[Calendar] # Hovering over calendar day gives 24h & 60min slider, select that as well. Concatenate year, month, day, hour, min together and call # Calls def select_time(leave_time:str)
+
+[SUBMIT] Calls def optimal_paths() -> [[str|int]]:
+
+
+Admin page:
+
+Modification builder:
+
+																					{
+																	EMBEDDED INTERACTIVE (CLICKABLE) MAP COMMON TO FRONTEND & BACKEND
+
+																						with:
+
+																					Action modification:
+																			Hovering over edge shows Gadgets it has, with:
+
+																				Single-Select from options: [Add, Remove]:
+
+																				Select gadget:
+																				Dropdown[Gadget.SPEED_CAMERA
+																					   Gadget.CROSSOVER
+																					   Gadget.STOPLIGHT
+																					   Gadget.STOPLIGHT_CAMERA
+																					  ]
+
+																Action modification Calls def add_action(edge, gadget:Gadget, add_or_remove:bool = True)
+
+																					[COMPUTE]: Calls def_compute_action()
+																					[CLEAR ALL EDITS] Calls def reset_action()
+
+																					}
+
+
+Recommender:
+
+Select budget: Field[int] # Calls def select_budget(budget:int = 1e6)
+Select number of recommendations you would like to see: Field[int] # Calls def select_number_recommendations(amount:int = 1)
+
+Select emphasis on outcome:
+Slider[Total Safety: 0 ... 1]
+Slider[Total Time: 0 ... 1]
+Slider[Total Distance: 0 ... 1]
+[Reset] [Certify]
+Calls def recommendation_metric(safety_emphasis: float = 1/3, time_emphasis: float = 1/3, distance_emphasis: float = 1/3): # Accepts the values of the sliders
+
+[SUBMIT] # Calls def recommendations() -> [Modification:int]
+
+
+
+
+
+
+
+

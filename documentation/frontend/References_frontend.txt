@@ -1,0 +1,24 @@
+Tools & Editors:
+https://www.blender.org/
+https://threejs.org/
+https://www.gltfeditor.com/
+https://code.visualstudio.com/
+
+
+Research Purpose:
+https://threejs.org/docs/index.html#manual/en/introduction/Installation
+https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type
+https://docs.maptiler.com/leaflet/examples/vite-vanilla-js-default/
+https://leafletjs.com/reference.html
+
+Code (execution) Purpose:
+https://www.npmjs.com/
+https://vitejs.dev/
+https://leafletjs.com/
+
+Images/Assets
+https://fonts.google.com/
+https://www.canva.com/
+
+Map Assets:
+https://leaflet-extras.github.io/leaflet-providers/preview/

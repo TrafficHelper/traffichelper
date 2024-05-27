@@ -1,0 +1,7 @@
+Throughout the application, / designates the root folder of the project
+
+To see backend & API references, please check /backend_and_api/Documentation/References-backend.txt
+To see setup instructions, please check /backend_and_api/Documentation/setup-instructions.txt
+To see the CLI manual, please check /backend_and_api/Documentation/cli-instructions.txt
+To see and understand how the backend works, please check /backend_and_api/Documentation/workings.txt
+To see associated plugins improving efficiency and indispensable to workflow, please see /backend_and_api/Documentation/plugins.txt

@@ -1,0 +1,58 @@
+openapi: "3.0.2"
+info:
+  title: Traffic Wise
+  description: |-
+    This is the API for trafficHelper based on OpenAPI 3.0 specification..
+  version: "1.0"
+servers:
+  - url: /v3
+
+components:
+  schemas:
+    vehicleResp:
+      type: string
+      default: "CAR"
+      enum:
+        - "PEDESTRIAN"
+        - "BICYCLE"
+        - "MOTORCYCLE"
+        - "CAR"
+        - "TRUCK"
+        - "OTHER"
+      items:
+        $ref: "#/components/schemas/vehicleResp"
+    environmentResp:
+      type: string
+      default: "NORMAL"
+      enum:
+      items:
+        $ref: "#/components/schemas/environmentResp"
+    metricsResp:
+      type: array
+      properties:
+        risk:
+          type: number
+
+
+
+
+    prefsResp:
+      type: string
+      items:
+        $ref: "#/components/schemas/prefsResp"
+
+tags:
+  - description: Set user vehicle choice
+    name: Vehicle
+  - description: Set user environment choice
+    name: Environment
+
+paths:
+  /vehicle:
+    get:
+      operationId: select_vehicle
+      description: "Enter your vehicle type here"
+      responses:
+
+
+

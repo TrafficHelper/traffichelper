@@ -1,0 +1,53 @@
+1. Always cd to ../xoutput to initialize program
+Dev process:
+
+Installation process:
+
+1. Install Required Dependencies (python version >= 3.12)
+- Flask: For fullstack integration / pip install Flask
+- OSMnx: Python Framework for OpenStreetMap / pip install osmnx
+- Tensorflow: Google FOSS AIML framework / pip install tensorflow
+- PyTorch: Meta's AIML Framework / pip install pytorch
+- Scikit-learn:
+- GeoPy: pip install geopy
+- OverPy: pip install overpy
+
+2. The following plugins were used in the dev process and should also be added. Installing otherwise may cause undefined behaviour
+
+- Mermaid: UML Diagrams
+- CSV Editor: View features of the csv files
+- IdeaVim: Coding editor
+- Writerside: From which these technical docs were made
+- AMS-LaTEX: Technical Doc formatting
+
+
+Implicit libs:
+- scipy
+- sklearn
+- matplotlib
+- geopy
+- overpy
+- frozendict
+
+
+4. Hardware reqs
+
+
+
+
+- IDE: Bottom-layer JetBrains PyCharm Python 2024.1.1 Community ed.
+
+OSMnx ref: Boeing, G. 2024. “Modeling and Analyzing Urban Networks and Amenities with OSMnx.” Working paper. https://geoffboeing.com/publications/osmnx-paper/
+
+Overpass QL & Turbo API
+
+Idea:
+
+Challenges:
+
+Reducing computation time via on-disk cache serialization vs. internet.
+Profiled system for greater efficiency working with less dependency on connectivity
+Work with reduced bandwidth
+
+
+OpenA

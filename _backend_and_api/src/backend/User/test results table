@@ -1,0 +1,9 @@
+cli.py:
+    CLI:
+        __init__(self): # Create new CLI Instance
+        repl(self): # Main loop of CLI for user to enter commands
+        execute_command(self, command:str): # Executes given command
+main.py:
+    run(): # Runs code
+    if __name__ == '__main__': # Calls run
+
