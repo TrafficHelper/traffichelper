@@ -1,12 +1,10 @@
 //storing initial (default) values to variables in local storage
 window.addEventListener("load", (event) => {
-    console.log("adding");
     if (!localStorage.getItem("budget_value")) localStorage.setItem("budget_value", "");
     if (!localStorage.getItem("lane_check")) localStorage.setItem("lane_check", "out");
     if (!localStorage.getItem("speed_increase_check")) localStorage.setItem("speed_increase_check", "out");
     if (!localStorage.getItem("stoplight_check")) localStorage.setItem("stoplight_check", "out");
     if (!localStorage.getItem("camera_check")) localStorage.setItem("camera_check", "false");
-    console.log("added");
 });
 
 const setbudget_input = document.getElementById("budget-input");

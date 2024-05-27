@@ -1,6 +1,5 @@
 //storing initial (default) values to variables in local storage
 window.addEventListener("load", (event) => {
-    console.log("adding");
     if (!localStorage.getItem("vehicle_type")) localStorage.setItem("vehicle_type", "car");
     if (!localStorage.getItem("weather_type")) localStorage.setItem("weather_type", "normal");
     if (!localStorage.getItem("safety_value")) localStorage.setItem("safety_value", "0.5");
@@ -9,7 +8,6 @@ window.addEventListener("load", (event) => {
     if (!localStorage.getItem("dayofweek")) localStorage.setItem("dayofweek", "sunday");
     if (!localStorage.getItem("time_value")) localStorage.setItem("time_value", "13:30");
     if (!localStorage.getItem("paths_value")) localStorage.setItem("paths_value", "1");
-    console.log("added");
 });
 
 const setvehicle_dropdown = document.getElementById('vehicle-type');
