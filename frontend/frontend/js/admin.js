@@ -92,8 +92,8 @@ async function submitQuestionForAi() {
     const askAIInput = document.getElementById('ai-input');
     const resultOutput = document.getElementById('admin-specific-results'); // Get the textarea element
     const prompt = "Given the following data: " + JSON.stringify(csvData) + ", answer my question " + response_length + "and under the constraints of " + gadget_restrictions + ", and with a " + within_budget + askAIInput.value;
-    const url = 'https://api.openai.com/v1/chat/completions' // Replace with url of desired formatter
-    const api_access_key = '' // Enter your API key here
+    const url = 'https://api.openai.com/v1/chat/completions'; // Replace with url of desired formatter
+    const api_access_key = 'sk-proj-hhYDwl5apYRBtki64Aa0T3BlbkFJ8VDOv1DLB67I99tLm3ou'; // Enter your API key here
    
     try {
         const response = await fetch(url, {
