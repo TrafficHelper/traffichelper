@@ -10,6 +10,7 @@ window.addEventListener("load", (event) => {
     if (!localStorage.getItem("paths_value")) localStorage.setItem("paths_value", "1");
 });
 
+//gets initial html elements for each query
 const setvehicle_dropdown = document.getElementById('vehicle-type');
 
 const safety_slider = document.getElementById("safety-slider");
@@ -30,7 +31,9 @@ const setweather_dropdown = document.getElementById('weather-type');
 
 const setnumpaths_input = document.getElementById('paths-input');
 
+//for each query, load value for respective variable set in localStorage 
 setvehicle_dropdown.value = localStorage.getItem("vehicle_type");
+//for each query, listen for changes and set that change to new value
 setvehicle_dropdown.addEventListener('change', function(event) {
     localStorage.setItem("vehicle_type", event.target.value);
 });

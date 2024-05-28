@@ -1,3 +1,4 @@
+//initial center position of map (starting location for the markers on load)
 const center = {
     lat: 45.424721,
     lng: -75.695000,
@@ -6,12 +7,15 @@ const center = {
 var start_pos;
 var end_pos;
 
+//gets html values for the setting buttons for start and end locations
 const setstart_button = document.getElementById('set-start-button');
 const setend_button = document.getElementById('set-end-button');
 
+//gets html elements for user input address boxes
 const starting_address = document.getElementById('starting-address');
 const ending_address = document.getElementById('ending-address');
 
+//initializes start and end markers onto map (yellow, blue colors respectfully)
 const start_marker = L.marker(center, {
     draggable: true,
     icon: L.icon({
@@ -36,10 +40,11 @@ window.addEventListener("load", (event) => {
     if (!localStorage.getItem("end_point")) localStorage.setItem("end_point", center);
 });
 
+//adds markers to map layer
 start_marker.addTo(map);
+end_marker.addTo(map)
 
-end_marker.addTo(map);
-
+//listens for drag and dropping of the markers and sets start or end (respectively) values to these location points
 start_marker.on('dragend', function (event) {
     const start_marker = event.target;
     start_pos = start_marker.getLatLng();
@@ -50,6 +55,7 @@ end_marker.on('dragend', function (event) {
     end_pos = end_marker.getLatLng();
 });
 
+//prioritizes address input box values over coordinates from location markers on map
 setstart_button.addEventListener('click', function() {
     if(starting_address.value) localStorage.setItem("start_point", starting_address.value);
     else localStorage.setItem("start_point", start_pos);
@@ -60,6 +66,7 @@ setend_button.addEventListener('click', function() {
     else localStorage.setItem("end_point", end_pos);
 })
 
+//sets a timeout to fix unfinished loading of map tilelayer
 setTimeout(function () {
     window.dispatchEvent(new Event("resize"));
  }, 500);

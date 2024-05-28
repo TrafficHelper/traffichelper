@@ -1,7 +1,12 @@
+//importation of three.js library
 import * as THREE from 'three';
+//scss (css) import
 import "/frontend/scss/style.scss"; //vite requires import style
+//gsap library import
 import gsap from "gsap";
+//orbit controls library import
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+//gltf library import
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 //scene
@@ -37,42 +42,47 @@ scene.add(hlight);
 //start anims
 const gltfLoader = new GLTFLoader();
 
+//initializes earth GLTF model and animates
 const tlEarth = gsap.timeline({defaults: {duration : 0.5}});
 gltfLoader.load('/frontend/assets/models/earth.gltf', (gltfScene) => {
   const loadedModel = gltfScene.scene;
+  //adds model to scene
   scene.add(loadedModel);
-
   tlEarth.fromTo(loadedModel.scale, {z: 0, x: 0, y: 0}, {z: 0.03, x: 0.03, y: 0.03});
 });
 
+//initializes vehicle GLTF model and animates
 const tlVehicle = gsap.timeline({defaults: {duration : 0.5}});
 gltfLoader.load('/frontend/assets/models/vehicle.gltf', (gltfScene) => {
   const vehicleModel = gltfScene.scene;
+  //adds model to scene
   scene.add(vehicleModel);
-
   vehicleModel.translateY(3.2);
   tlVehicle.fromTo(vehicleModel.scale, {z: 0, x: 0, y: 0}, {z: 0.5, x: 0.5, y: 0.5});
-
   rotationCenter.add(vehicleModel);
 });
 
+//sets geometry and material for psphere
 const pgeometry1 = new THREE.TorusGeometry(7, 3, 16, 100);
 const pmaterial1 = new THREE.PointsMaterial({
   color: '#ffdd02',
   size: 0.02,
 })
+//adds psphere to scene
 const psphere1 = new THREE.Points(pgeometry1, pmaterial1);
 scene.add(psphere1);
+
+//sets geometry2 and material2 for psphere2
 const pgeometry2 = new THREE.TorusGeometry(10, 5, 16, 100);
 const pmaterial2 = new THREE.PointsMaterial({
   color: '#ffdd02',
   size: 0.02,
 })
+//adds psphere2 to scene
 const psphere2 = new THREE.Points(pgeometry2, pmaterial2);
 scene.add(psphere2);
 
-
-//main timeline
+//main timeline and animations
 const tl= gsap.timeline({defaults: {duration : 0.5}});
 tl.add(tlEarth, 0.5); 
 tl.add(tlVehicle, 1); 
@@ -81,9 +91,6 @@ tl.fromTo('.title1', {opacity: 0}, {opacity: 1});
 tl.fromTo('.title2', {opacity: 0}, {opacity: 1}); 
 tl.fromTo('.title3', {opacity: 0}, {opacity: 1}); 
 tl.fromTo('.description2', {opacity: 0}, {opacity: 1});
-
-
-
 
 //renderer
 const canvas = document.querySelector('.webgl');
@@ -122,5 +129,7 @@ const loop = () => {
 
   window.requestAnimationFrame(loop);
 }
+
+//loops window
 loop();
 

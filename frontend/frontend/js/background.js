@@ -1,37 +1,62 @@
+
+/**
+ * Redirects the page to ./routing.html page
+ * @param none
+ * @returns none
+ */
 function direct_routing() {
   var routing_page = '/routing.html';
   window.location.href = routing_page;
 }
 
-const go_routing = document.getElementById("go-routing-button");
-
-if(go_routing) {
-  go_routing.addEventListener('click', function () {
-    direct_routing();
-  })
-}
-
+/**
+ * Redircets page to ./queries.html page
+ * @param none
+ * @returns none
+ */
 function direct_queries() {
   var queries_page = '/queries.html';
   window.location.href = queries_page;
 }
 
-const go_queries = document.getElementById("go-queries-button");
-
-if(go_queries) {
-  go_queries.addEventListener('click', function() {
-    direct_queries();
-  })
-}
-
+/**
+ * Redirects page to ./results.html page
+ * @param none
+ * @returns none
+ */
 function direct_results() {
   var results_page = '/results.html';
   window.location.href = results_page;
 }
 
+//html element for the routing redirection button
+const go_routing = document.getElementById("go-routing-button");
+
+//if the page has go_routing html element
+if(go_routing) {
+  //on click, direct_routing()
+  go_routing.addEventListener('click', function () {
+    direct_routing();
+  })
+}
+
+//html element for the queries redirection button
+const go_queries = document.getElementById("go-queries-button");
+
+//if the page has go_queries html element
+if(go_queries) {
+  //on click, direct_queries()
+  go_queries.addEventListener('click', function() {
+    direct_queries();
+  })
+}
+
+//html element for results redirection button
 const get_results = document.getElementById("submit-form-button");
 
+//if the page has get_results html element
 if(get_results) {
+  //on click, clear the map (to avoid interference with results one) and direct_results()
   get_results.addEventListener('click', function() {
     map.remove();
     direct_results();
@@ -40,8 +65,9 @@ if(get_results) {
 
 
 //frontend required js
-
+//scss (css) importation
 import "/frontend/scss/functions.scss"; //vite requires import style
+//importation of three.js library
 import * as THREE from 'three';
 
 //scene
@@ -69,6 +95,7 @@ scene.add(light);
 const hlight = new THREE.AmbientLight('#fac402', 0.4);
 scene.add(hlight);
 
+//torus hologram effect geometry
 const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 150 ); 
 const material = new THREE.PointsMaterial({
   color: '#ffdd02',
@@ -76,6 +103,7 @@ const material = new THREE.PointsMaterial({
   opacity: 0.50,
 })
 
+//add torus to scene
 const torusknot = new THREE.Points(geometry, material);
 scene.add(torusknot);
 
@@ -106,4 +134,6 @@ const loop = () => {
 
   window.requestAnimationFrame(loop);
 }
+
+//loop window
 loop();

@@ -1,13 +1,20 @@
+//initializes map (for results with leaflet)
 var results_map = L.map('results-map', {
     center: [43.00, -79.00],
     zoom: 15
 }).setView([45.424721, -75.695000], 12);
 
+//adds tilelayer to results_map
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
     maxZoom: 20,
 }).addTo(results_map);
 
+/**
+ * Generates a random color (random hex code)
+ * @param none
+ * @returns {[string]} [random hex code color]
+ */
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -17,21 +24,31 @@ function getRandomColor() {
     return color;
 }
 
+//set variables for start and end coords
 var start_coord;
 var end_coord;
 
+//html element for results value table
 var results_value_table = document.getElementById('values-table-component');
 
+//sets prefs and api url for frontend and backend connection
 const prefs_url = 'http://127.0.0.1:8000/prefer';
 const api_url = 'http://127.0.0.1:8000/saferoute';
 
+/**
+ * Submits the user preferences and fetch POST and GETs to api and backend
+ * @param none
+ * @returns none
+ */
 function Submit_Prefences() {
+    //fetches user input data from localStorage
     var vehicle_type = localStorage.getItem("vehicle_type").toUpperCase();
     var environment = localStorage.getItem("weather_type").toUpperCase();
     var safety_value = localStorage.getItem("safety_value");
     var distance_value = localStorage.getItem("distance_value");
     var speed_value = localStorage.getItem("speed_value");
 
+    //creates a json style form to send to API for the backend to process
     let prefsForm = {
         "vehicletype": vehicle_type,
         "environment": environment,
@@ -42,6 +59,7 @@ function Submit_Prefences() {
         }
     }
 
+    //fetch POST method
     fetch(prefs_url, {
         method: 'POST',
         headers: {
@@ -56,21 +74,30 @@ function Submit_Prefences() {
         }
         return response.json();
     })
+    //if success, console.log success
     .then(dataList => {
         console.log('Success:', dataList);
     })
+    //catches error
     .catch(error => {
         console.error('Error:', error);
     });
 }
 
+/**
+ * Submit all user inputs (including start and end points)
+ * @param none
+ * @returns none
+ */
 function Submit_All() {
+    //fetches user inputs 
     var start_point = localStorage.getItem("start_point");
     var end_point = localStorage.getItem("end_point");
     var day_of_week = localStorage.getItem("dayofweek").toUpperCase;
     var time_of_day = localStorage.getItem("time_value");
     var pathCountInput = localStorage.getItem("paths_value");
 
+    //json style form data
     let formData = {
         "StartEnd": {
             "start_address": start_point,
@@ -83,6 +110,7 @@ function Submit_All() {
         "path_count": parseInt(pathCountInput)
     }
 
+    //fetch POST method
     fetch(api_url, {
         method: 'POST',
         headers: {
@@ -97,7 +125,9 @@ function Submit_All() {
         }
         return response.json();
     })
+    //if success for backend sending back results
     .then(dataList => { 
+        
         const unparsed_data = JSON.stringify(dataList);
         const data = JSON.parse(unparsed_data);
         
@@ -143,15 +173,17 @@ function Submit_All() {
                 })
             }).addTo(results_map);
 
+            //sets variables to respective received values fetched from response
             var risk_val = data[i].risk;
             var traveltime_val = data[i].traveltime;
             var distance_val = data[i].distance;
             var color = getRandomColor()
             
+            //draws the rotues given the coordinates (polyline from leaflet map library)
             var route = L.polyline(coordinates, {color: color, weight: 6, opacity: 1});
             route.addTo(results_map);
             
-
+            //inputs new values into results table and changes values
             if(results_value_table) {
                 var newRow = results_value_table.insertRow();
                 var routeNumberCell = newRow.insertCell();
@@ -165,6 +197,7 @@ function Submit_All() {
                 traveltimeCell.textContent = traveltime_val.toFixed(0); 
                 distanceCell.textContent = distance_val.toFixed(0);
                 
+                //selective div for the color mini box for each route path in the table
                 var colorDiv = document.createElement('div');
                 colorDiv.style.width = '20px';
                 colorDiv.style.height = '20px'; 
@@ -177,9 +210,11 @@ function Submit_All() {
     })
 }
 
+//runs functions on load page
 Submit_Prefences();
 Submit_All();
 
+//for map resizing to fix poor initial loader
 setTimeout(function () {
     window.dispatchEvent(new Event("resize"));
  }, 500);
