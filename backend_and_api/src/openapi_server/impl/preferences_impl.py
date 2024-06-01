@@ -1,5 +1,3 @@
-import osmnx
-
 from backend.Code.Interfaces import interfacer
 from openapi_server.apis.preferences_api_base import BasePreferencesApi
 from openapi_server.models.preferences import Preferences

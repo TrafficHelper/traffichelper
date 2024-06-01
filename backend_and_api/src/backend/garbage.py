@@ -1007,3 +1007,161 @@ DO NOT DELETE THIS FILE!!!
 # time: float
 # accidents: [Accident]
 # flows: int
+# print(data)
+# print('DATA'+str(data))
+#
+# return {key:sum(i[key] for i in data if key in i) for key in set(a for l in data for a in l.keys())} # The sum of all lists of vehicles
+# filenames.py:
+#         Filenames:
+#             asecl() -> str: # Filename of automated speed enforcement camera locations
+#             pcl2019() -> str: # Filename of pedestrian collision locations (for only 2019 currently)
+#             collisiondata() -> str: # Traffic collision filename
+#             midblockvols() -> {int:str}: # Filenames of all midblock volume locations
+#             intersectvols() -> {int:str}: # Filenames of all years and their associated intersection volumes
+#     constants.py:
+#         firstAcc() -> [Accident]: # Returns an arbitrarily chosen (the first) accident in accidents list
+#         domain(str) -> [Accident]: # Returns a list of all the accidents
+# Outcome
+#     __init__(self, outcome=None):
+#     __eq__(self, other:Outcome):
+#     grading(self, level):
+#     involved(self):
+#     __str__(self):
+# cli.py:
+#     CLI:
+#         __init__(self): # Create new CLI Instance
+#         repl(self): # Main loop of CLI for user to enter commands
+#         execute_command(self, command:str): # Executes given command
+# main.py:
+#     run(): # Runs code
+#     if __name__ == '__main__': # Calls run
+#
+# The backend consists of three core facilities:
+# - Modifying the traffic network with the option to refactor traffic flows
+# - Finding optimal paths along the entire traffic network
+# The application also provides a Modification class for a user to edit a network while computing expected changes:
+# The edit process is represented by a sequence of Modification.
+# def accept_routing(values:{}):
+#     # Select start and end values
+#     print(values)
+#     values_start_end = values['StartEnd']
+#     select_start(values_start_end['start_address'])
+#     select_end(values_start_end['destination_address'])
+#     # Start time
+#     print(datetime.datetime.now())
+#     curr = datetime.datetime.now().date()
+#     select_depart_time(str(curr.year), str(curr.month), str(curr.day), '0', '0')
+#     select_environment(Environment.forName(values['environment'])) # Select environment
+#     # Select path choices
+#     values_pc = values['PathChoices']
+#     path_metric(values_pc['safety'], values_pc['time_of_day'], values_pc['distance'])
+#     select_num_paths(values['path_count']) # Select number of paths
+#     obtain_preferences() # Create preferences
+#     submit_path_form()
+#     return BEST_PATHS
+# # print(instructions, address, node_or_edge)
+# node_key = 'node'
+# edge_key = 'edge'
+# place = None
+# # ONLY ATTEMPT TUPLE IF YOU KNOW TO SEARCH IT ON GRAPH
+# if address[0] == '(' and address[-1] == ')': # Probably tuple here
+#     # Parse tuple in three integer parts - it must not be space-separated
+#     place = tuple(int(des) for des in address[1:-1].split(',')) # u, v, key
+# else: # Find nearest section along address under specified code
+#     lat, long = osmnx.geocode(address)
+#     place = osmnx.nearest_nodes(self.user.curr_network, long, lat) if node_or_edge == node_key else osmnx.nearest_edges(self.user.curr_network, long, lat) if node_or_edge == edge_key else None
+# print(place)
+# unknown_msg = 'Specified node or edge is not contained in the graph' # Called if user's specified node or edge not in graph
+# if node_or_edge == node_key:
+#     node_list = self.user.curr_network.nodes # node:data dict of nodes and data
+#     if place not in node_list:
+#         print(unknown_msg)
+#     else:
+#         print(node_list[place])
+# if node_or_edge == edge_key:
+#     edge_list = self.user.curr_network.edges
+#     if place not in edge_list:
+#         print(unknown_msg)
+#     else:
+#         print(edge_list[place])
+# else:
+#     print('Unspecified closest node or edge')
+
+# if target == 'graph':
+#     if components[-1] == 'graph':
+#         osmnx.plot_graph(self.user.curr_network, node_size=3)
+#     else: # Show stats for particular edge closest to location
+#         # Get edge/node properties along that edge
+#         instructions, address, concl = command.split("'")
+#         plc = osmnx.geocode(address) # Remove start and end quotes
+#         key = True if concl[1:] == 'edge' else False
+#         nearest = osmnx.nearest_nodes(self.user.curr_network, plc[1], plc[0]) if not key else osmnx.nearest_edges(self.user.curr_network, plc[1], plc[0])
+#         print(nearest)
+#         attrs = self.user.curr_network.nodes[nearest] if not key else self.user.curr_network.edges[nearest]
+#         print(attrs)
+# openapi: "3.0.2"
+# info:
+#   title: Traffic Helper
+#   description: |-
+#     This is the API for trafficHelper based on OpenAPI 3.0 specification..
+#   version: "1.0"
+# servers:
+#   - url: /v3
+#
+# components:
+#   schemas:
+#     vehicleResp:
+#       type:
+#       default: "CAR"
+#       enum:
+#         - "PEDESTRIAN"
+#         - "BICYCLE"
+#         - "MOTORCYCLE"
+#         - "CAR"
+#         - "TRUCK"
+#         - "OTHER"
+#       items:
+#         $ref: "#/components/schemas/vehicleResp"
+#     environmentResp:
+#
+#       default: "NORMAL"
+#       enum:
+#       items:
+#         $ref: "#/components/schemas/environmentResp"
+#     metricsResp:
+#
+#       properties:
+#         risk:
+#
+#
+#
+#
+#
+#     prefsResp:
+#       items:
+#         $ref: "#/components/schemas/prefsResp"
+#
+# tags:
+#   - description: Set user vehicle choice
+#     name: Vehicle
+#   - description: Set user environment choice
+#     name: Environment
+#
+# paths:
+#   /vehicle:
+#     get:
+#       operationId: select_vehicle
+#       description: "Enter your vehicle type here"
+#       responses:
+# acc_store_len = 72
+# print(([str(section) + ',' + str(len(LOADED_TRAFFIC_NETWORK.nodes[section]['accidents'])//acc_store_len) for section in LOADED_TRAFFIC_NETWORK.nodes]))
+# 1. Make sure modification method is not buggy
+#     - Flow redistribution only upon adding or removing edges
+#     - Changes actually occur in adding or removing gadgets
+#
+# 2. Finish complete functional documentation
+#     - Of CLI
+#
+# 3. Finish writing UML diagrams of backend and API
+#
+# 4. MAKE SURE LOADER METHOD ACTUALLY SERIALIZES COMPOSITE OBJECTS TO GRAPHML

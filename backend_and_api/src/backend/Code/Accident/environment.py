@@ -22,8 +22,8 @@ class Environment(Enum):
     EXTREME = 5
 
     @staticmethod
-    def forName(type:str):
-        match type:
+    def forname(v:str):
+        match v:
             case "IDEAL": return Environment.IDEAL
             case "NORMAL": return Environment.NORMAL
             case "ABNORMAL": return Environment.ABNORMAL

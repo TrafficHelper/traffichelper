@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TrafficHelper</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+    <!-- Leaflet Control Geocoder CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif, italic;
+            background-color: #f0f0f0;
+        }
+
+        #sidebar {
+            margin-top: 60px;
+            width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            /* Lighter background for contrast */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            overflow: auto;
+            z-index: 1000;
+            height: 100%;
+            position: fixed;
+            /* Changed to fixed for better sidebar behavior */
+        }
+
+        #map-and-table-container {
+            margin-left: 300px;
+            margin-top: 60px;
+            /* Same as sidebar width */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 200px);
+            /* Adjust for padding */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #mapid {
+            flex: 1;
+            /* Flexible map height */
+            width: calc(100% - 20px);
+            height: 900px;
+            /* Adjust for padding */
+            margin-bottom: 10px;
+            /* Space between map and table */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
+
+        #route-table-container {
+            flex: 0 0 auto;
+            /* Table container should not grow or shrink */
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #ccc;
+        }
+
+        #route-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
+
+        #route-table th,
+        #route-table td {
+            border: 1px solid #ddd;
+            /* Lighter border for a softer look */
+            padding: 12px 15px;
+            /* Larger padding for a roomier feel */
+            text-align: left;
+        }
+
+        #route-table thead {
+            background-color: #f5f5f5;
+            /* Softer header background */
+        }
+
+        #route-table th {
+            font-weight: 600;
+            /* Bolder font for headers */
+        }
+
+        #route-table tbody tr:nth-child(odd) {
+            background-color: #fafafa;
+            /* Zebra striping for rows */
+        }
+
+        #route-table tbody tr:hover {
+            background-color: #f0f0f0;
+            /* Hover effect for rows */
+        }
+
+        .autocomplete-results li {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .autocomplete-results li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+            /* space between input groups */
+        }
+
+        .input-container label {
+            display: block;
+            /* makes the label take up the full width */
+            margin-bottom: 5px;
+            /* space between label and input */
+        }
+
+        .input-container input {
+            width: 100%;
+            /* makes the input take up the full width of the container */
+            box-sizing: border-box;
+            /* makes sure padding and borders are included in the width */
+
+        }
+
+        /* Reset padding and margin for all elements */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            height: 60px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Container to center content within the navbar */
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Logo */
+        .nav-logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Unordered list for menu items */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Individual menu items */
+        .nav-item {
+            display: inline-block;
+        }
+
+        /* Links in the navbar */
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                /* Hide the menu on small screens */
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">TrafficHelper</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="routing.htm" class="nav-link">Commuter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="city.htm" class="nav-link">City</a>
+                </li>
+                <li class="nav-item">
+                    <a href="preferences.htm" class="nav-link">Preferences</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+        <div class="input-container">
+            <label for="start-input">Start Address:</label>
+            <input id="start-input" placeholder="Enter your address" type="text" />
+        </div>
+        <div class="input-container">
+            <label for="end-input">End Address:</label>
+            <input id="end-input" placeholder="Enter your address" type="text" />
+        </div>
+        <div class="input-container">
+            <label for="path-count-input"> Number of alternative paths </label>
+            <input id="path-count-input" placeholder="Enter number of alternative paths" type="text" />
+        </div>
+        <ul id="autocomplete-results" class="autocomplete-results"></ul>
+        <button id="submitCoordinates">Submit Coordinates</button>
+    </div>
+
+    <div id="map-and-table-container">
+
+        <div id="mapid" style="width: 100%; height: 600px;"></div>
+        <div id="route-table-container" style="width: 100%; height: 40px;">
+            <table id="route-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Routes</th>
+                        <th>LatLongs (num. turns)</th>
+                        <th>Risk (absolute)</th>
+                        <th>Time (seconds)</th>
+                        <th>Distance (meters)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Route data will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var mymap = L.map('mapid').setView([45.4215, -75.6972], 13);
+        var geocoder = L.Control.Geocoder.nominatim();
+        var startInput = document.getElementById('start-input');
+        var endInput = document.getElementById('end-input');
+        var resultsList = document.getElementById('autocomplete-results');
+        // Add a marker to the map at the center of Ottawa
+        var start_marker = L.marker([45.4215, -75.6972], { draggable: true }).addTo(mymap);
+        end_marker = L.marker([45.3432, -75.7283], { draggable: true }).addTo(mymap);
+        // Respond to a click on the map
+        var pathCountInput = document.getElementById('path-count-input');
+        var popup = L.popup();
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(mymap);
+
+        function clearResults() {
+            resultsList.style.display = 'none';
+            resultsList.innerHTML = '';
+        }
+
+        function handleResultSelect(lat, lon, displayName, marker) {
+            clearResults();
+            mymap.setView([lat, lon], 16);
+            var newLatLng = new L.LatLng(lat, lon);
+            marker.setLatLng(newLatLng);
+            marker.setPopupContent(displayName).openPopup();
+        }
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("Coordinate of the point are " + e.latlng.toString())
+                .openOn(mymap);
+        }
+
+        function address_from_latlon(marker, inputbox, prefix) {
+            var position = marker.getLatLng();
+            geocoder.reverse(position, mymap.options.crs.scale(18), function (results) {
+                var r = results[0];
+                if (r) {
+                    // Update the search input with the closest address
+                    inputbox.value = r.name;
+                    // Optionally, move the map view to the new marker position and update the popup
+                    mymap.setView(position, mymap.getZoom());
+                    marker.setPopupContent(r.name).openPopup();
+                }
+            });
+        }
+
+        function onTextboxInput(marker, inputbox) {
+            if (inputbox.value.length < 3) {
+                clearResults();
+                return;
+            }
+
+            geocoder.geocode(inputbox.value, function (results) {
+                clearResults();
+                if (results.length === 0) {
+                    return;
+                }
+
+                resultsList.style.display = 'block';
+                results.forEach(function (result) {
+                    var li = document.createElement('li');
+                    li.innerHTML = result.name;
+                    li.onclick = function () {
+                        handleResultSelect(result.center.lat, result.center.lng, result.name, marker);
+                    };
+                    resultsList.appendChild(li);
+                });
+            });
+        }
+
+        startInput.oninput = function () { onTextboxInput(start_marker, startInput); };
+        start_marker.on('dragstart', function (e) {
+            e.target.closePopup(); // Close popup when starting to drag
+            L.DomEvent.stopPropagation(e); // Prevent the event from propagating to the map
+        });
+        // Event listener for the dragend event of the marker
+        start_marker.on('dragend', function (e) {
+            address_from_latlon(start_marker, startInput, "Start");
+        });
+        startInput.onblur = function () {
+            setTimeout(clearResults, 2000);
+        };
+        // Add a popup to the marker
+        start_marker.bindPopup("<b>Welcome to Ottawa!</b><br>Capital of Canada.").openPopup();
+
+        endInput.oninput = function () { onTextboxInput(end_marker, endInput); };
+        end_marker.on('dragstart', function (e) {
+            e.target.closePopup(); // Close popup when starting to drag
+            L.DomEvent.stopPropagation(e); // Prevent the event from propagating to the map
+        });
+        // Event listener for the dragend event of the marker
+        end_marker.on('dragend', function (e) {
+            address_from_latlon(end_marker, endInput, "End,");
+        });
+        endInput.onblur = function () {
+            setTimeout(clearResults, 2000);
+        };
+        // Add a popup to the marker
+        end_marker.bindPopup("<b>Welcome to Ottawa!</b><br>Capital of Canada.").openPopup();
+
+
+        mymap.on('click', onMapClick);
+
+        address_from_latlon(start_marker, startInput, "Start");
+        address_from_latlon(end_marker, endInput, "End");
+
+        // Function to process the string coordinates and convert them to Leaflet LatLng
+        function parseCoordinates(coordString) {
+            // Remove the parentheses and split by comma
+            const coords = coordString.replace('(', '').replace(')', '').split(', ');
+            // Convert the string values to numbers and return as a LatLng object
+            return new L.LatLng(parseFloat(coords[0]), parseFloat(coords[1]));
+        }
+        function submitCoordinates() {
+            // JSON format data submitted to API
+            let formData = { "StartEnd": { "start_address": startInput.value, "destination_address": endInput.value }, "StartTime": { "day_of_week": "MONDAY", "time_of_day": "string" }, "path_count": parseInt(pathCountInput.value) };
+            console.log(formData["path_count"])
+            console.log(formData)
+
+
+            fetch('http://127.0.0.1:8000/saferoute', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(dataList => {
+                    // Clear existing polylines before adding new ones
+                    mymap.eachLayer(function (layer) {
+                        if (layer instanceof L.Polyline) {
+                            mymap.removeLayer(layer);
+                        }
+                    });
+
+                    // Clear existing rows in the route table
+                    const routeTableBody = document.getElementById('route-table').getElementsByTagName('tbody')[0];
+                    routeTableBody.innerHTML = '';
+
+                    var inde = 0;
+                    const polylines = {};
+                    // Process each item in the dataList
+                    dataList.forEach(item => {
+                        inde = inde + 1;
+                        // Convert the route's string coordinates into Leaflet LatLng objects
+                        const latLngs = item.routes.map(parseCoordinates);
+
+                        // Create a polyline for the route and add it to the map
+                        var polyline = L.polyline(latLngs, { color: 'blue' })
+                        polyline.addTo(mymap);
+
+
+
+                        // Bind a popup with additional info to the polyline
+                        var popupContent = "Risk: " + item.risk +
+                            "<br>Travel Time: " + item.traveltime +
+                            "<br>Distance: " + item.distance;
+                        polyline.bindPopup(popupContent);
+
+                        // Create the checkbox and add event listener
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'polyline-toggle';
+                        checkbox.checked = true; // Assuming you want the polyline to be visible initially
+                        checkbox.setAttribute('data-polyline-id', 'polyline' + inde); // Set a unique identifier
+                        polylines['polyline' + inde] = polyline;
+
+                        // Add event listener
+                        checkbox.addEventListener('change', function () {
+                            const polylineId = this.getAttribute('data-polyline-id');
+                            const polyline = polylines[polylineId];
+
+                            if (this.checked) {
+                                polyline.addTo(mymap);
+
+
+                            } else {
+                                polyline.removeFrom(mymap);
+
+
+                            }
+                        });
+                        const row = routeTableBody.insertRow();
+
+                        const selectCell = row.insertCell(0);
+                        selectCell.appendChild(checkbox);
+                        var rowNumber = routeTableBody.rows.length; // Get the new row number
+
+                        // Insert the new cells (<td> elements)
+                        var numberCell = row.insertCell();
+                        numberCell.innerHTML = rowNumber; // Set the row number
+                        // For the coordinates, we'll create a list in the cell to show each tuple
+                        var coordinatesCell = row.insertCell();
+                        var listHtml = '<ul>';
+                        // for (var i = 0; i < item.routes.length; i++) {
+                        //     listHtml += '<li>' + item.routes[i] + '</li>';
+                        // }
+                        listHtml += '<li>' + item.routes.length + '</li>'
+                        listHtml += '</ul>';
+                        coordinatesCell.innerHTML = listHtml;
+                        // Create a new row for each route
+
+                        const riskCell = row.insertCell();
+                        const timeCell = row.insertCell();
+                        const distanceCell = row.insertCell();
+
+                        // Fill the cells with route data
+                        riskCell.textContent = item.risk;
+                        timeCell.textContent = item.traveltime;
+                        distanceCell.textContent = item.distance;
+
+                    });
+
+                    // Optionally, fit the map bounds to show all the polylines
+                    var allLatLngs = dataList.reduce(function (acc, item) {
+                        return acc.concat(item.routes.map(parseCoordinates));
+                    }, []);
+                    if (allLatLngs.length > 0) {
+                        mymap.fitBounds(L.latLngBounds(allLatLngs));
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        document.getElementById('submitCoordinates').addEventListener('click', submitCoordinates);
+
+    </script>
+
+</body>
+
+</html>

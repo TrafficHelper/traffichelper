@@ -1,0 +1,8 @@
+Consists of the Accidents and inducing Environment
+The Accident consists of an Environment in which it occurred, time and Outcome
+The Outcome consists of a Vehicle with an Injury level
+(note that pedestrians are also considered vehicles so their injuries are also accounted)
+The accident's location is also recorded in the loader.py file's load_accidents() method
+Each environment has a grading relating to its amenability for changing accident level
+OpenOttawa does not record the distribution of injuries and accidents
+Thus these are assigned in shifting priority order

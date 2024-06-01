@@ -1,0 +1,11 @@
+dev details:
+
+Hardware:
+
+- NVIDIA CUDA >= 12.1: Implicit in pytorch installation
+- OS: Hardware supporting Windows & UNIX
+- IDEs:
+    - backend: JetBrains PyCharm 2024.1.1 Community edition with all plugins from plugins.txt
+    - frontend: vscode
+    - Note: This software is computationally intensive so it is recommended to have a fast CPU and/or GPU for visualization computations
+

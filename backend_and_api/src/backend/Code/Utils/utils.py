@@ -1,5 +1,7 @@
 import datetime
 import itertools
+import math
+
 import osmnx
 
 from backend.Constants import constants
@@ -28,6 +30,19 @@ class Utils:
         for act in actions:
             act[0].apply(act[1])
 
+    @staticmethod
+    def factor(sm: float, val: float, lg: float):
+        adj = 10
+        if val < sm:
+            while val < sm:
+                val *= adj
+            return val
+        if val > lg:
+            while val > lg:
+                val /= adj
+            return val
+        return val
+
     def optimal_paths(self, departure:datetime.datetime, start, finish, amount:int = 1):
         """
         Returns all optimal paths given the list of preferences, departure time, start and finish nodes, and number
@@ -52,17 +67,26 @@ class Utils:
             route_safe = 1.0
             route_time = 0.0
             route_dist = 0.0
+            tol = 0.001
+            normalize = lambda chance: chance if chance <= tol else math.tanh(chance)*(tol if math.tanh(chance) >= tol else 1)
+            # normalize = lambda chance: chance if 0 <= chance <= 0.01 else chance/10 if 0.01 <= chance <= 0.1 else chance/100 if 0.1 <= chance <= 1 else chance/1000 if 1 <= chance <= 10 else chance
+            i = []
             for nde, nxt in zip(path, path[1:]):
                 properties = self.user.curr_network.get_edge_data(nde, nxt)[0]
                 edge_risk = float(properties['risk'])
-                route_safe *= abs(1-edge_risk) # Here, we multiply for probability of particular risk not occurring
-                print(route_safe)
+                # print(edge_risk)
+                mltp = normalize(min(abs(edge_risk), abs(1-edge_risk))) # Here, we multiply for probability of particular risk not occurring
+                route_safe *= (1 - mltp)
+                # print('RS: ' + str(route_safe))
+                i += [mltp]
+                # print('MLTP: ' + str(mltp))
+                # print(route_safe)
                 edge_time = properties['travel_time']
-                route_time += edge_time
+                route_time += edge_time + constants.INTERSECTION_TRAVERSAL_TIME
                 edge_dist = properties['length']
-                route_dist += edge_dist
-            tst = lambda chance: chance/10 if 0.01 <= chance <= 0.1 else chance/100 if 0.1 <= chance <= 1 else chance
-            results[tuple(path)] = tst(route_safe), route_time, route_dist # Chance of accident, time and distance
+                route_dist += edge_dist + constants.INTERSECTION_LENGTH
+            # print('MI: ' + str(max(i)))
+            results[tuple(path)] = Utils.factor(0.0001, 1 - route_safe, 0.001), route_time, route_dist # Chance of accident, time and distance
         return results
 
     def print_paths(self, optimal_paths:{}):
@@ -87,14 +111,14 @@ class Utils:
         if not self.user.is_admin:
             raise PermissionError('Accessor does not have sufficient privileges!')
 
-    def paths_names(self, paths):#{[int]:(float, float, float)}):
+    def paths_names(self, paths):# {[int]:(float, float, float)}):
         """
         :param paths: The list of paths consisting of a sequence of a sequence of integer nodeIDs/OSMids
         :return: Return an identical new path sequence with each term converted to a road name
         """
 
         edges_names = self.user.curr_network.edges
-        nodes_names = self.user.curr_network.nodes
+        # nodes_names = self.user.curr_network.nodes
         result = [] # Note: The returned result is a LIST and not a DICT
         for route in paths:
             road_names = [edges_names[(u, v, 0)]["name"] if (u, v, 0) in edges_names and "name" in edges_names[(u, v, 0)] else "_" for u, v in zip(route, route[1:])]
@@ -102,7 +126,7 @@ class Utils:
             result += [([[rn[0] for rn in itertools.groupby(road_names)]], paths[route][0], paths[route][1], paths[route][2])]
         return result
 
-    def paths_coordinates(self, paths):#{[int]:(float, float, float)}):
+    def paths_coordinates(self, paths):# {[int]:(float, float, float)}):
         """
         :param paths: The list of paths, each one consisting of a sequence of nodeID/OSMid nodes
         :return: Returns a new path sequence with each node replaced by a coordinate
@@ -111,6 +135,7 @@ class Utils:
         # Convert dict of paths to list of paths with new information and previously-placed identical information
         return [([(point_coords[node]['y'], point_coords[node]['x']) for node in route], paths[route][0], paths[route][1], paths[route][2]) for route in paths]
 
+# Testing function
 # if __name__ == '__main__':
 #     start = osmnx.geocode('4100 Russell Road, Ottawa, Canada')
 #     end = osmnx.geocode('150 Elgin Street, Canada')

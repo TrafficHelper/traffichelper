@@ -1,0 +1,13 @@
+
+1.
+
+Due to the application's high computational cost, the traffic network was created by precomputing associated accidents, flows, risks and gadgets
+This was then saved by OSMnx to a graphML file which serialized all data to str format.
+Since Accident composite objects are interpreted in a nontrivial manner, it was possible solely to
+
+TODO CHALLENGES
+TODO CLI-INSTRUCTIONS
+TODO REQUIREMENTS.TXT
+TODO SDD.TXT
+TESTING.TXT
+TESTING_API.TXT

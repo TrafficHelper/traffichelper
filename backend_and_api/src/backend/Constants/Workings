@@ -1,0 +1,4 @@
+Contains the list of all constant parameters in TrafficHelper for backend, including filenames and default values
+NOTE: CONVERT FILENAMES TO ABSOLUTE PATHS FOR GOOD PERFORMANCE
+filenames.py denote all sources accessible from OpenOttawa and which were used to load and setup the traffic network
+constants.py denote default features of a traffic network, such as default speeds of each vehicle and effects of each gadget

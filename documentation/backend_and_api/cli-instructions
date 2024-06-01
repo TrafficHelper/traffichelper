@@ -1,0 +1,23 @@
+The traffichelper application is equipped with a command-line interface, which provides some actions not available in the websites.
+Expectedly, it is only for administrators, who are assumed to hold the necessary experience with similar traffic features, and who require the efficiency
+This document concerns a tutorial of the CLI, which is modelled on the linux zsh shell
+
+Tutorial:
+
+To startup the CLI, run ../src/backend/User/main.py or alternatively with cd ../main
+Then do python [filename_of_User/main.py]
+It should startup a CLI with the intro line ">>: ", which will always be displayed
+All CLI commands must be correctly formatted following spaces and will now be displayed in quotes to type exactly
+Initially, the user is not an admin, and has a default set of preferences and default precomputed traffic network
+Entering "exit" will cause the CLI to terminate and the program to exit
+Entering "sudo [password_name]" will make the individual a superuser, or not if the password is incorrect, but a password MUST be entered
+To change the network, type CHANGE [network_filename], which must be a specified GraphML file. It will attempt to load it and make it the User's default network
+To save a network state, type SAVE [network_filename], which will save the current network of the user to the chosen filename, replacing it if necessary
+To visually display the user's preferences, type "display user"
+To visually display the user's graph, type "display graph"
+To change the user's preferences, type "preference [VEHICLE] [ENVIRONMENT] ([risk],[time],[dist])" where the risk, time and distance CANNOT be separated with a space
+To compute optimal paths, type "optimal '[Start_address]' '[End_address] [number_of_paths]", which returns the given number of optimal paths according to the preferences from start to end
+The CLI also provides many administrator actions, which can be accomplished only once one is an admin:
+To access data along the node or edge of a graph type "display graph '[location_address]' '[node_or_edge]'"
+To modify data along the node or edge of a graph type and get associated cost and success code, "modify '[location]' [node_or_edge] [added_gadgets_no_space] [removed_gadgets_no_space] [refactor_or_not_bool_redundant_param_default_false]"
+See each of the functions' descriptions and comments for how they work and their caveats

@@ -16,7 +16,6 @@ from backend.Code.Utils.preferences import Preferences
 from backend.Code.Utils.utils import (Utils)
 from backend.Code.mutation import Mutation
 from backend.Code.user import User
-from backend.Code import loader
 
 def accept_preferences(prefs:{}):
     """
@@ -25,7 +24,6 @@ def accept_preferences(prefs:{}):
     :return: Sets the appropriate variables
     """
     # try:
-    print('val: '+str(prefs['vehicletype']))
     select_vehicle(prefs['vehicletype']) # Choose vehicle type
     select_environment(prefs['environment']) # Choose environment
     choices = prefs['PathChoices']
@@ -40,32 +38,11 @@ def accept_routing(choices:{}):
     :param choices: The user's choices
     :return: Returns the list of routes and their coordinates
     """
-    print(choices)
     select_start(choices["StartEnd"]['start_address'])
     select_end(choices["StartEnd"]['destination_address'])
-    print('Success')
     select_num_paths(choices["path_count"])
     submit_path_form()
     return BEST_PATHS
-
-# def accept_routing(values:{}):
-#     # Select start and end values
-#     print(values)
-#     values_start_end = values['StartEnd']
-#     select_start(values_start_end['start_address'])
-#     select_end(values_start_end['destination_address'])
-#     # Start time
-#     print(datetime.datetime.now())
-#     curr = datetime.datetime.now().date()
-#     select_depart_time(str(curr.year), str(curr.month), str(curr.day), '0', '0')
-#     select_environment(Environment.forName(values['environment'])) # Select environment
-#     # Select path choices
-#     values_pc = values['PathChoices']
-#     path_metric(values_pc['safety'], values_pc['time_of_day'], values_pc['distance'])
-#     select_num_paths(values['path_count']) # Select number of paths
-#     obtain_preferences() # Create preferences
-#     submit_path_form()
-#     return BEST_PATHS
 
 # USER CREATION PAGE, MUST BE DONE
 USER:User = User()
@@ -90,7 +67,7 @@ def select_vehicle(veh:str):
     :return: Assigns the user's choice of vehicle
     """
     global SELECTED_VEHICLE
-    res =  Vehicle.for_name('Vehicle.'+veh.strip())
+    res = Vehicle.for_name('Vehicle.'+veh.strip())
     SELECTED_VEHICLE = res
     return res
 
@@ -104,7 +81,10 @@ def select_environment(env:str):
     :param env: The string representing the input environment
     :return: The user's selection of the environment
     """
-    return Environment.forName(env)
+    global SELECTED_ENVIRONMENT
+    tmp = Environment.forname(env)
+    SELECTED_ENVIRONMENT = tmp
+    return tmp
 
 PATH_METRIC_DEFAULT = (1/3, 1/3, 1/3)
 PATH_METRIC = PATH_METRIC_DEFAULT
@@ -155,15 +135,13 @@ def select_start(position:str):# | (float, float)):
     global START_NODE
     try:
         # Break down coordinate into different sections
-        if position[1] == 'a': # LatLng
+        if position[:6] == 'LatLng': # LatLng
             position = position[6:] # Remove latlng str
-        print(position)
         lat, long = (float(aspect) for aspect in position[1:-1].split(','))
     except: # It is an address
         lat, long = osmnx.geocode(position)
 
     START_NODE = osmnx.nearest_nodes(USER.curr_network, long, lat)
-    print(START_NODE)
 
 END_NODE_DEFAULT = None # WARNING: THIS IS NONE - THE COORDINATE RECORDER FUNCTION MUST BE CHOSEN
 END_NODE = END_NODE_DEFAULT
@@ -176,16 +154,13 @@ def select_end(position:str):# | (float, float)):
     :param position: The input position designating the user's end
     :return: Functionally stores the accepted end Node
     """
-    print(position)
     global END_NODE
     try:
         # Break down coordinate into different sections
         if position[1] == 'a': # LatLng
             position = position[6:] # Remove latLng
-        print(position)
         lat, long = (float(aspect) for aspect in position[1:-1].split(','))
     except:  # It is an address
-        print(position)
         lat, long = osmnx.geocode(position)
     END_NODE = osmnx.nearest_nodes(USER.curr_network, long, lat)
 
@@ -233,13 +208,11 @@ def submit_path_form():
     :return: A table of each path and its best qualities, in addition to tracing out all paths on the interactive map
     """
     global BEST_PATHS
-    BEST_PATHS = TOOL.optimal_paths(START_TIME, START_NODE, END_NODE, NUM_PATHS)
-    BEST_PATHS = TOOL.paths_coordinates(BEST_PATHS)
-    # BEST_PATHS = TOOL.paths_names(BEST_PATHS)
-    # print(BEST_PATHS)
-
-
-
+    USER.preferences = Preferences(SELECTED_VEHICLE, SELECTED_ENVIRONMENT, PATH_METRIC) # Set chosen preferences
+    bp = TOOL.optimal_paths(START_TIME, START_NODE, END_NODE, NUM_PATHS)
+    BEST_PATHS = TOOL.paths_coordinates(bp)
+    print(TOOL.paths_names(bp))
+    print(bp)
 
 
 # ADMIN PAGE
@@ -297,7 +270,7 @@ def select_recommendations(recommendations:str):
 
 COMPUTED_RECOMMENDATIONS_DEFAULT = []
 COMPUTED_RECOMMENDATIONS = COMPUTED_RECOMMENDATIONS_DEFAULT
-def compute_recommendations(recommendations:str):
+def compute_recommendations(recommendations:str): # TODO METHOD STUB
     global COMPUTED_RECOMMENDATIONS
     COMPUTED_RECOMMENDATIONS = Utils(User()).best_predictions(SELECTED_BUDGET, SELECTED_NUM_RECOMMENDATIONS)
 

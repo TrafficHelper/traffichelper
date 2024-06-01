@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TrafficHelper</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+    <!-- Leaflet Control Geocoder CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif, italic;
+            background-color: #f0f0f0;
+        }
+
+
+
+
+        #sidebar {
+            margin-top: 60px;
+            margin-left: 100px;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            /* Lighter background for contrast */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            overflow: auto;
+            z-index: 1000;
+            height: 40%;
+            position: fixed;
+            /* Changed to fixed for better sidebar behavior */
+        }
+
+        #map-and-table-container {
+            margin-left: 300px;
+            margin-top: 100px;
+            /* Same as sidebar width */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            /* Adjust for padding */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+
+        .big-input-container {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            /* space between input groups */
+        }
+
+        .big-input-container label {
+            display: block;
+            /* makes the label take up the full width */
+            margin-bottom: 5px;
+            /* space between label and input */
+        }
+
+        .big-input-container input {
+            width: 75%;
+            height: 20px;
+            /* makes the input take up the full width of the container */
+            box-sizing: border-box;
+            /* makes sure padding and borders are included in the width */
+
+        }
+
+        /* Reset padding and margin for all elements */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            height: 60px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Container to center content within the navbar */
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Logo */
+        .nav-logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Unordered list for menu items */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Individual menu items */
+        .nav-item {
+            display: inline-block;
+        }
+
+        /* Links in the navbar */
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                /* Hide the menu on small screens */
+            }
+
+        }
+        #ai-input{
+            width: 100%;
+            height: 100%;
+        }
+
+        #result-output{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">TrafficHelper</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="routing.htm" class="nav-link">Commuter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="city.htm" class="nav-link">City</a>
+                </li>
+                <li class="nav-item">
+                    <a href="preferences.htm" class="nav-link">Preferences</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+        <div class="map-and-table-container">
+            <div class="big-input-container">
+                <input type="file" id="csvFileInput" accept=".csv">
+                <div id="result-container"><!-- Result will be rendered here --></div>
+            </div>
+            <div class="big-input-container">
+                <label for="ai-input"><b>Enter a question for information or recommendations pertaining to the road network </b></label>
+                <input id="ai-input" placeholder="Enter your question" type="text" rows="4" />
+            </div>
+
+            <button id="submitQuestion">Ask AI</button>
+            <div class="big-input-container">
+                <label for="result-output"><b>AI Response:</b></label>
+                <textarea id="result-output" placeholder="AI response will appear here..." rows="6" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var csvData = null;
+        // Placeholder function to handle the CSV file input
+        document.getElementById('csvFileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            Papa.parse(file, {
+                complete: function (results) {
+                    console.log("CSV parsing results:", results);
+                    csvData = results.data;
+                }
+            });
+        }, false);
+
+
+        async function submitQuestionForAi() {
+            const askAIInput = document.getElementById('ai-input');
+            const resultOutput = document.getElementById('result-output'); // Get the textarea element
+            const word_limit = 60; // Max number of words to get response in, terse recommendation
+            const prompt = "Given the following data: " + JSON.stringify(csvData) + ", in roughly " + word_limit + " words answer my question, which is " + askAIInput.value;
+            const url = 'https://api.openai.com/v1/chat/completions'; // Calls from the OpenAI API
+            const specific_model = "gpt-3.5-turbo"; // Returns the specific version of the AI model being called
+            const key = 'Bearer sk-proj-hhYDwl5apYRBtki64Aa0T3BlbkFJ8VDOv1DLB67I99tLm3ou'; // This is replaced by the private key to access
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': key // Reminder: Move to a secure location
+                    },
+                    body: JSON.stringify({
+                        "model":specific_model,
+                        "messages": [
+                            {
+                                "role": "system",
+                                "content": "You are a road safety planner with the City of Ottawa in Canada."
+                            },
+                            {
+                                "role": "user",
+                                "content": prompt
+                            }
+                        ],
+                        max_tokens: 150
+                    })
+                });
+
+                const dataList = await response.json();
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+
+                // Set the result in the textarea
+                resultOutput.value = dataList.choices[0].message.content;
+                console.log('Success:', dataList);
+
+            } catch (error) {
+                console.error('Error:', error);
+                // Display an error message in the textarea
+                resultOutput.value = 'Error: ' + error.message;
+            }
+
+        }
+        document.getElementById('submitQuestion').addEventListener('click', submitQuestionForAi);
+    </script>
+
+</body>
+
+</html>

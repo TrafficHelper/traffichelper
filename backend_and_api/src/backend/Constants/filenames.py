@@ -1,6 +1,3 @@
-import csv
-
-
 class Filenames:
 
     """
@@ -26,14 +23,15 @@ class Filenames:
         """
         :return: The filename for Automated Speed Enforcement Cameras locations
         """
-        return '../Data/Gadgets/AutomatedSpeedEnforcementCameraLocations.csv'
+
+        return 'C:/Projects/xoutput/src/backend/Data/Gadgets/AutomatedSpeedEnforcementCameraLocations.csv' # 23
 
     @staticmethod
     def pcl2019():
         """
         :return: The Pedestrian Crossover Locations
         """
-        return '../Data/Gadgets/PedestrianCrossoverLocations2019.csv'
+        return 'C:/Projects/xoutput/src/backend/Data/Gadgets/PedestrianCrossoverLocations2019.csv'
 
     # @staticmethod
     # def stoplights():
@@ -42,12 +40,12 @@ class Filenames:
     #     """
     #
 
-    # @staticmethod
-    # def rlcl():
-    #     """
-    #     :return: Red Light Camera Locations
-    #     """
-    #     return '../Data/Gadgets/RedLightCameraLocations.csv'
+    @staticmethod
+    def rlcl():
+        """
+        :return: Red Light Camera Locations
+        """
+        return '../Data/Gadgets/RedLightCameraLocations.csv' # [22]
 
     # Other
 
@@ -56,14 +54,14 @@ class Filenames:
         """
         :return: The filename for Traffic Collision Data
         """
-        return '../Data/TrafficCollisionData.csv'
+        return 'C:/Projects/xoutput/src/backend/Data/TrafficCollisionData.csv' # [25]
 
     # @staticmethod
     # def centrelines():
     #     """
     #     :return: The filename for road centrelines
     #     """
-    #     return '../Data/RoadCentrelines.csv'
+    #     return '../Data/RoadCentrelines.csv' # [24]
 
     MIDBLOCK_DOMAIN = range(2022, 2023 + 1) # List of all years considered for midblock, road segment traffic volumes
 
@@ -74,7 +72,10 @@ class Filenames:
         """
         :return: A dictionary containing the year and segment volume filename associated with it
         """
-        return {year:'../Data/Volumes/MidblockVolume'+str(year)+'.csv' for year in Filenames.MIDBLOCK_DOMAIN}
+        # [34, 35]
+        # prefix = '../Data/Volumes/MidblockVolume'
+        prefix = 'C:/Projects/xoutput/src/backend/Data/Volumes/MidblockVolume'
+        return {year:prefix+str(year)+'.csv' for year in Filenames.MIDBLOCK_DOMAIN}
 
     INTERSECTION_DOMAIN = list(range(2015, 2020)) + list(range(2021, 2023 + 1)) # List of all years considered for road intersection volumes excluding 2020
 
@@ -83,4 +84,7 @@ class Filenames:
         """
         :return: A dictionary containing the year and the intersection volume filename associated with it
         """
-        return {year:'../Data/Volumes/IntersectVolume'+str(year)+'.csv' for year in Filenames.INTERSECTION_DOMAIN}
+        # [26, 27, 28, 29, 30, 31, 32, 33]
+        # prefix = '../Data/Volumes/IntersectVolume'
+        prefix = 'C:/Projects/xoutput/src/backend/Data/Volumes/IntersectVolume'
+        return {year:prefix+str(year)+'.csv' for year in Filenames.INTERSECTION_DOMAIN}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TrafficHelper</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+    <!-- Leaflet Control Geocoder CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif, italic;
+            background-color: #f0f0f0;
+        }
+
+
+
+
+        #sidebar {
+            margin-top: 60px;
+            margin-left: 100px;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            /* Lighter background for contrast */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            overflow: auto;
+            z-index: 1000;
+            height: 40%;
+            position: fixed;
+            /* Changed to fixed for better sidebar behavior */
+        }
+
+        #map-and-table-container {
+            margin-left: 300px;
+            margin-top: 100px;
+            /* Same as sidebar width */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            /* Adjust for padding */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+
+        .input-container {
+            margin-bottom: 10px;
+            /* space between input groups */
+        }
+
+        .input-container label {
+            display: block;
+            /* makes the label take up the full width */
+            margin-bottom: 5px;
+            /* space between label and input */
+        }
+
+        .input-container input {
+            width: 25%;
+            /* makes the input take up the full width of the container */
+            box-sizing: border-box;
+            /* makes sure padding and borders are included in the width */
+
+        }
+
+        /* Reset padding and margin for all elements */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            height: 60px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Container to center content within the navbar */
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Logo */
+        .nav-logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Unordered list for menu items */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Individual menu items */
+        .nav-item {
+            display: inline-block;
+        }
+
+        /* Links in the navbar */
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                /* Hide the menu on small screens */
+            }
+
+            /* You may need to add a hamburger menu for small screens */
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">TrafficHelper</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="routing.htm" class="nav-link">Commuter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="city.htm" class="nav-link">City</a>
+                </li>
+                <li class="nav-item">
+                    <a href="preferences.htm" class="nav-link">Preferences</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+
+
+        <div class="map-and-table-container">
+
+
+
+            <div class="input-container">
+                <label for="vehicle-list-box"><b>Choose a value of type of commute:</b></label>
+                <select id="vehicle-list-box" name="vehicle" size="1">
+                    <option value="PEDESTRIAN">PEDESTRIAN</option>
+                    <option value="BICYCLE">BICYCLE</option>
+                    <option value="MOTORCYCLE">MOTORCYCLE</option>
+                    <option value="CAR">CAR</option>
+                    <option value="TRUCK">TRUCK</option>
+                    <option value="OTHER">OTHER</option>
+
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="env-list-box"><b>Choose a value of type of commute:</b></label>
+                <select id="env-list-box" name="env" size="1">
+                    <option value="IDEAL">IDEAL</option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="ABNORMAL">ABNORMAL</option>
+                    <option value="DEVIANT">DEVIANT</option>
+                    <option value="TROUBLESOME">TROUBLESOME</option>
+                    <option value="EXTREME">EXTREME</option>
+
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="risk-slider"><b>Safety Risk Factor</b></label>
+                <input type="range" id="risk-slider" name="riskfactor" min="0" max="1" step="0.05">
+                <span id="risk-slider-value">0.5</span>
+            </div>
+            <div class="input-container">
+                <label for="time-slider"><b>Time factor</b></label>
+                <input type="range" id="time-slider" name="timefactor" min="0" max="1" step="0.05">
+                <span id="time-slider-value">0.5</span>
+            </div>
+            <div class="input-container">
+                <label for="distance-slider"><b>Distance to be covered factor</b></label>
+                <input type="range" id="distance-slider" name="distancefactor" min="0" max="1" step="0.05">
+                <span id="distance-slider-value">0.5</span>
+            </div>
+            <button id="submitCustomPreferences">Set Preferences</button>
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        var vehicleListBox = document.getElementById('vehicle-list-box');
+        const vehicleSelectValues = ['CAR'];
+        vehicleListBox.addEventListener('change', function () {
+            var vehicleSelectValues = Array.from(this.options) // Convert options to an array
+                .filter(option => option.selected) // Filter out unselected options
+                .map(option => option.value); // Map to an array of values
+        });
+
+        var envListBox = document.getElementById('env-list-box');
+        const envSelectValues = ['NORMAL'];
+        vehicleListBox.addEventListener('change', function () {
+            var envSelectValues = Array.from(this.options) // Convert options to an array
+                .filter(option => option.selected) // Filter out unselected options
+                .map(option => option.value); // Map to an array of values
+        });
+
+        const riskSlider = document.getElementById('risk-slider');
+        const riskSliderValue = document.getElementById('risk-slider-value');
+
+        riskSlider.oninput = function () {
+            riskSliderValue.textContent = this.value;
+        };
+
+        const timeSlider = document.getElementById('time-slider');
+        const timeSliderValue = document.getElementById('time-slider-value');
+
+        timeSlider.oninput = function () {
+            timeSliderValue.textContent = this.value;
+        };
+
+        const distanceSlider = document.getElementById('distance-slider');
+        const distanceSliderValue = document.getElementById('distance-slider-value');
+
+        distanceSlider.oninput = function () {
+            distanceSliderValue.textContent = this.value;
+        };
+
+
+        function submitCustomPreferences() {
+            // Data submitted to API
+
+            let formData =
+            {
+                "vehicletype": vehicleListBox.value,
+                "environment": envListBox.value,
+                "PathChoices": {
+                    "safety": parseFloat(riskSlider.value),
+                    "time_of_day": parseFloat(timeSlider.value),
+                    "distance": parseFloat(distanceSlider.value)
+                }
+            }
+
+            console.log(formData)
+
+
+            fetch('http://127.0.0.1:8000/prefer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(dataList => {
+
+                    console.log('Success:', dataList);
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        document.getElementById('submitCustomPreferences').addEventListener('click', submitCustomPreferences);
+
+    </script>
+
+</body>
+
+</html>

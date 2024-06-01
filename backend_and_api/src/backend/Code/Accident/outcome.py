@@ -78,9 +78,9 @@ class Outcome(Parser):
                     break
                 current = harms[inji] # The current injury
                 outcomes[vehicle][number] = current
-                sub+=1
+                sub += 1
                 if sub == injuries[current]+1:
-                    inji+=1
+                    inji += 1
                     sub = 0
 
         # Strategy:
@@ -91,3 +91,4 @@ class Outcome(Parser):
 
         # Basic outcome consists of conveyance of all assumed uninjured vehicles
         self.outcome = outcomes
+

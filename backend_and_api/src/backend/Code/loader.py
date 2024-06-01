@@ -70,7 +70,6 @@ def load_accidents(network):
         acc.parse(afn, line)
         acc_list += [acc]
     edge_list = osmnx.nearest_edges(network, long_s, lat_s) # The closest edge to each accident
-    print(edge_list)
     assert len(edge_list) == len(acc_list) # Sanity check
 
     # Pair each edge with list of accidents corresponding to that edge
@@ -141,7 +140,7 @@ def extract_flows(network, assessing_segment:bool = True): # TODO Add consistent
         networkx.set_node_attributes(network, comp_avg_flows, 'flows')
 def load_gadgets(network):
     """
-    Loads all Gadget from accessed Overpass API and OpenOttawa Gadget files to respective traffic network positions
+    Loads all Gadget from accessed Overpass API [15] and OpenOttawa Gadget files to respective traffic network positions
     Loads Gadget on both nodes and intersections if need be
     :param network: The network to load Gadget to
     :return: Loads all Gadget to the network
@@ -237,7 +236,7 @@ def compute_costs(network, metric:(float, float, float) = Cost.STANDARD):
     rc, tc, dc = metric # Get each cost
     risks_edge, time_edge, distance_edge = (networkx.get_edge_attributes(network, param) for param in ('risk', 'travel_time', 'length')) # Get each value
     networkx.set_edge_attributes(network, {seg:rc*risks_edge[seg] + tc*time_edge[seg] + dc*distance_edge[seg] for seg in network.edges}, 'cost')
-
+    # print(networkx.get_edge_attributes(network, 'cost').values())
     risks_node = networkx.get_node_attributes(network, 'risk')
     networkx.set_node_attributes(network, {ins: rc * risks_node[ins] + tc * constants.INTERSECTION_TRAVERSAL_TIME + dc * constants.INTERSECTION_LENGTH for ins in network.nodes}, 'cost')
 def travel_times(network):
@@ -269,7 +268,7 @@ def setup():
     timestamps['times'] = datetime.datetime.now()
     compute_costs(traffic_network)
     timestamps['costs'] = datetime.datetime.now()
-    osmnx.save_graphml(traffic_network, constants.TRAFFIC_NETWORK_FILEPATH)
+    osmnx.save_graphml(traffic_network, constants.TRAFFIC_NETWORK_BACKUP_FILEPATH)
     timestamps['save'] = datetime.datetime.now()
     return timestamps
 def load():
@@ -300,7 +299,8 @@ def interpret(graphml_network):
 
     cost_nodes, risk_nodes, accidents_nodes = (networkx.get_node_attributes(graphml_network, param) for param in ('cost', 'risk', 'accidents'))
     cost_edges, risk_edges, accidents_edges = (networkx.get_edge_attributes(graphml_network, param) for param in ('cost', 'risk', 'accidents'))
-
+    # print(accidents_edges)
+    # print(accidents_nodes)
     flows_nodes, flows_edges = (networkx.get_node_attributes(graphml_network, 'flows'), networkx.get_edge_attributes(graphml_network, 'flows'))
     gadgets_nodes, gadgets_edges = (networkx.get_node_attributes(graphml_network, 'gadgets'), networkx.get_edge_attributes(graphml_network, 'gadgets'))
 

@@ -18,8 +18,6 @@ import re  # noqa: F401
 import json
 
 
-
-
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.preferences_path_choices import PreferencesPathChoices
@@ -62,7 +60,6 @@ class Preferences(BaseModel):
         "validate_assignment": True,
         "protected_namespaces": (),
     }
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

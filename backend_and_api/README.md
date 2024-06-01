@@ -37,3 +37,5 @@ To run the tests:
 pip3 install pytest
 PYTHONPATH=src pytest tests
 ```
+
+Note: See /Documentation/outline.txt for further info

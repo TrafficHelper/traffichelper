@@ -1,0 +1,26 @@
+Loader:
+    Loads up the traffic network of a given location (Here, Ottawa)
+    Parses all accidents to the edge using OpenOttawa Data
+    Parses all gadgets to the edge using OpenOttawa Data
+    Loads road length, distance and imputes flows for that segment in an attempted consistent manner if there is no data on it
+    Computes accident risk based off accidents and flows
+    Computes total road cost for each segment based on default preferences
+    Saves all data to a GraphML file for persistence storage and efficiency
+
+User:
+    Consists of their preferences and a network, by default the graph network
+    Changing the preferences adjusts the network accordingly
+
+Mutation:
+
+- Making a sequence of changes to the traffic network with the option to refactor traffic flows accordingly
+    - It consists of either completely adding or removing a segment, or adding a particular series of segments and then removing another series
+    - A stack trace is then completed and returned to mark which of the gadgets were successfully added or not; this occurs, for example, when there aren't any gadgets to remove
+    - As long as the user knows the edge segment on which gadgets are being added to, it is possible to complete any valid sequence, even if the removals are to be interleaved with the additions
+    - This is accomplished in the optimal manner by "chaining" together a series of additions or removals ONLY in a call, in the desired sequence
+    - The refactoring obeys the following properties (analogous to Kirchoff's laws):
+        - Conservation of flow: The total amount of flow on a traffic network cannot dependend on traffic additions or removals - practically all individuals need to get to work, regardless of the traffic system (an impetus for our project)
+        - Reversibility: While this is not necessarily the case as commuters may adopt new habits despite a network reversion, any modification policy requires that the traffic state - the flows, times, distances and risks - must revert too to the previous state
+        - Reasonability: The distribution of flows should be "reasonable" and not absurdly high - to the point that traffic density exceeds the road length
+    - It does so by changing the proportion of flows along each edge or node by multiplying or dividing by a factor
+    - See its algorithm in the description for more workings

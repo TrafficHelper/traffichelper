@@ -6,7 +6,9 @@ from networkx import MultiDiGraph
 
 from backend.Code import loader
 from backend.Code.Atomic.gadget import Gadget
+from backend.Code.Atomic.vehicle import Vehicle
 from backend.Code.Interfaces.cost import Cost
+from backend.Constants import constants
 
 
 class Mutation(Cost):
@@ -22,14 +24,14 @@ class Mutation(Cost):
         - shift:bool = False --> An optional parameter whether to add or remove an edge, only called if the additions or removals are empty
     """
 
-    def __init__(self, graph:MultiDiGraph, section:(int, int, int), additions:[Gadget], removals:[Gadget], add_or_remove:bool = False):
+    def __init__(self, graph:MultiDiGraph, section, additions:[Gadget], removals:[Gadget], add_or_remove:bool = False):
         self.network = graph
         self.target = section
         self.additions = additions
         self.removals = removals
         # We don't consider modifying the network if there are some additions or removals; the shift parameter is then redundant
         self.add_or_remove = add_or_remove if len(additions) == 0 == len(removals) else False
-        print(add_or_remove)
+        # print(add_or_remove)
 
     def is_section_modifier(self):
         return len(self.additions) == 0 == len(self.removals)
@@ -56,9 +58,10 @@ class Mutation(Cost):
         :return: Mutates the graph accordingly and returns the work trace
         """
         trace = []
-        u, v, key = (self.target[i] for i in [0, 1, 2])
+        print('Refactoring: '+str(refactor))
         if not refactor:
             if self.is_section_modifier(): # If adding or removing an edge, all other terms are redundant
+                u, v, key = (self.target[i] for i in [0, 1, 2])
                 if self.add_or_remove:
                     self.network.add_edge(u, v, key)
                 else:
@@ -67,6 +70,8 @@ class Mutation(Cost):
                 trace = self.treat_add_gadgets()
             return trace
         else:
+            if len(self.target) != 3:
+                raise Exception('Cannot add or remove non-edge')
             if self.is_section_modifier(): # If adding or removing an empty edge devoid of all other terms
                 if self.add_or_remove: # Want to add feature
                     self.redistribute(True)
@@ -84,10 +89,15 @@ class Mutation(Cost):
         :param refactor: Whether to dynamically refactor the network as gadgets are added and removed
         :return: Adds and removes the given set of addition and removal of gadgets to the network and returns a stack trace on whether each one could be completed
         """
+        n_o_e = len(self.target)
         for added_gadget in self.additions: # Add all listed gadgets
-            curr_data = loader.deserialize(networkx.get_edge_attributes(self.network, 'gadgets')[self.target], False)
+            data = networkx.get_edge_attributes(self.network, 'gadgets')[self.target] if n_o_e == 3 else networkx.get_node_attributes(self.network, 'gadgets')[self.target] if n_o_e == 1 else None
+            curr_data = loader.deserialize(data, False)
             curr_data[added_gadget] += 1
-            networkx.set_edge_attributes(self.network, {self.target:curr_data}, 'gadgets')
+            if n_o_e == 3:
+                networkx.set_edge_attributes(self.network, {self.target:curr_data}, 'gadgets')
+            else:
+                networkx.set_node_attributes(self.network, {self.target:curr_data}, 'gadgets')
             if refactor:
                 self.compute_changed_gadget(added_gadget, True)
 
@@ -108,11 +118,15 @@ class Mutation(Cost):
 
     division = lambda data, avg: {veh:data[veh]/avg for veh in data} # Dividing a list of vehicles by a value
     # addition = lambda data: {key:sum(i[key] for i in data if key in i) for key in set(a for l in data for a in l.keys())} # The sum of all lists of vehicles
+
     @staticmethod
     def addition(data):
-        print('DATA'+str(data))
-
-        return {key:sum(i[key] for i in data if key in i) for key in set(a for l in data for a in l.keys())} # The sum of all lists of vehicles
+        # print('DATA' + str(data))
+        # Right now, data consists of a series of dicts with same keys and associated values
+        # Final sum is dict with same key and sum of all values with those keys: dict[elem] = elem:sum(temp[elem] for temp in data) for elem in dict
+        ans = {elem:0 for elem in Vehicle.list_vehicles(3).keys()} # Reasonably, data will always have SOME key, or it wouldn't be called. Without loss of generality, choose zeroth element as keys are anyway identical
+        ans = {elem:ans[elem] + sum([temp[elem] for temp in data]) for elem in ans} # Separate line for prior existence of all keys, ans[elem] is zero assumes no flow as default
+        return ans
 
     negation = lambda data: {veh:-data[veh] for veh in data} # The negation of the list, temporary convenience for subtraction
 
@@ -144,26 +158,26 @@ class Mutation(Cost):
         # v_out_edges = networkx.get_edge_attributes(self.network, self.network.out_edges(v), 'flow')
         # nv = len(v_out_edges)
         # print(nv)
-        print(edges)
-        print(self.network.out_edges(u))
-        print(self.network.out_edges(v))
-        u_out_edges = {ou:edges[(ou[0], ou[1], 0)]['flows'] for ou in self.network.out_edges(u)}
-        nu = len(u_out_edges)
-        print(nu)
-        v_out_edges = {ov:edges[(ov[0], ov[1], 0)]['flows'] for ov in self.network.out_edges(v)}
-        nv = len(v_out_edges)
-        print(nv)
+        # print(edges)
+        # print(self.network.out_edges(u))
+        # print(self.network.out_edges(v))
 
-        print(add_or_remove)
+        # TEMP: REPLACE ALTERNATIVELY WITH ou, ov RESPECTIVELY
+        u_out_edges = {(ou[0], ou[1], 0):edges[(ou[0], ou[1], 0)]['flows'] for ou in self.network.out_edges(u)}
+        nu = len(u_out_edges)
+        # print(nu)
+        v_out_edges = {(ov[0], ov[1], 0):edges[(ov[0], ov[1], 0)]['flows'] for ov in self.network.out_edges(v)}
+        nv = len(v_out_edges)
+        # print(nv)
         if add_or_remove: # Adding an edge
-            print('hello')
+            # TODO DEBUG STRANGE ADD OR REMOVE FUNCTION
+            # print('hello')
             self.network.add_edge(u, v, key)
             if nu == 0 or nv == 0: # Either the start or end has no influential edges, so this will also be empty with no impact
                 return # It will have no flow and influence nothing here
             # Equally distribute each flow from each of the nu u_out_edges to this edge
-            print(u_out_edges)
+            # print(u_out_edges)
             leaving = {edge:Mutation.division(u_out_edges[edge], nu) for edge in u_out_edges} # Each out edge from u contributes (lacks) proportional to itself
-            print(leaving.values())
             half_amount = Mutation.division(Mutation.addition(leaving.values()), 2) # The amount which should be added to this edge
             # The outgoing nv v_out edges will also need an even distribution of amount added to them
             nv_increment = Mutation.division(half_amount, nv) # So this is that amount which will be incremented
@@ -171,8 +185,7 @@ class Mutation(Cost):
             networkx.set_edge_attributes(self.network, {self.target:half_amount}, 'flows') # We set the flow of the edge
             networkx.set_edge_attributes(self.network, {out:Mutation.addition([v_out_edges[out], {pt:nv_increment for pt in v_out_edges[out]}]) for out in v_out_edges}, 'flows') # ... and increment each out edge by the distribution
         else: # Removing an edge
-            insurance_edge = osmnx.nearest_edges(self.network, 45.5, 75.5) # Random position to get from, will arbitrarily be added with flow in case of pathological case
-
+            insurance_edge = osmnx.nearest_edges(self.network, 45.5, -75.5) # Random position to get from, will arbitrarily be added with flow in case of pathological case
             this_flow = self.network[u][v][key]['flows'] # The HALF amount of flow which should have been accorded
             self.network.remove_edge(u, v, key)
             nu -= 1 # One less u out edge from removing this edge
@@ -184,12 +197,14 @@ class Mutation(Cost):
                 return # If nu == 0, then there are only in edges, which have prior been modified, sink. Similar for nv == 0, also sink. This is not possible to change flow, cannot appear out of nowhere
             decrement_amount = Mutation.division(this_flow, nv) # The amount to decrease each nv by
             # Then we decrement each out edge by our decrement indicator, returning them to their original
-            networkx.set_edge_attributes({out:Mutation.addition([v_out_edges[out], Mutation.negation(decrement_amount)]) for out in v_out_edges}, 'flows')
+            networkx.set_edge_attributes(self.network, {out:Mutation.addition([v_out_edges[out], Mutation.negation(decrement_amount)]) for out in v_out_edges}, 'flows')
             # Set all edges to their previously expected values, flow does not change
             networkx.set_edge_attributes(self.network, {out_u: Mutation.division(u_out_edges[out_u], 1 - 1/nu) for out_u in u_out_edges}, 'flows')
 
     # Repeat the list of accidents until a given factor is reached
-    trim = lambda accidents, factor: accidents[:int(len(accidents)*factor)] if factor < 1 else list(itertools.islice(itertools.cycle(accidents), int(factor*len(accidents))))
+    @staticmethod
+    def trim(accidents, factor):
+        return accidents[:int(len(accidents)*factor)] if factor < 1 else list(itertools.islice(itertools.cycle(accidents), int(factor*len(accidents))))
 
     def compute_changed_gadget(self, gadget:Gadget, add_or_remove:bool): # TODO Fix impact of changed gadgets
         """
@@ -209,19 +224,23 @@ class Mutation(Cost):
 
         # Change matrix:
         if gadget == Gadget.LANE:
-            accident = Mutation.trim(accident, 0.8) # Adding a lane decreases accident risk by 20%
+            acrsk = Mutation.trim(accident, 0.8 if not add_or_remove else 1/0.8)
+            accident = Mutation.trim(accident, acrsk) # Adding a lane decreases accident risk by 20%
             # Other parameters aren't influenced by adding another lane, for this application
 
         if gadget == Gadget.SPEED_INCREASE:
-            speed += 10 # Speed increase block size
-            accident = Mutation.trim(accident, 2) # Accidents double for every 10kmh above speed limit
+            speed += (1 if not add_or_remove else -1)*Gadget.DISCRETION.value # Speed increase block size
+            acrsk = 1.5 if not add_or_remove else 1/1.5
+            accident = Mutation.trim(accident, acrsk) # Accidents double for every 10kmh above speed limit
 
         if gadget == Gadget.STOP_LIGHT:
-            accident = Mutation.trim(accident, 0.7) # Increasing lane decreases accident risk by 30%
-            speed -= 3 # Equivalent time decreases by 30 seconds, so about 3kmh
+            acrsk = 0.7 if not add_or_remove else 1/0.7
+            accident = Mutation.trim(accident, acrsk) # Increasing lane decreases accident risk by 30%
+            speed += (-1 if not add_or_remove else 1)*3 # Equivalent time decreases by 30 seconds, so about 3kmh
 
         if gadget == Gadget.SPEED_ENFORCER:
-            accident = Mutation.trim(accident, 0.5) # Accidents decrease too here
+            acrsk = 0.5 if not add_or_remove else 1/0.5
+            accident = Mutation.trim(accident, acrsk) # Accidents decrease too here
 
         # Set new speed, and accidents. From speed, travel time will be computed, and from accidents, risk will be. Then both will be combined to compute new cost of network
         networkx.set_edge_attributes(self.network, {self.target:speed}, 'speed_kph')
@@ -229,6 +248,12 @@ class Mutation(Cost):
         osmnx.add_edge_travel_times(self.network)
         loader.compute_risks(self.network)
         loader.compute_costs(self.network)
+
+    def cost(self) -> float:
+        if not self.is_section_modifier(): # Just adding or removing gadgets
+            return sum([a.cost() for a in self.additions]) + sum([r.cost() for r in self.removals])
+        else: # Modifying road section at its core - adding road is more expensive than removing it
+            return networkx.get_edge_attributes(self.network, self.target, 'length')*(constants.EDGE_ADD_COST if self.add_or_remove else constants.EDGE_REMOVE_COST)
 
 
 

@@ -11,6 +11,7 @@ class BasePreferencesApi:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         BasePreferencesApi.subclasses = BasePreferencesApi.subclasses + (cls,)
+
     def set_preferences(
         self,
         preferences: Preferences,

@@ -30,13 +30,13 @@ class Gadget(Cost, Parser, Enum):
         :return: The cost of each gadget
         """
 
-        approval_cost = 150 # https://www.ola.org/sites/default/files/common/how-bills-become-law-en.pdf (ontario bill but practically the same)
+        approval_cost = 150 # [20]
         match self.value:
             # Averages from ...
             case Gadget.SPEED_INCREASE.value: return approval_cost
             case Gadget.LANE.value: return approval_cost+10**6
-            case Gadget.SPEED_ENFORCER.value: return approval_cost+4327 # https://www.cbc.ca/news/canada/ottawa/annoying-thing-speed-cameras-ottawa-they-work-1.6786951
-            case Gadget.STOP_LIGHT.value: return approval_cost+4375 # https://www.toronto.ca/services-payments/streets-parking-transportation/traffic-management/traffic-signals-street-signs/traffic-signals-in-toronto/traffic-signal-installation/
+            case Gadget.SPEED_ENFORCER.value: return approval_cost+4327 # [19]
+            case Gadget.STOP_LIGHT.value: return approval_cost+4375 # [18]
             case _: raise ValueError("Invalid Gadget type")
 
     @staticmethod

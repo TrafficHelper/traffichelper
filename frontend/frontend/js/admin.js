@@ -80,6 +80,9 @@ fetch('/frontend/js/Traffic_Collision_Data_small.csv')
     //catches errors and console.logs
     .catch(error => console.error('Error fetching CSV file:', error));
 
+
+    //see line 99 for new api_access key location...
+
 /**
  * Submits question and performs json fetch POST and GET methods to OpenAI API
  * @param none

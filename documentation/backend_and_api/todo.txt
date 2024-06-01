@@ -1,9 +1,0 @@
-1. Make sure modification method is not buggy
-    - Flow redistribution only upon adding or removing edges
-    - Changes actually occur in adding or removing gadgets
-
-2. Finish complete functional documentation
-    - Of CLI
-    - Of beta
-
-3. Finish writing UML diagrams of backend and API

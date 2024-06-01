@@ -12,6 +12,7 @@ class BaseRoutesApi:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         BaseRoutesApi.subclasses = BaseRoutesApi.subclasses + (cls,)
+
     def get_safe_route(
         self,
         safe_routes: SafeRoutes,

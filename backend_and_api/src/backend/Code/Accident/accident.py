@@ -48,5 +48,8 @@ class Accident(Parser): # TODO Re-include Section and associated methods after f
         """
         return {*()}
 
+    def __str__(self):
+        return 'Accident: Environment: ' + str(self.environment) + ' between ' + str(self.start) + ' and ' + str(self.end) + ' with ' + str(self.outcome)
+
 
 

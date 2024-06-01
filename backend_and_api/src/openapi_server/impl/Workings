@@ -1,0 +1,10 @@
+TrafficHelper uses OpenAPI as an interface between the frontend and backend
+The contract specifications are at /Contracts
+42crunch's OpenAPI (swagger) editor visualizes the potential YAML file [11]
+Jim Schubert's openapi-generator extension is then applied to generate implementations for the YAML [12, 17]
+Consists of implementation of
+    routes_impl: Returns a series of coordinates and data to plot from the API
+    preferences_impl: Accepts the user's preferences and sets the preferences and returns them through the API
+    points_impl: Accepts and sets the user's start and end points in either coordinate or address form
+
+

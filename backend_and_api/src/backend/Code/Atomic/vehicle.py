@@ -12,7 +12,7 @@ class Vehicle(Parser, Enum):
     """
 
     # Avg. ratio of CAR:TRUCK:MOTORCYCLE in Urban Road
-    # Obtained from https://publications.gc.ca/collections/Collection/Statcan/11-621-M/11-621-MIE2005028.pdf and https://www.advrider.com/f/threads/ratio-of-motorcycles-to-cars-trucks.19083/
+    # Obtained from [21]
     RATIOS = (432, 16, 27)
 
     PEDESTRIAN = 1

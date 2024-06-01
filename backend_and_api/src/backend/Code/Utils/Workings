@@ -1,0 +1,13 @@
+Characterize how the preferences work and the Utility functions
+The Utility functions use OSMnx built off networkx to determine optimal paths
+Each edge is assigned an accident risk, (constant flow), travel time and distance
+The accident risk is 1 - prod(1 - r) for each edge's r
+The travel time is the sum of all the travel times and expected intersection wait time
+The distance is sum of all distances along each edge and expected intersection length times number of turns
+OSMnx provides previously computed nodeIDs: I
+It is easy to convert them to coordinates using their inbuilt 'x' and 'y' parameters
+Their names can be accessed through 'name' parameter and consecutive names can be removed if needed
+The Preferences adjust the road network;
+When the user sets the preferences, their individual average speed (ex. 15 kph for cyclists and 5 kph for pedestrians) is factored
+The environment and cost preferences also affect the cost along each network
+This creates new weightings which provide different results for different paths

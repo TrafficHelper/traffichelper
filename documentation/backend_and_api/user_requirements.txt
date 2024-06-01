@@ -1,0 +1,74 @@
+Note: These are the revised user requirements, all features are accomplished by the software, while not all nice-to-haves were accomplished
+These slightly differ from the Software Design Document's user requirements in order, but since all features were successfully tested, it is irrelevant
+
+A. Necessities: To have a software program which
+    1. Meets all requirements
+    2. Contains a website which
+        2.1. Has a distinction between users and administrators
+        2.2. Is easily accessible and understandable with instructions
+        2.3. Is well-designed, formatted and appealing
+        2.4. Some means of contacting the developers if an error occurs
+        2.5. Does the following
+            2.5.1. Has a login system to identify the user and administrator
+            2.5.2. Has a preferences page for both users and administrators
+                2.5.2.1. To set their preferred or commonly-used vehicle from a dropdown of Pedestrian, Bicycle, Motorcycle, Car, Truck, Other conveyance
+                2.5.2.2. To set the contextual environment from a dropdown of Ideal, Normal, Abnormal, Deviant, Troublesome, Extreme
+                2.5.2.3. To have a dropdown of the weekday and time they choose to leave
+                2.5.2.4. To set their preferred emphasis via three sliders, on
+                    2.5.2.4.1. Accident chance
+                    2.5.2.4.2. Elapsed time
+                    2.5.2.4.3. Total distance
+                2.5.2.5. An integer field allowing them to choose the number of paths they want
+            2.5.3. Has a routing page which
+                2.5.3.1. Displays a zoom-able interactive map
+                2.5.3.2. Allows a start and an end point overlaid on the interactive map which permits the user to move the start and end points to their desired start and end locations
+                2.5.3.3. Allows the user to enter start and end addresses in similarly-named fields
+                2.5.3.4. Submit the form
+            2.5.4. Has a results page which
+                2.5.4.1. Computes an optimal path from the user's start and end points according to their preferences
+                2.5.4.2. Overlays each of those paths on the map network in a distinguishably different color
+                2.5.4.3. Identifies each of the paths along with
+                    2.5.4.3.1. The absolute accident risk
+                    2.5.4.3.2. The path duration
+                    2.5.4.3.3. The length of the path
+            2.5.5. Has a recommendations page encouraging citizen activism which
+                2.5.5.1. Contains a budget field allowing the user to enter a budget in dollars
+                2.5.5.2. A list of checkboxes to select a given subset of traffic gadgets: Lane, Discrete Speed Limit Block, Traffic Light, Speed Camera
+                2.5.5.3. The ability to ask a question (which is either pertaining to the traffic network or for recommendations)
+                2.5.5.4. Computes and returns user-readable nicely-formatted data in a textbox, responding to the asked question and in the context of thr recommendations page
+            2.5.6. Has the ability to view a manual and user guide of how TrafficHelper works
+    3. Contains a Command-Line-Interface (CLI) which
+        3.1. Allows ALL actions permissible to the website, possibly excluding the recommendations section
+        3.2. Is fast and effective and accurate
+        3.3. Is failsafe and provides helpful error messages
+        3.4. See how the CLI works through entering a command to see the manual
+        3.5. Possesses actions not permissible to the website, including
+            3.5.1. The ability to view the exact sequence of roads which is taken for an optimal path
+            3.5.2. The ability to edit the traffic network through the addition or removal of road segments and intersections or traffic gadgets with the option to
+                3.5.2.1. Refactor the traffic network to account for these changes and in an internally consistent manner satisfying
+                    3.5.2.1.1. Conservation of total traffic flow
+                    3.5.2.1.2. Reversibility of changes
+                    3.5.2.1.3. Optimal bounded rational behaviour
+                3.5.2.2. Override refactoring to directly make changes
+                3.5.2.3. Return the cost of a modification and whether the modification sequence was successful
+
+B. Nice-To-Haves (some requirements represented in the beta website): Some of the nice-to-haves were suggested by the client (marked with 'C'), while others were suggested by the team (marked with 'T')
+    4. A more accurate traffic system
+        4.1. With the ability to simulate individuals' individual preferences, on average
+        4.2. Incorporating accident risk, time risk and cost risk on intersections and departure time
+        4.3. Using a specialized AI to obtain data and predict traffic modifications instead of ~AGI
+        4.4. Including time-of-day dependence on traffic network properties
+        4.5. Accessing a Weather API to determine environment amenability as an option for the user to set their environment based on their time of departure
+        4.6. Using traffic micro-simulation libraries to optimize the traffic network to granular precision
+        4.7. Serialization and deserialization all object data
+        4.8. Improve efficiency through implementation of specialized powerful algorithms such as Yen's Algorithm with Fibonacci Heap
+
+
+
+
+
+
+
+
+
+

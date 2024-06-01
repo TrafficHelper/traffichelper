@@ -1,0 +1,47 @@
+Tools & Editors:
+
+Link:
+    https://www.blender.org/
+    https://www.gltfeditor.com/
+    https://code.visualstudio.com/
+IEEE:
+    [37] Microsoft, “Visual studio code - code editing. redefined,” RSS, https://code.visualstudio.com/ (accessed May 27, 2024).
+    [38] E. Mackey, J. Marconi, G. Hsu, and H. Wolosky, “GLTF editor - edit, view and convert gltf & USDZ files,” glTF Editor - Edit, View and Convert glTF & USDZ files, https://www.gltfeditor.com/ (accessed May 27, 2024).
+    [39] B. Foundation, “Home of the blender project - free and open 3D creation software,” blender.org, https://www.blender.org/ (accessed May 27, 2024).
+
+Research Purpose:
+
+    Link:
+        https://threejs.org/docs/index.html#manual/en/introduction/Installation
+        https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type
+        https://docs.maptiler.com/leaflet/examples/vite-vanilla-js-default/
+    IEEE:
+        [40] Anonymous, “How to use leaflet with Vite and MapTiler vector tiles in vanilla JS: Leaflet,” MapTiler, https://docs.maptiler.com/leaflet/examples/vite-vanilla-js-default/ (accessed May 27, 2024).
+        [41] Mozilla, “Scroll-SNAP-type - CSS: Cascading style sheets: MDN,” MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type (accessed May 27, 2024).
+        [42] R. Cabello, Three.js – JavaScript 3D Library, https://threejs.org/ (accessed May 27, 2024).
+
+
+Code (execution) Purpose:
+
+Link:
+    https://www.npmjs.com/
+    https://vitejs.dev/
+    https://leafletjs.com/reference.html
+IEEE:
+    [43] “An open-source JavaScript library for interactive maps,” Leaflet, https://leafletjs.com/ (accessed May 27, 2024).
+    [44] E. You, “Vite,” vitejs, https://vitejs.dev/ (accessed May 27, 2024).
+    [45] Z. Steindler, K. Jones, M. Polhill et al., “NPM JS,” npm, https://www.npmjs.com/ (accessed May 27, 2024).
+
+Images/Assets
+    Links:
+        https://fonts.google.com/
+        https://www.canva.com/
+    IEEE:
+        [46] Google, “Google Fonts,” Google fonts, https://fonts.google.com/ (accessed May 27, 2024).
+        [47] M. Perkins, C. Obrecht, and C. Adams, “CANVA: Design, art & ai editor - apps on google play,” Google, https://play.google.com/store/apps/details?id=com.canva.editor&hl=en_US (accessed May 27, 2024).
+
+Map Assets:
+    Link:
+        https://leaflet-extras.github.io/leaflet-providers/preview/
+    IEEE:
+        [48] V. Agafonkin, I. Sanchez, D. Leaver et al. , “Leaflet ,” Leaflet provider demo, https://leaflet-extras.github.io/leaflet-providers/preview/ (accessed May 27, 2024).

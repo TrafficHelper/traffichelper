@@ -1,0 +1,22 @@
+Throughout the application, / designates the root folder of the project
+
+/Documentation/
+    api: Describes all about the RESTful API and its design choice and significance
+    arch: Describes the Project architecture
+    backend:  Describes the backend workings
+    challenges: Describe the issues with setting up the project
+    cli-instructions: CLI Manual - describes the CLI and how to run it
+    outline: This file, which describes the project layout
+    project roles: (For the grader) What each member of the team did
+    References - frontend: All frontend references
+    References - api: All API References
+    References - backend: All backend references
+    setup-instructions: Setting up instructions for the software
+    sdd: A text version of the software design doc. See https://docs.google.com/document/d/1SlbqCdc8pmZLILLK-eVnB-9vmIytWZ6njtMqh_9caFk/edit as well
+    user_requirements: Updated categorization of the user requirements
+    workings: To see and understand how the backend (the core of the application) works
+    ../src/backend
+        /README.md: Links to this file and is the first file encountered
+        /requirements.txt: Specific libraries required by the backend
+    ../requirements.txt: Requirements of the API generator
+    ../README.md: What is first viewed of the software. Note that it ONLY describes the API setup instructions but refers to this page for more information

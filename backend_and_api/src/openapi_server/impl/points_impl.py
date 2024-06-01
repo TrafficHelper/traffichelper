@@ -1,4 +1,3 @@
-import geopy.geocoders
 import osmnx
 
 from backend.Code.Interfaces import interfacer
@@ -13,12 +12,11 @@ class PointsImpl(BasePointsApi):
         :param address: str, represents address
         :return: Returns the latitude and longitude from address
         """
-        print(address)
         interfacer.select_start(address)
         loc = osmnx.geocode(address)
         json_tmp = {'latitude':str(loc[0]), 'longitude':str(loc[1])}
-        print(json_tmp)
         coord = Coords.from_dict(json_tmp)
+        print('Success in getting coordinates from address')
         return coord
 
     def get_address_from_lat_long(self, latitude: str, longitude: str) -> str:
@@ -28,6 +26,6 @@ class PointsImpl(BasePointsApi):
         :param longitude: The longitude of the locale
         :return: Selects the lat, long of the locale.
         """
-        print(latitude, longitude)
-        interfacer.select_start((latitude, longitude)) # Interpret from coord tuple
+        interfacer.select_start(str((latitude, longitude))) # Interpret from coord tuple
+        print('Success in getting address from coordinates')
         return "Default address"

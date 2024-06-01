@@ -9,7 +9,6 @@ from backend.Code.Atomic.vehicle import Vehicle
 from backend.Code.Utils.preferences import Preferences
 from backend.Constants import constants
 
-
 class User:
 
     """
@@ -54,33 +53,36 @@ class User:
         :return: Modifies the traffic network based on the user's preferences, for easier computation
         """
 
+        self._preferences = new  # Finally set new preferences
+        num_envts = 5.0 # Number of environments
         self.curr_network = copy.deepcopy(self.base_network) # Reset to work with base network, discarding previous changes
         new_accidents = {}
+        # elt = self.curr_network.edges
         for u, v, key in self.curr_network.edges:
             accidents:[Accident] = self.curr_network[u][v][key]['accidents']
-
+            # print(accidents)
             # Remove according to user's environment, each environment has rank/total() of all accidents
-            accidents = mutation.Mutation.trim(accidents, self.preferences.environment.value/ 5.0)
-
-            # Account for vehicle: Pedestrians and Bicycles have a considered maximum speed of 30 kmh
-            if self.preferences.vehicle in [Vehicle.PEDESTRIAN, Vehicle.BICYCLE]:
-                max_speed = networkx.get_edge_attributes(self.curr_network, 'speed_kph')
-                max_speed = {edge:constants.PEDESTRIAN_MAX_SPEED for edge in max_speed} # Upper limit to 30, but they aren't limited
-                # Set edge speed limit and recompute travel time
-                networkx.set_edge_attributes(self.curr_network, max_speed, 'speed_kph')
-                osmnx.add_edge_travel_times(self.curr_network)
-
+            accidents = mutation.Mutation.trim(accidents, self.preferences.environment.value/num_envts*self.preferences.metric[0])
+            # print(accidents)
             # Then Remove all intolerable accidents
             valid_accidents = accidents # List of new valid accidents on edge
             for elem in accidents:
                 if elem in self.preferences.intolerance:
                     valid_accidents.remove(elem)
-            new_accidents[u, v, key] = valid_accidents
+            new_accidents[(u, v, key)] = valid_accidents
+        max_speed = networkx.get_edge_attributes(self.curr_network, 'speed_kph')
+        if self.preferences.vehicle in [Vehicle.PEDESTRIAN]:
+            max_speed = {edge:constants.PEDESTRIAN_MAX_SPEED for edge in max_speed}
+        if self.preferences.vehicle in [Vehicle.BICYCLE]:
+            max_speed = {edge:constants.BICYCLE_MAX_SPEED for edge in max_speed}
+        networkx.set_edge_attributes(self.curr_network, max_speed, 'speed_kph')
+        osmnx.add_edge_travel_times(self.curr_network)
 
+        # Add accidents to recompute them
         networkx.set_edge_attributes(self.curr_network, new_accidents, 'accidents')
         loader.compute_risks(self.curr_network) # Recompute new risks
         loader.compute_costs(self.curr_network, new.metric) # ... Thus recompute new costs
-        self._preferences = new # Finally set new preferences
+
 
     def make_admin(self):
         self.is_admin = True
@@ -94,3 +96,11 @@ class User:
 
     def __str__(self):
         return 'Admin: '+str(self.is_admin)+'. Preferences: '+str(self.preferences)
+
+# Tester
+# if __name__ == '__main__':
+#     us = User()
+#     print(us.preferences)
+#     us.preferences = Preferences(Vehicle.PEDESTRIAN, Environment.ABNORMAL, (0.1, 0.3, 0.6))
+#     print(us.preferences)
+#

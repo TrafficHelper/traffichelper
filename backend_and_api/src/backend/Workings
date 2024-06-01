@@ -1,0 +1,11 @@
+This is the backend part of TrafficHelper
+All frontend code with the exception of the Web-based AI Query directs here
+Computations and algorithms are run on the data and then returned
+This, like all "Workings" files only describes the function of its parent directory and base nodes
+
+Relevant files:
+    garbage.py: An eclectic mix of untested code, ideas and potentially useful snippets of future implementations, all user-developed
+    README.md: The README.md for the entire software
+    requirements.txt: The list of requirements for the software
+
+Comment guidelines are applied to functions to describe new information. Overridden or duplicated/self-evident functions may have different structure
