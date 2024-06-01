@@ -1,0 +1,12 @@
+## Installation & Usage
+
+To run the frontend, please first redirect to the /traffichelper/frontend folder and do the following:
+
+```bash
+npm install
+npm install vite
+npm run compile-scss
+npm run dev
+```
+
+and open your browser at `http://localhost:5173/` to see the frontend UX.
