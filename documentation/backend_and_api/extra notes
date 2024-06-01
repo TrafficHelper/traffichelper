@@ -12,7 +12,7 @@ Installation process:
 - GeoPy: pip install geopy
 - OverPy: pip install overpy
 
-2. The following plugins were used in the dev process and should also be added. Installing otherwise may cause undefined behaviour
+2. The following plugins were used in the dev process and can also be added for convenience
 
 - Mermaid: UML Diagrams
 - CSV Editor: View features of the csv files
@@ -27,27 +27,3 @@ Implicit libs:
 - matplotlib
 - geopy
 - overpy
-- frozendict
-
-
-4. Hardware reqs
-
-
-
-
-- IDE: Bottom-layer JetBrains PyCharm Python 2024.1.1 Community ed.
-
-OSMnx ref: Boeing, G. 2024. “Modeling and Analyzing Urban Networks and Amenities with OSMnx.” Working paper. https://geoffboeing.com/publications/osmnx-paper/
-
-Overpass QL & Turbo API
-
-Idea:
-
-Challenges:
-
-Reducing computation time via on-disk cache serialization vs. internet.
-Profiled system for greater efficiency working with less dependency on connectivity
-Work with reduced bandwidth
-
-
-OpenA
