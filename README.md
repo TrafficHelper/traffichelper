@@ -13,6 +13,4 @@ References at:
 Description at:
   - /Workings
     
-Contact: rbahl1@ocdsb.ca, ashi2@ocdsb.ca, mzhou11@ocdsb.ca.
-
-Note: Links to other files for brevity & modularity
+Contact
