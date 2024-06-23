@@ -18,3 +18,5 @@ Contact safercities.all@gmail.com
 A website can be found at: http://ec2-52-20-159-215.compute-1.amazonaws.com:5173/ 
 
 (Site may be down at times to conserve AWS hosting cost)
+
+(Note: repo slightly out-of-date, contact for info on updated versions)
