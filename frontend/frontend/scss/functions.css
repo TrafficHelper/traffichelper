@@ -965,4 +965,30 @@ input[type=time]::-webkit-calendar-picker-indicator:hover {
   flex-direction: column;
 }
 
+#moon {
+  position: relative;
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  box-shadow: 0.35rem 0.35rem 0 0 #000000;
+}
+
+#light-dark-button {
+  position: relative;
+  cursor: pointer;
+  z-index: 5;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: #ffffff;
+  top: -15%;
+  right: 5%;
+  transition: 0.2s ease;
+}
+
+#light-dark-button:hover {
+  background-color: #797979;
+}
+
 /*# sourceMappingURL=functions.css.map */

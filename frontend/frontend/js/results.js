@@ -3,6 +3,8 @@ localStorage.setItem("maptheme", "dark");
 
 theme = localStorage.getItem("maptheme");
 
+var road_display = document.getElementById("paths-info-box");
+
 //initializes map (for results with leaflet)
 var results_map = L.map('results-map', {
     center: [43.00, -79.00],
@@ -71,9 +73,7 @@ change_theme_button.addEventListener('click', function() {
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
+    for (var i = 0; i < 6; i++) color += letters[Math.floor(Math.random() * 16)];
     return color;
 }
 
@@ -183,17 +183,24 @@ function Submit_All() {
         
         const unparsed_data = JSON.stringify(dataList);
         const data = JSON.parse(unparsed_data);
+
+        var routes = [];
+
+        var allroads = [];
         
         var numroutes = data.length;
 
         for(let i=0; i<numroutes; i++) {
             var coordinates = data[i].routes;
+            var roads = ['abc', '123']; //data[i].roads;
 
-            //changing coordinates = ["(x1,y1)", "(x2,y2)" ...] to coordinates = [[x1, y1], [x2, y2] ...]
+            //converting coordinates = ["(x1,y1)", "(x2,y2)" ...] to coordinates = [[x1, y1], [x2, y2] ...]
             coordinates = coordinates.map(coord => {
                 coord = coord.slice(1, -1);
                 return coord.split(',').map(Number);
             });
+
+            allroads.push(roads);
 
             const start_coord = {
                 lat: coordinates[0][0],
@@ -230,11 +237,12 @@ function Submit_All() {
             var risk_val = data[i].risk;
             var traveltime_val = data[i].traveltime;
             var distance_val = data[i].distance;
-            var color = getRandomColor()
+            var color = getRandomColor();
             
             //draws the rotues given the coordinates (polyline from leaflet map library)
             var route = L.polyline(coordinates, {color: color, weight: 6, opacity: 1});
-            route.addTo(results_map);
+            routes.push(route);
+            routes[i].addTo(results_map);
             
             //inputs new values into results table and changes values
             if(results_value_table) {
@@ -256,9 +264,45 @@ function Submit_All() {
                 colorDiv.style.height = '20px'; 
                 colorDiv.style.backgroundColor = color;
                 colorDiv.style.border = '1px solid black';
+                colorDiv.style.cursor = 'pointer';
+
+                //gets appropriate index and row
+                (function(index, row) {
+                    temproads = allroads[index];
+                    colorDiv.addEventListener('click', function () {
+                        if (routes[index].options.opacity === 0) {
+                            routes[index].setStyle({ opacity: 1 });
+                            routes[index].setStyle({ pointerEvents: 'auto' });
+                            row.style.background = '#00000000';
+                            allroads[index] = temproads;
+                        } else {
+                            routes[index].setStyle({ opacity: 0 });
+                            routes[index].setStyle({ pointerEvents: 'none' });
+                            row.style.background = '#85858575';
+                            allroads[index] = [];
+                            console.log(allroads);
+                        }
+                        let roadscontent = '(ROUTE #). (ROADS JOURNEYED)\n';
+                        allroads.forEach((roadlist, index) => {
+                            if(allroads[index].length != 0) {
+                                let roadsublist = roadlist.join(', ');
+                                roadscontent += `${index + 1}. ${roadsublist}<br>`
+                            }
+                        })
+                        road_display.innerHTML = roadscontent;
+                    });
+                })(i, newRow);
         
                 colorCell.appendChild(colorDiv);
             }
+            let roadscontent = '';
+            allroads.forEach((roadlist, index) => {
+                if(allroads[index] != []) {
+                    let roadsublist = roadlist.join(', ');
+                    roadscontent += `${index + 1}. ${roadsublist}<br>`
+                }
+            })
+            road_display.innerHTML = roadscontent;
         }
     })
 }
