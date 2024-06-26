@@ -61,7 +61,7 @@ function check_login_admin() {
   }
   else {
     //if passkey is invalid, automatically redirect back to regular user login (gives popup)
-    window.alert('Invalid passkey... redirecting you to regular login.')
+    window.alert('Invalid passkey... redirecting you to regular login. Contact us in the Contacts Page for a valid passkey.')
     redirect_login_user();
   }
 }
