@@ -282,7 +282,7 @@ function Submit_All() {
                             allroads[index] = [];
                             console.log(allroads);
                         }
-                        let roadscontent = '(ROUTE #). (ROADS JOURNEYED)\n';
+                        let roadscontent = '(ROUTE #). (ROADS EMBARKED)<br>';
                         allroads.forEach((roadlist, index) => {
                             if(allroads[index].length != 0) {
                                 let roadsublist = roadlist.join(', ');
@@ -295,7 +295,7 @@ function Submit_All() {
         
                 colorCell.appendChild(colorDiv);
             }
-            let roadscontent = '';
+            let roadscontent = '(ROUTE #). (ROADS EMBARKED)<br>';
             allroads.forEach((roadlist, index) => {
                 if(allroads[index] != []) {
                     let roadsublist = roadlist.join(', ');
