@@ -669,7 +669,7 @@ input[type=time]::-webkit-calendar-picker-indicator:hover {
 
 .back-routing-button {
   cursor: pointer;
-  height: 150px;
+  height: 100px;
   width: 25.5%;
   margin-right: 2%;
   display: flex;
@@ -703,8 +703,7 @@ input[type=time]::-webkit-calendar-picker-indicator:hover {
 .results-map {
   z-index: 2;
   width: 65%;
-  margin-top: 10%;
-  height: 80%;
+  height: 65%;
   padding: 40px 50px 40px 40px;
   background: rgba(0, 0, 0, 0.5098039216);
   border: 2px #7c640d solid;
@@ -719,7 +718,7 @@ input[type=time]::-webkit-calendar-picker-indicator:hover {
   border: 1px #fac402 solid;
   border-radius: 10px;
   width: 23%;
-  height: 60%;
+  height: 65%;
   margin-right: 2%;
   overflow: scroll;
   z-index: 5;
@@ -743,9 +742,25 @@ input[type=time]::-webkit-calendar-picker-indicator:hover {
 
 .values-table-component td {
   border: 1px solid #7c640d;
-  background-color: #050505;
-  color: #fac401;
   padding: 1%;
+  color: #fac401;
+}
+
+.paths-info-box {
+  height: 100px;
+  width: 72.5%;
+  display: flex;
+  padding: 1%;
+  font-weight: bolder;
+  color: #d8b740;
+  font-size: 22.5px;
+  font-weight: normal;
+  border: 1px #fac402 solid;
+  background-color: transparent;
+  border-radius: 5px;
+  transition: 0.5s ease;
+  margin-bottom: 1%;
+  overflow: scroll;
 }
 
 .results-title {

@@ -187,12 +187,14 @@ function Submit_All() {
         var routes = [];
 
         var allroads = [];
+
+        var temproads = [];
         
         var numroutes = data.length;
 
         for(let i=0; i<numroutes; i++) {
             var coordinates = data[i].routes;
-            var roads = ['abc', '123']; //data[i].roads;
+            var roads = ['abc', i+1]; //data[i].roads;
 
             //converting coordinates = ["(x1,y1)", "(x2,y2)" ...] to coordinates = [[x1, y1], [x2, y2] ...]
             coordinates = coordinates.map(coord => {
@@ -201,6 +203,7 @@ function Submit_All() {
             });
 
             allroads.push(roads);
+            temproads.push([]);
 
             const start_coord = {
                 lat: coordinates[0][0],
@@ -268,43 +271,44 @@ function Submit_All() {
 
                 //gets appropriate index and row
                 (function(index, row) {
-                    temproads = allroads[index];
                     colorDiv.addEventListener('click', function () {
                         if (routes[index].options.opacity === 0) {
                             routes[index].setStyle({ opacity: 1 });
                             routes[index].setStyle({ pointerEvents: 'auto' });
                             row.style.background = '#00000000';
-                            allroads[index] = temproads;
+                            // allroads[index] = [...allroads[index], ...temproads[index]];
+                            allroads[index] = [];
+                            allroads[index].push(temproads[index]);
+                            console.log(allroads)
                         } else {
                             routes[index].setStyle({ opacity: 0 });
                             routes[index].setStyle({ pointerEvents: 'none' });
                             row.style.background = '#85858575';
+                            temproads[index] = [];
+                            temproads[index].push(allroads[index]);
                             allroads[index] = [];
-                            console.log(allroads);
+                            console.log(allroads)
                         }
-                        let roadscontent = '(ROUTE #). (ROADS EMBARKED)<br>';
-                        allroads.forEach((roadlist, index) => {
-                            if(allroads[index].length != 0) {
-                                let roadsublist = roadlist.join(', ');
-                                roadscontent += `${index + 1}. ${roadsublist}<br>`
-                            }
-                        })
-                        road_display.innerHTML = roadscontent;
+                        updateRoadDisplay(allroads);
                     });
                 })(i, newRow);
         
                 colorCell.appendChild(colorDiv);
             }
-            let roadscontent = '(ROUTE #). (ROADS EMBARKED)<br>';
-            allroads.forEach((roadlist, index) => {
-                if(allroads[index] != []) {
-                    let roadsublist = roadlist.join(', ');
-                    roadscontent += `${index + 1}. ${roadsublist}<br>`
-                }
-            })
-            road_display.innerHTML = roadscontent;
+            updateRoadDisplay(allroads);
         }
     })
+}
+
+function updateRoadDisplay(allroads) {
+    let roadscontent = '(ROUTE #). (ROADS EMBARKED)<br>';
+    for(let i=0; i<allroads.length; i++) {
+        if (allroads[i].length > 0) {
+            let roadsublist = allroads[i].join(', ');
+            roadscontent += `${i + 1}. ${roadsublist}<br>`;
+        }
+    }
+    road_display.innerHTML = roadscontent;
 }
 
 //runs functions on load page
