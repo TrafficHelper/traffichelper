@@ -16,7 +16,7 @@ Description at:
 Contact safercities.all@gmail.com
 
 A website can be found at: http://ec2-52-20-159-215.compute-1.amazonaws.com:5173/ 
+update 2024-08-02: site is now in hibernation but screenshots of behaviour can be found in technical documentation 
 
-(Site may be down at times to conserve AWS hosting cost)
 
 (Note: repo slightly out-of-date, contact for info on updated versions)
